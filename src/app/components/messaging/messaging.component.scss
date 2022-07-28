@@ -1,0 +1,14 @@
+$primary: #064420;
+$primary-text: #fff;
+$warn: #cf0000;
+$warn-text: #fff;
+
+::ng-deep .style-success {
+  color: $primary-text;
+  background-color: $primary;
+}
+
+::ng-deep .style-error {
+  color: $warn-text;
+  background-color: $warn;
+}

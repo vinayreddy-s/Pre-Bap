@@ -1,0 +1,175 @@
+<mat-expansion-panel>
+    <!-- Expansion Panel Header -->
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Experience Details
+        </mat-panel-title>
+        <mat-panel-description>
+            <!-- Company name, designation, etc. (All Previous experience details) -->
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="mat-title">Experience Details
+        <div class="subtile1">Company Name, Designation etc (All previous experience details) </div>
+    </div>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <ng-template matExpansionPanelContent>
+        <form [formGroup]="experienceFormGroup">
+            <div class="form-container">
+                <div class="top-container">
+                    <blockquote>
+                        <p class="mat-body">
+                            Please select the checkbox if the fields that are not applicable to
+                            you.
+                        </p>
+                    </blockquote>
+                    <div>
+                        <mat-checkbox *ngIf="candidateDetails?.id" [disabled]="expDataSource.length > 0"
+                            class="check-box" [checked]="isNotApplicable" (change)="checkboxChecked()">
+                            Not Applicable</mat-checkbox>
+                    </div>
+                </div>
+                <div class="left-container">
+                    <mat-form-field color="accent">
+                        <mat-label>Company Name</mat-label>
+                        <input matInput formControlName="companyName" required>
+                        <mat-error *ngIf="experienceFormControl.companyName.errors?.required" align="start">
+                            Company Name is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>From</mat-label>
+                        <input matInput [matDatepicker]="dofpicker" [max]="today" placeholder="MM/DD/YYYY"
+                            formControlName="workedFrom" [value]="workfrom" required>
+                        <mat-datepicker-toggle matSuffix [for]="dofpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dofpicker></mat-datepicker>
+                        <mat-error *ngIf="experienceFormControl.workedFrom.errors?.required" align="start">
+                            Date is required!
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent">
+                        <mat-label>To</mat-label>
+                        <input matInput [matDatepicker]="dotpicker" [max]="today" placeholder="MM/DD/YYYY"
+                            formControlName="workedTo" [value]="workto" required>
+                        <mat-datepicker-toggle matSuffix [for]="dotpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dotpicker></mat-datepicker>
+                        <mat-error *ngIf="experienceFormControl.workedTo.errors?.required" align="start">
+                            Date is required!
+                        </mat-error>
+                    </mat-form-field>
+                    </div>
+
+                    <div class="right-container">
+                    <mat-form-field color="accent">
+                        <mat-label>Domain</mat-label>
+                        <input matInput placeholder="IT, Banking etc.," formControlName="industryType" required>
+                        <mat-error *ngIf="experienceFormControl.industryType.errors?.required" align="start">
+                            Domain is required!
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent">
+                        <mat-label>Designation</mat-label>
+                        <input matInput placeholder="Technical Lead, Software Engineer etc.,"
+                            formControlName="designation" required>
+                        <mat-error *ngIf="experienceFormControl.designation.errors?.required" align="start">
+                            Designation is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent">
+                        <mat-label>Organization Type</mat-label>
+                        <input matInput placeholder="IT, Banking etc.," formControlName="organizationType" required>
+                        <mat-error *ngIf="experienceFormControl.organizationType.errors?.required" align="start">
+                            Organization Type is required!
+                        </mat-error>
+                    </mat-form-field>
+                    </div>
+
+                <div class="right-container1">
+                    <span class="id_doc">Experience Certificate, Relieving Letter</span>
+                    <mat-card class="material-card" [hidden]="isDirectConsultant || isVendorConsultant">
+                        <img mat-card-image *ngIf="imageUrl" [src]="imageUrl">
+                        <div class="pdf-viewer-container" *ngIf="pdfUrl">
+                            <pdf-viewer [src]="pdfUrl" [original-size]="false"></pdf-viewer>
+                        </div>
+
+                            <mat-card-header>
+                                <mat-card-title (click)="imageInput.click()">
+                                    <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps"
+                                (change)="onImageSelected($event)">
+                                Drag your files here<br>or <span class="browse_green">Browse</span> to upload
+                                </mat-card-title>
+                            </mat-card-header>
+                    </mat-card>
+
+                    <span class="id_doc">Payslip</span>
+                    <mat-card class="material-card" [hidden]="isDirectConsultant || isVendorConsultant">
+                        
+                        <img mat-card-image *ngIf="imageUrl1" [src]="imageUrl1">
+                        <div class="pdf-viewer-container" *ngIf="pdfUrl1">
+                            <pdf-viewer [src]="pdfUrl1" [original-size]="false"></pdf-viewer>
+                        </div>
+
+                            <mat-card-header>
+                                <mat-card-title (click)="imageInput1.click()">
+                                    <input #imageInput1 style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps"
+                                (change)="onImage1Selected($event)">
+                                    Drag your files here<br>or <span class="browse_green">Browse</span> to upload
+                                </mat-card-title>
+                            </mat-card-header>
+                    </mat-card>
+                </div>
+
+                <div class="middle-container">
+                    <button color="primary" mat-raised-button *ngIf="candidateDetails?.id"
+                        [disabled]="!experienceFormGroup.valid || maxEntriesReached || !(fileUrl || fileUrl1) || isNotApplicable"
+                        (click)="addLine()">
+                        <mat-icon>add</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-experience" *ngIf="expDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Designation</th>
+                                <th>From Date</th>
+                                <th>To Date</th>
+                                <th>Industry</th>
+                                <th>Organization Type</th>
+                                <th>Is Approved?</th>
+                                <th>Action</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of expDataSource; let i=index">
+                                <td>{{data.companyName}}</td>
+                                <td>{{data.designation}}</td>
+                                <td>{{(data.workedFrom === 0) ? 'NA' : data.workedFrom |
+                                    date:'longDate'}}</td>
+                                <td>{{(data.workedTo === 0) ? 'NA' : data.workedTo |
+                                    date:'longDate'}}</td>
+                                <td>{{data.industryType}}</td>
+                                <td>{{data.organizationType}}</td>
+                                <td>{{data?.approved ? 'Approved' : 'Pending' }}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                                <td>{{data.remarks}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</mat-expansion-panel>

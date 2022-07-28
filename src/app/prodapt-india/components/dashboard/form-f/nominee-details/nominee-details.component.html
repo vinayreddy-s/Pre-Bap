@@ -1,0 +1,112 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Nominee Details
+        </mat-panel-title>
+        <mat-panel-description>
+            Name, Age, Proportion, etc. (Min - 1 Entry)
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <div>
+        <form [formGroup]="nomineeDetailsFormGroup">
+            <div class="form-container">
+                <div class="left-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Name of the Nominee</mat-label>
+                        <input matInput placeholder="Nominee Name" formControlName="name" required>
+                        <mat-error *ngIf="nomineeDetailsFormControl.name.errors?.required" align="start">
+                            Name is required!
+                        </mat-error>
+                        <mat-error *ngIf="nomineeDetailsFormControl.name.errors?.minlength" align="end">
+                            Min 3 Chars!
+                        </mat-error>
+                        <mat-error *ngIf="nomineeDetailsFormControl.name.errors?.pattern" align="start">
+                            Only Letters are Accepted!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Age of the Nominee</mat-label>
+                        <input type="number" matInput placeholder="eg.12" formControlName="age" required>
+                        <mat-error *ngIf="nomineeDetailsFormControl.age.errors?.required" align="start">
+                            Nominee Age is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Proportion</mat-label>
+                        <input type="number" matInput placeholder="eg.50" formControlName="proportion" required>
+                        <mat-error align="end">
+                            Pls ensure the cumulative nominee percentage to 100% only.
+                        </mat-error>
+                        <mat-error *ngIf="nomineeDetailsFormControl.proportion.errors?.required" align="start">
+                            Nominee Proportion value is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="right-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Relationship</mat-label>
+                        <mat-select formControlName="relationship" required placeholder="Father/Mother">
+                            <mat-option value="Father">Father</mat-option>
+                            <mat-option value="Mother">Mother</mat-option>
+                            <mat-option value="Son">Son</mat-option>
+                            <mat-option value="Daughter">Daughter</mat-option>
+                            <mat-option value="Spouse">Spouse</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="nomineeDetailsFormControl.relationship.errors?.required" align="start">
+                            Relationship is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Address of the Nominee</mat-label>
+                        <textarea matInput placeholder="H.No/Flat No. etc.," formControlName="address"
+                            required></textarea>
+                        <mat-error *ngIf="nomineeDetailsFormControl.address.errors?.required" align="start">
+                            Nominee Address is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="middle-container">
+                    <button color="primary" mat-raised-button *ngIf="gratuity?.id"
+                        [disabled]="!nomineeDetailsFormGroup.valid || maxEntriesReached" (click)="addLine()">
+                        <mat-icon>add_to_queue</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-nominee" *ngIf="nomineeDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Nominee Name</th>
+                                <th>Relationship</th>
+                                <th>Age</th>
+                                <th>Address</th>
+                                <th>Proportion</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of nomineeDataSource; let i=index">
+                                <td>{{data.name}}</td>
+                                <td>{{data.relationship}}</td>
+                                <td>{{data.age}}</td>
+                                <td>{{data.address}}</td>
+                                <td>{{data.proportion}}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-expansion-panel>

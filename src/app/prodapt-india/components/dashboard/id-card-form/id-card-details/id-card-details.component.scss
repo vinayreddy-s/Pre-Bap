@@ -1,0 +1,232 @@
+mat-expansion-panel {
+    mat-expansion-panel-header {
+        display: flex;
+        align-items: stretch;
+        flex-basis: auto;
+        mat-panel-title,
+        mat-panel-description {
+            padding: 12px 0 0.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 0;
+        }
+    }
+    mat-vertical-stepper {
+        .form-container {
+            margin: 3rem 0;
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: minmax(1rem, auto);
+            grid-template-areas:
+                "left-container right-container"
+                "end-container end-container";
+
+            .left-container {
+                grid-area: left-container;
+                justify-content: center;
+                mat-form-field {
+                    min-width: 30rem;
+                }
+
+                .material-card {
+                    margin: 1rem 10rem;
+                    align-items: center;
+                    min-width: 28rem;
+                    height: min-content;
+                    img {
+                        min-width: 28rem;
+                        min-height: 30rem;
+                        object-fit: scale-down;
+                    }
+                }
+            }
+
+            .right-container {
+                grid-area: right-container;
+                justify-content: center;
+                
+                .fit-picture {
+                    padding: 2rem;
+                    background-color: transparent;
+                    width: 280px;
+                }
+
+                .image-container {
+                    border: 1px solid blue;
+                    border-radius: 2rem;
+                    padding: 2rem;   
+                }
+                
+
+                mat-form-field {
+                    min-width: 30rem;
+                }
+
+                .mat-body-2 {
+                    margin-bottom: 3rem;
+                }
+
+                .material-card {
+                    margin: 1rem 10rem;
+                    align-items: center;
+                    min-width: 28rem;
+                    img {
+                        min-width: 28rem;
+                        min-height: 30rem;
+                        object-fit: scale-down;
+                    }
+                }
+            }
+
+            .end-container {
+                grid-area: end-container;
+                font-size: 1.5rem;
+                line-height: 1.6em;
+                padding: 1rem 1rem 1rem 2rem;
+                border-left: none;
+                position: relative;
+                text-align: left;
+            }
+
+            @media all and (max-width: 600px) {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "left-container"
+                    "right-container"
+                    "end-container";
+
+                .left-container .right-container {
+                    mat-form-field {
+                        max-width: 20rem;
+                    }
+
+                    .material-card {
+                        max-width: 20rem;
+                    }
+                }
+
+                .end-container {
+                    grid-area: end-container;
+                    font-size: 1.5rem;
+                    line-height: 1.6em;
+
+                    margin: 1rem;
+                    border-left: none;
+                    position: relative;
+                    text-align: left;
+                }
+            }
+
+            @media all and (min-width: 360px) and (max-width: 599px) {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "left-container"
+                    "right-container"
+                    "end-container";
+
+                .left-container .right-container {
+                    mat-form-field {
+                        max-width: 15rem;
+                    }
+
+                    .material-card {
+                        max-width: 18rem;
+                    }
+                }
+            }
+        }
+
+        .nav-buttons {
+            grid-area: end-container;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+   
+}
+
+:host::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    height: 0.5px;
+}
+
+:host::ng-deep .mat-horizontal-stepper-header-container {
+   
+    width: 45%;
+}
+
+:host::ng-deep .matbuttons .mat-grid-tile-content {
+    top: -3%;
+    left: -87%;
+    right: 0;
+    bottom: -190%;
+}
+
+:host::ng-deep  .mat-step-header .mat-step-icon-selected, 
+.mat-step-header .mat-step-icon-state-done,
+ .mat-step-header .mat-step-icon-state-edit {
+    background-color: #74C657;
+    color: white;
+}
+
+:host::ng-deep .mat-expansion-panel-spacing {
+     margin: 0px 0;
+}
+
+:host::ng-deep .mat-stepper-horizontal-line {
+   border-color: #74C657;
+}
+
+
+
+:host::ng-deep .canvas {
+    touch-action: none;
+    border: 1px solid black;
+    width: 309px;
+    height: 156px;
+    float: right;
+}
+
+.middle-container {
+    grid-area: middle-container;
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+    .material-card {
+        margin: 1rem;
+        min-width: 28rem;
+        max-width: 35rem;
+        height: min-content;
+        align-items: center;
+        img {
+            height: 25rem;
+            object-fit: scale-down;
+        }
+        .pdf-viewer-container {
+            height: 25rem;
+            margin-top: -1.5rem;
+            margin-left: -1.5rem;
+            width: 100%;
+            pdf-viewer {
+                height: 20rem;
+                width: 14.14rem;
+                object-fit: fit;
+            }
+        }
+    }
+}
+
+.mat-card-header{
+    display: inline !important;
+}
+.mat-card-header .mat-card-title{
+    padding: 10px 0px;
+    border-bottom: 1px solid #ccc;
+    font-size: 15px;
+    height: 95px;
+    text-align: center;
+}
+.black_mat{
+    color: #5ac243 !important;
+}

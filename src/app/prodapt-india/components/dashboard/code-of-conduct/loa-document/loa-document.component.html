@@ -1,0 +1,96 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Letter of Authorization
+        </mat-panel-title>
+        <mat-panel-description>
+
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+
+        <div id="pdf-content-loa" class="form-container">
+            <div class="top-container">
+                <div class="mat-title text-center">
+                    Letter of Authorization
+                    <div class="mat-h3 text-center">
+                        (To whom it may concern)
+                    </div>
+                </div>
+                <div class="text-right">
+                    <img class="fit-picture" src="../../../assets/prodapt_logo_comp.png">
+                </div>
+            </div>
+
+            <div class="middle-container">
+                <div class="mat-body para-container">
+
+                    I understand that the information provided by me may be used by Prodapt
+                    Solutions
+                    Private Limited or any third party agency appointed by the organization to
+                    verify and validate the
+                    information I have provided including my employment, my personal background,
+                    professional
+                    standing, work history and qualifications etc.
+                </div>
+                <div class="mat-body para-container">
+
+                    I understand that the organization or the third party agency appointed by the
+                    organization may obtain information it deems appropriate from various sources
+                    including,
+                    but not limited to current and past employers, criminal conviction records,
+                    university / school / college
+                    records, professional and personal references and other verifying sources /
+                    authorities.
+                </div>
+                <div class="mat-body para-container">
+
+                    I authorize, without reservation, any individual, corporation or other private
+                    or
+                    public entity to furnish the organization or the third party agency appointed by
+                    the organization,
+                    all information about me.
+                </div>
+                <div class="mat-body para-container">
+
+                    I unconditionally release and hold harmless any individual, corporation, or
+                    private
+                    or public entity from any and all causes of action that might arise from
+                    furnishing to the
+                    organization or the third party agency appointed by the organization, that they
+                    may request pursuant
+                    to this release.
+                </div>
+                <div class="mat-body para-container">
+
+                    I understand that if I submit any falsified information or documents, I may be
+                    subject to legal proceedings and my complete information may be shared with the
+                    verifying source /
+                    relevant authorities
+                </div>
+                <div class="mat-body para-container">
+
+                    This authorization and release, in original, faxed or photocopied form, shall be
+                    valid for this and any future references.
+                </div>
+            </div>
+            <br> <br>
+            
+            <div class="left-container">
+                <img class="fit-picture" *ngIf="imageUrl" [src]="imageUrl">
+                <div class="mat-body-2">Name : {{declarations?.empName}}</div>
+                <div class="mat-body-2">Date : {{loaDocument?.signDate | date}}</div>
+            </div>
+            <div class="right-container">
+                <ngx-signature-pad [config]="config" #signPad></ngx-signature-pad>
+                <button mat-button (click)="clear()">Clear</button>
+                <button mat-raised-button color="warn" class="pull-right" (click)="getImage()" [disabled]="isInValid()">Capture Sign</button>
+            </div>
+        </div>
+    </ng-template>
+
+    <mat-action-row>
+        <button ngxPrint color="accent" mat-raised-button printSectionId="pdf-content-loa"
+            [useExistingCss]="true">Download LOA Document</button>
+    </mat-action-row>
+</mat-expansion-panel>

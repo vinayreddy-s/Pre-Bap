@@ -1,0 +1,75 @@
+.sidenav-container {
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .sidenav .mat-toolbar {
+    background: inherit;
+  }
+  
+  .sidenav {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    overflow: hidden;
+  
+    .fit-picture {
+      padding: 2rem;
+      margin: 2rem 0 0 0;
+      background-color: transparent;
+      width: 280px;
+      justify-content: center;
+    }
+  
+    .active-list-item {
+      color: red;
+    }
+  }
+  
+  .mat-toolbar .mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin: 0;
+    .right-toolbar-content {
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+  
+      mat-slide-toggle {
+        align-items: center;
+        align-content: center;
+        margin-right: 2rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  
+  .content {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+  
+    .toolbar {
+      justify-content: space-between;
+    }
+  
+    .router-outlet {
+      flex: 1;
+      overflow: auto;
+    }
+  }
+  
+  // New css for prebap- revamp
+  mat-sidenav.mat-sidenav.sidenav {
+    width: 100% !important;
+    height: 300px !important;
+    position: relative !important;
+  }
+  mat-nav-list.mat-nav-list.mat-list-base.ng-tns-c182-2 {
+    display: flex;
+  }
+  mat-sidenav-content.mat-drawer-content.mat-sidenav-content.content {
+    margin: 0 auto !important;
+    height: 100%;
+  }

@@ -1,0 +1,266 @@
+mat-expansion-panel {
+    mat-expansion-panel-header {
+        display: flex;
+        align-items: stretch;
+        flex-basis: auto;
+        mat-panel-title,
+        mat-panel-description {
+            padding: 0.5rem 0 0.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 0;
+        }
+    }
+    
+    .form-container {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(1rem, auto);
+        grid-template-areas:
+            "top-container top-container"
+            "left-container right-container"
+            "middle-container1 middle-container1"
+            "middle-container middle-container"
+            "end-container end-container";
+
+        .top-container {
+            grid-area: top-container;
+            font-size: 1.5rem;
+            line-height: 1.6em;
+            padding: 1rem 1rem 1rem 2rem;
+            border-left: none;
+            position: relative;
+            text-align: left;
+        }
+
+        .left-container {
+            grid-area: left-container;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            mat-form-field {
+                min-width: 30rem;
+            }
+        }
+
+        .right-container {
+        grid-area: right-container;
+            justify-content: space-around;
+            mat-form-field {
+                min-width: 30rem;
+            }
+        }
+
+        .middle-container1 {
+            grid-area: middle-container1;
+            width: 28%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            .material-card {
+                border: 2px dotted #5ac243;
+                background-color: #5ac2431f;
+                margin: 14px 0px;
+                min-width: 35rem;
+                max-width: 35rem;
+                height: 10rem !important;
+                align-items: center;
+                box-shadow: none !important;
+                img {
+                    height: 20rem;
+                    object-fit: scale-down;
+                }
+                .pdf-viewer-container {
+                    height: 25rem;
+                    margin-top: -1.5rem;
+                    margin-left: -1.5rem;
+                    width: 100%;
+                    pdf-viewer {
+                        height: 20rem;
+                        width: 14.14rem;
+                        object-fit: fit;
+                    }
+                }
+            }
+        }
+
+        .middle-container {
+            grid-area: middle-container;
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+            .material-card {
+                margin: 1rem;
+                min-width: 28rem;
+                max-width: 35rem;
+                height: min-content;
+                align-items: center;
+                img {
+                    height: 25rem;
+                    object-fit: scale-down;
+                }
+                .pdf-viewer-container {
+                    height: 25rem;
+                    margin-top: -1.5rem;
+                    margin-left: -1.5rem;
+                    width: 100%;
+                    pdf-viewer {
+                        height: 20rem;
+                        width: 14.14rem;
+                        object-fit: fit;
+                    }
+                }
+            }
+        }
+
+        .bottom-container {
+            grid-area: end-container;
+            display: flex;
+            justify-content: space-around;
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+
+                th {
+                    font-weight: 500;
+                    padding: 6px;
+                    text-align: center;
+                }
+                td {
+                    padding: 6px;
+                    width: 11%;
+                    text-align: center;
+                }
+            }
+        }
+
+        .mat-card-header .mat-card-title{
+            height: 50px;
+            border-bottom: none;
+        }
+
+        @media only screen and (max-width: 760px) {
+            justify-content: center;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "top-container"
+                "left-container"
+                "right-container"
+                "middle-container"
+                "end-container";
+
+            .left-container .right-container {
+                mat-form-field {
+                    max-width: 22rem;
+                }
+            }
+
+            .bottom-container {
+                table,
+                thead,
+                tbody,
+                th,
+                td,
+                tr {
+                    display: block;
+                    align-items: center;
+                }
+
+                .table-identity {
+                    display: block;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        border: 2px solid #ccc;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Document Name";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Document Number";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "Name in Document";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "Doc Issued Country";
+                    }
+                    td:nth-of-type(5):before {
+                        content: "Valid From";
+                    }
+                    td:nth-of-type(6):before {
+                        content: "Valid To";
+                    }
+                    td:nth-of-type(7):before {
+                        content: "Is Approved";
+                    }
+                    td:nth-of-type(8):before {
+                        content: "Action";
+                    }
+                    td:nth-of-type(9):before {
+                        content: "Remarks";
+                    }
+                }
+            }
+        }
+    }
+}
+
+.table-identity{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    th {
+        font-weight: 500;
+        border: none;
+        text-align: center;
+        background: #f1f1f1;
+    }
+    tr {
+        //border: 2px solid #ccc;
+        border: none;
+    }
+    td {
+        border: none;
+        width: 16.6%;
+        text-align: center;
+    }
+}
+.id_doc{
+    color: #000000a1;
+    font-size: 14px;
+
+}

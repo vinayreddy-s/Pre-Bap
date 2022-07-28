@@ -1,0 +1,238 @@
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header  hideToggle="true">
+        <mat-panel-title>
+            
+            ID Card Details
+            <!-- <mat-icon>add</mat-icon> -->
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+            Employee Name, address, blood group, etc.
+        </mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <div class="mat-title">ID Card Details</div>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+  
+    <!-- Expansion Panel Content -->
+
+    <mat-stepper [linear]="false" #stepper >
+        <form [formGroup]="idcardFormGroup">
+            <!-- Step 1 -->
+            <mat-step [stepControl]="idcardFormGroup" >
+                <ng-template matStepLabel >Basic Details</ng-template>
+
+                <div class="form-container" style="width:50%">
+                    <div >
+                        <mat-grid-list cols="2" rowHeight="2:1">
+                            <mat-grid-tile>
+                        <mat-form-field color="accent" >
+                            <mat-label style="font-size:large">Employee Name</mat-label>
+                            <br>
+                            <input matInput placeholder="Employee Name" formControlName="empName" required>
+                            <mat-error *ngIf="idcardDetailsFormControl.empName.errors?.required" align="start">
+                                Employee Name is required!
+                            </mat-error>
+                            <mat-error *ngIf="idcardDetailsFormControl.empName.errors?.minlength" align="end">
+                                Min 3 Chars!
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                <mat-grid-tile>
+                        <mat-form-field color="accent">
+                            <mat-label style="font-size:large">Emergency Contact Number</mat-label>
+                            <br>
+                            <input matInput placeholder="9876543210" formControlName="mobile" required>
+                            <!-- <mat-icon matSuffix>phone</mat-icon> -->
+                            <mat-error *ngIf="idcardDetailsFormControl.mobile.errors?.required" align="start">
+                                Contact Number is required!
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                <mat-grid-tile>
+                        <mat-form-field color="accent">
+                            <mat-label style="font-size:large">Residential Address</mat-label>
+                            <br>
+                            <textarea matInput placeholder="H.No/Flat No. etc.," formControlName="address"
+                                required></textarea>
+                            <mat-error *ngIf="idcardDetailsFormControl.address.errors?.required" align="start">
+                                Address is required!
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field color="accent">
+                        <mat-label>Blood Group</mat-label>
+                        <mat-select formControlName="bloodGroup" required placeholder="A+, A-, B+ etc.">
+                            <mat-option value="A+">A+</mat-option>
+                            <mat-option value="A-">A-</mat-option>
+                            <mat-option value="B+">B+</mat-option>
+                            <mat-option value="B-">B-</mat-option>
+                            <mat-option value="AB+">AB+</mat-option>
+                            <mat-option value="AB-">AB-</mat-option>
+                            <mat-option value="O+">O+</mat-option>
+                            <mat-option value="O-">O-</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="idcardDetailsFormControl.bloodGroup.errors?.required" align="start">
+                            Blood Group is required!
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+                   
+                    </div>
+                    <!-- <div class="right-container">
+                       
+                    </div> -->
+
+                    <div class="end-container" style="width: 175%;">
+                       
+                            <p class="mat-body" style="font-size: small;color: darkgoldenrod;">
+                                <strong>Instructions : </strong>
+                                <br>
+                                This badge issued exclusively for the purpose of identifications.
+                                It is valid so long as user employed by the company and is non-transferable.
+                                The user is solely reponsible for loss. If it is found somewhere please return to
+                                the company.
+                                The card holder must keep the identiy card during the working hours.
+                            </p>
+                       
+                    </div>
+                </div>
+                <div class="nav-buttons" style="margin-left:60%">
+                    <!-- <button mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button> -->
+
+                    <button
+                     style="background-color: #74C657;color:white;border-radius: 0px;width: 27%;" 
+                     mat-raised-button matStepperNext>Next</button>
+                </div>
+            </mat-step>
+            <!-- Step 2 -->
+            <mat-step [stepControl]="idcardFormGroup">
+                <div class="form-container">
+                    <ng-template matStepLabel>Additional Details</ng-template>
+                    
+                    <div class="left-container" style="width: 32% !important;">
+                        <mat-label style="font-weight: 600;">Add Passport Size Photo & Signature</mat-label>
+                        <br>
+                        <br>
+                        <mat-label  style="color: grey;">Add Passport Size Photo</mat-label>
+                        <mat-card class="material-card" >
+                            
+                            <!-- <img mat-card-image *ngIf="ppImageUrl" [src]="ppImageUrl"> -->
+                            <!-- <mat-card-header>
+                                <mat-card-title style="font-size: 12px;color: gray;">
+                                    Drag your files here or Browse to upload
+                                </mat-card-title>
+                            </mat-card-header> -->
+
+                          
+                                        <mat-card-header>
+                                            <mat-card-title >
+                                                <input #imageInput style="display : none" type="file"
+                                            accept="image/jpeg,image/png,application/pdf,image/x-eps"
+                                            >
+                                              <span > Drag your files here<br>or <span class="browse_green">Browse</span> to upload</span>
+                                            </mat-card-title>
+                                        </mat-card-header>
+                               
+                          
+            
+
+                            <mat-card-actions class="text-center">
+                                <input #ppImageInput style="display : none" type="file"
+                                    accept="image/jpeg,image/png,image/x-eps" (change)="onPpImageSelected($event)">
+                                <button mat-raised-button color="accent" (click)="ppImageInput.click()">
+                                    <mat-icon>note_add</mat-icon> Select
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div class="right-container" style="margin-left: 73%;border: 1px solid black;">
+                        <div class="image-container">
+                            <ngx-signature-pad [config]="config" #signPad></ngx-signature-pad>
+                           
+                        </div>
+                        <img class="fit-picture" *ngIf="signImageUrl" [src]="signImageUrl">
+
+                        <!-- <mat-card class="material-card">
+                            <img mat-card-image *ngIf="signImageUrl" [src]="signImageUrl">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    Signature Image
+                                </mat-card-title>
+                            </mat-card-header>
+
+                            <mat-card-actions class="text-center">
+                                <input #signImageInput style="display : none" type="file"
+                                    accept="image/jpeg,image/png,image/x-eps" (change)="onSignImageSelected($event)">
+                                <button mat-raised-button color="accent" (click)="signImageInput.click()">
+                                    <mat-icon>note_add</mat-icon> Select
+                                </button>
+                            </mat-card-actions>
+                        </mat-card> -->
+                    </div>
+                    <br>
+                    <button style="margin-left: 72%" mat-button (click)="clear()">Clear</button>
+                    <button mat-raised-button color="warn" class="pull-right" (click)="getImage()"
+                    [disabled]="isInValid()">Capture Sign</button>
+                    <div>
+                        <mat-label>Name &nbsp;&nbsp;&nbsp;Test</mat-label> <br>
+                        <mat-label>Date &nbsp;&nbsp;&nbsp;&nbsp; 15-07-2022</mat-label>
+                    </div>
+                    <!-- <div class="end-container">
+                        <blockquote>
+                            <p class="mat-body">
+                                <strong>Photo Upload Instructions : </strong>
+                                <br>
+                                The photograph must be a passport size color photograph without border and clearly
+                                showing
+                                the face with white background only.
+                            </p>
+                        </blockquote>
+                    </div> -->
+                </div>
+                
+                
+                    
+
+            <mat-grid-list cols="2" rowHeight="2:1" style="margin-bottom: -14%;" class="matbuttons">
+                <mat-grid-tile>
+                    <div style="margin-left: 10%;">
+                        <!-- <button mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                            <mat-icon>keyboard_arrow_right</mat-icon>
+                        </button> -->
+    
+                        <button
+                         style="background-color: transparent;color:#74C657;border-radius: 0px;width: 27%; margin-bottom: 6px;" 
+                         mat-stroked-button matStepperNext>Back</button>
+                    </div>
+                </mat-grid-tile>
+
+                <mat-grid-tile >
+                    <div style="margin-left: 43%;">
+                        <!-- <button mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                            <mat-icon>keyboard_arrow_right</mat-icon>
+                        </button> -->
+    
+                        <button
+                         style="background-color: #74C657;color:white;border-radius: 0px;width: 27%;" 
+                         mat-raised-button matStepperNext>Save</button>
+                    </div>
+    
+                </mat-grid-tile>
+              </mat-grid-list>
+                
+            </mat-step>
+        </form>
+    </mat-stepper>
+
+    <!-- <mat-action-row>
+        <button color="accent" mat-raised-button [disabled]="!idcardFormGroup.valid"
+            (click)="saveIdCardDetailsForm()">Save ID Card Details</button>
+    </mat-action-row> -->
+</mat-expansion-panel>

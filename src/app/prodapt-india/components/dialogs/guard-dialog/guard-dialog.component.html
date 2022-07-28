@@ -1,0 +1,11 @@
+<div>
+    <h1 mat-dialog-title>Sorry {{data.name}}!!!</h1>
+    <div mat-dialog-content>
+        <p class="mat-body-strong">Please fill in <strong>{{data.formName}}</strong> form to proceed further</p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button color="warn" class="pull right" (click)="onYesClick()" cdkFocusInitial>
+            Return <mat-icon>keyboard_return</mat-icon>
+        </button>
+    </div>
+</div>

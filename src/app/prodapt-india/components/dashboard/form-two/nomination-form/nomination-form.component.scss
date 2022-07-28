@@ -1,0 +1,81 @@
+mat-expansion-panel {
+    mat-expansion-panel-header {
+        display: flex;
+        align-items: stretch;
+        flex-basis: auto;
+        mat-panel-title,
+        mat-panel-description {
+            padding: 0.5rem 0 0.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 0;
+        }
+    }
+    .form-container {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(1rem, auto);
+        grid-template-areas:
+            "top-container top-container"
+            "left-container right-container"
+            "middle-container middle-container"
+            "end-container end-container";
+
+        .top-container {
+            grid-area: top-container;
+            font-size: 1.1em;
+            line-height: 1.6em;
+            padding: 1rem 1rem 1rem 2rem;
+            border-left: none;
+            position: relative;
+            text-align: justify;
+        }
+
+        .left-container {
+            grid-area: left-container;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            mat-form-field {
+                min-width: 30rem;
+                margin-top: 2rem;
+            }
+        }
+
+        .right-container {
+            grid-area: right-container;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            mat-form-field {
+                min-width: 30rem;
+                margin-top: 2rem;
+            }
+        }
+        .nav-buttons {
+            grid-area: end-container;
+            display: flex;
+            justify-content: space-around;
+        }
+        @media all and (max-width: 768px) {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "top-container"
+                "left-container"
+                "right-container"
+                "end-container";
+
+            .left-container .right-container {
+                mat-form-field {
+                    max-width: 20rem;
+                }
+            }
+            .nav-buttons {
+                justify-content: space-between;
+            }
+        }
+    }
+}

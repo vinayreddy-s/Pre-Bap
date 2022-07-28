@@ -1,0 +1,108 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Nominee Details
+        </mat-panel-title>
+        <mat-panel-description>
+            Name, relationship, DOB etc. (Min - 1 Entry)
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <div>
+
+        <form [formGroup]="nomineeListFormGroup">
+            <div class="form-container">
+                <div class="top-container">
+
+                </div>
+                <div class="left-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Name of the Nominee</mat-label>
+                        <input matInput placeholder="Nominee Name" formControlName="name" required>
+                        <mat-error *ngIf="nomineeListFormControl.name.errors?.required" align="start">
+                            Nominee Name is required!
+                        </mat-error>
+                        <mat-error *ngIf="nomineeListFormControl.name.errors?.minlength" align="end">
+                            Min 3 Chars!
+                        </mat-error>
+                        <mat-error *ngIf="nomineeListFormControl.name.errors?.pattern" align="start">
+                            Only Letters are Accepted!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Date of Birth</mat-label>
+                        <input matInput [matDatepicker]="dobpicker" [max]="today" placeholder="MM/DD/YYYY"
+                            formControlName="dateOfBirth" [value]="dob" required>
+                        <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dobpicker></mat-datepicker>
+                        <mat-error *ngIf="nomineeListFormControl.dateOfBirth.errors?.required" align="start">
+                            Date of Birth is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="right-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Relationship</mat-label>
+                        <mat-select formControlName="relationship" required placeholder="Father, Mother, Son etc.,">
+                            <mat-option value="Father">Father</mat-option>
+                            <mat-option value="Mother">Mother</mat-option>
+                            <mat-option value="Son">Son</mat-option>
+                            <mat-option value="Daughter">Daughter</mat-option>
+                            <mat-option value="Spouse">Spouse</mat-option>
+                            <mat-option value="Friend">Friend</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="nomineeListFormControl.relationship.errors?.required" align="start">
+                            Relationship is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Address of the Nominee</mat-label>
+                        <textarea matInput placeholder="H.No/Flat No. etc.," formControlName="address"
+                            required></textarea>
+                        <mat-error *ngIf="nomineeListFormControl.address.errors?.required" align="start">
+                            Nominee Address is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="middle-container">
+                    <button color="primary" mat-raised-button *ngIf="epfNomination?.id"
+                        [disabled]="!nomineeListFormGroup.valid || maxEntriesReached" (click)="addLine()">
+                        <mat-icon>add_to_queue</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-nominee" *ngIf="nomineeListDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Nominee Name</th>
+                                <th>Nominee Address</th>
+                                <th>Relationship</th>
+                                <th>Date of Birth</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of nomineeListDataSource; let i=index">
+                                <td>{{data.name}}</td>
+                                <td>{{data.address}}</td>
+                                <td>{{data.relationship}}</td>
+                                <td>{{data.dateOfBirth | date:'longDate'}}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-expansion-panel>

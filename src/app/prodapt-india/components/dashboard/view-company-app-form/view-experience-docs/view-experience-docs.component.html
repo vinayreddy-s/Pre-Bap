@@ -1,0 +1,113 @@
+<!-- <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Experience Documents
+        </mat-panel-title>
+        <mat-panel-description>
+            Service Certificates
+        </mat-panel-description>
+    </mat-expansion-panel-header> -->
+    <!--Progress Bar  -->
+    
+    <div class="subheading_head">
+        Experience Documents
+    <div class="subheading_subtile">Service Certificates</div>    
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- <ng-template matExpansionPanelContent> -->
+        <div class="form-container" id="pdf-content-experience">
+            <div class="table-container">
+                <table class="table table-experience table-borderless"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Designation</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Industry</th>
+                            <th>Organization Type</th>
+                            <th>IsApproved?</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.workList">
+                            <td>{{data.companyName}}</td>
+                            <td>{{data.designation}}</td>
+                            <td>{{(data.workedFrom === 0) ? 'NA' : data.workedFrom |
+                                date:'longDate'}}</td>
+                            <td>{{(data.workedTo === 0) ? 'NA' : data.workedTo |
+                                date:'longDate'}}</td>
+                            <td>{{data.industryType}}</td>
+                            <td>{{data.organizationType}}</td>
+                            <td>{{data?.approved ? 'Approved' : 'Pending' }}</td>
+                            <td>{{data.remarks}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="middle-container">
+                <div class="experience_doc" *ngFor="let data of candidateDetails?.workList">
+                    <mat-card class="material-card" *ngIf="data?.fileType !== null">
+                        <!-- <img mat-card-image *ngIf="data?.fileType ==='image/jpeg' || data?.fileType === 'image/png' 
+                        || data?.fileType === 'image/x-eps' " [src]="data?.workImage"> -->
+                        <div class="pdf-viewer-container" *ngIf="data?.fileType === 'application/pdf' ">
+                            <pdf-viewer *ngIf="data?.fileType === 'application/pdf'" [src]="data?.workImage"
+                                [original-size]="false"></pdf-viewer>
+                        </div>
+
+                        <!-- <mat-card> -->
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <div class="pdf_card">
+                                        <img class="pdf_picture" src="../../../assets/pdf-icon.png"><br>
+                                    </div>
+                                    Experience Certificate/
+                                    Relieving Letter
+                                </mat-card-title>
+                                <mat-card-subtitle color="accent">
+                                    {{data.companyName}}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                        <!-- </mat-card> -->
+
+                        <mat-card-actions class="text-center">
+                            <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps">
+                        </mat-card-actions>
+                    </mat-card>
+
+                    <mat-card class="material-card" *ngIf="data?.fileType1 !== null">
+                        <!-- <img mat-card-image *ngIf="data?.fileType1 ==='image/jpeg' || data?.fileType1 === 'image/png' 
+                        || data?.fileType1 === 'image/x-eps' " [src]="data?.workImage1"> -->
+                        <div class="pdf-viewer-container" *ngIf="data?.fileType1 === 'application/pdf' ">
+                            <pdf-viewer *ngIf="data?.fileType1 === 'application/pdf'" [src]="data?.workImage1"
+                                [original-size]="false"></pdf-viewer>
+                        </div>
+
+                        <!-- <mat-card> -->
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <div class="pdf_card">
+                                        <img class="pdf_picture" src="../../../assets/pdf-icon.png"><br>
+                                    </div>
+                                    Payslip                            
+                                </mat-card-title>
+                                <mat-card-subtitle color="accent">
+                                    {{data.companyName}}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                        <!-- </mat-card> -->
+
+                        <mat-card-actions class="text-center">
+                            <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps">
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+   <!-- </ng-template>
+ </mat-expansion-panel> -->

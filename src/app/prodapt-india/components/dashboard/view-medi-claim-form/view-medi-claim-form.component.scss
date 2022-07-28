@@ -1,0 +1,239 @@
+.accordian-container {
+    .header {
+        display: flex;
+        margin-right: 2rem;
+        justify-content: space-between;
+    }
+
+    mat-expansion-panel {
+        mat-expansion-panel-header {
+            display: flex;
+            align-items: stretch;
+            flex-basis: auto;
+            mat-panel-title,
+            mat-panel-description {
+                padding: 0.5rem 0 0.5rem 0;
+                display: flex;
+                flex-wrap: wrap;
+                flex-basis: 0;
+            }
+        }
+        .form-container {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: minmax(1rem, auto);
+            grid-template-areas:
+                "top-container top-container"
+                "middle-container middle-container";
+
+            .top-container {
+                grid-area: top-container;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                margin-left: 2rem;
+
+                .fit-picture {
+                    padding: 2rem;
+                    margin: 2rem 0 0 0;
+                    background-color: transparent;
+                    width: 280px;
+                    justify-content: center;
+                }
+            }
+
+            .middle-container {
+                grid-area: middle-container;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 1rem 1rem 1rem 2rem;
+                border-left: none;
+                position: relative;
+
+                .basic-details {
+                    width: 100%;
+                    border-collapse: collapse;
+                    columns: auto;
+                    th {
+                        font-weight: 500;
+                        padding: 6px;
+                    }
+
+                    tr {
+                        border: 2px solid #ccc;
+                    }
+
+                    td {
+                        border: 2px solid #ccc;
+                        padding: 1rem;
+                        width: 20%;
+                    }
+                    tbody {
+                        .content {
+                            td {
+                                padding: 6px;
+                            }
+                        }
+                    }
+                }
+                .table-family {
+                    width: 100%;
+                    border-collapse: collapse;
+                    th {
+                        font-weight: 570;
+                        padding: 1rem;
+                        border: 2px solid #ccc;
+                        text-align: center;
+                    }
+                    tr {
+                        border: 2px solid #ccc;
+                    }
+                    td {
+                        border: 2px solid #ccc;
+                        padding: 1rem;
+                        width: 20%;
+                        text-align: center;
+                    }
+                }
+            }
+
+            @media print {
+                .middle-container {
+                    grid-area: middle-container;
+                    display: flex;
+                    justify-content: center;
+
+                    table {
+                        width: 50%;
+                        border-collapse: collapse;
+
+                        td {
+                            padding: 1rem;
+                            width: 50%;
+                        }
+                    }
+                }
+            }
+
+            @media only screen and (max-width: 760px) {
+                justify-content: center;
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "top-container"
+                    "middle-container";
+
+                .top-container {
+                    margin-top: 2rem;
+                    justify-content: space-around;
+                }
+
+                .middle-container {
+                    table,
+                    thead,
+                    tbody,
+                    th,
+                    td,
+                    tr {
+                        display: block;
+                        align-items: center;
+                    }
+
+                    .basic-details {
+                        td {
+                            padding: 1rem;
+                            width: 100%;
+                        }
+                        thead tr {
+                            position: absolute;
+                            top: -9999px;
+                            left: -9999px;
+                        }
+
+                        tr {
+                            border: 2px solid #ccc;
+                            align-items: center;
+                        }
+
+                        td {
+                            /* Behave  like a "row" */
+                            border: none;
+                            border-bottom: 1px solid #eee;
+                            position: relative;
+                            padding-left: 1rem;
+                            align-items: center;
+                        }
+
+                        td:before {
+                            /* Now like a table header */
+                            position: absolute;
+                            /* Top/left values mimic padding */
+                            top: 6px;
+                            left: 6px;
+                            width: 45%;
+                            padding-right: 10px;
+                            white-space: nowrap;
+                        }
+                    }
+
+                    .table-family {
+                        display: block;
+                        td {
+                            padding: 1rem;
+                            width: 100%;
+                        }
+                        thead tr {
+                            position: absolute;
+                            top: -9999px;
+                            left: -9999px;
+                        }
+
+                        tr {
+                            border: 2px solid #ccc;
+                        }
+
+                        td {
+                            /* Behave  like a "row" */
+                            border: none;
+                            border-bottom: 1px solid #eee;
+                            position: relative;
+                            padding-left: 50%;
+                            align-items: center;
+                            text-align: left;
+                        }
+
+                        td:before {
+                            /* Now like a table header */
+                            position: absolute;
+                            /* Top/left values mimic padding */
+                            top: 6px;
+                            left: 6px;
+                            width: 45%;
+                            padding-right: 10px;
+                            white-space: nowrap;
+                        }
+
+                        td:nth-of-type(1):before {
+                            content: "Name";
+                        }
+                        td:nth-of-type(2):before {
+                            content: "Relationship Type";
+                        }
+                        td:nth-of-type(3):before {
+                            content: "Gender";
+                        }
+                        td:nth-of-type(4):before {
+                            content: "Date of Birth";
+                        }
+                        td:nth-of-type(5):before {
+                            content: "Dependent";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

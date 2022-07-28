@@ -1,0 +1,122 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Vehicle Details
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+            Make, Model, Name, etc. (Min - 1 Entry)
+        </mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+         
+    <div>
+        <form [formGroup]="vehicleFormGroup">
+            <div class="form-container">
+               
+                <div class="top-container">
+                    <div style="margin:0px;padding: 0px;" class="mat-title">Vehicle Details</div>
+                    <mat-label style="font-size: smaller;">Make, Model, Name, etc. (Min - 1 Entry)</mat-label>
+                
+                        <p class="mat-body"  style="font-size: small;color: darkgoldenrod;margin-top:3%">
+                            Please select the checkbox if the fields that are not applicable to
+                            you.
+                        </p>
+
+                        <!-- <section class="example-section">
+                            <mat-checkbox class="example-margin">Not Applicable</mat-checkbox>
+                          </section> -->
+                  
+                    <div>
+                        <mat-checkbox *ngIf="idCard?.id" [disabled]="vehicleDataSource.length > 0" class="check-box"
+                            [checked]="isNotApplicable" (change)="checkboxChecked()">
+                            Not Applicable</mat-checkbox>
+                    </div>
+                </div>
+                <div class="left-container">
+                    <mat-form-field color="accent">
+                        <mat-label>Vehicle Type</mat-label>
+                        <mat-select formControlName="type" required placeholder="Four /Two Wheeler">
+                            <mat-option value="Two Wheeler">Two Wheeler</mat-option>
+                            <mat-option value="Four Wheeler">Four Wheeler</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="vehicleDetailsFormControl.type.errors?.required" align="start">
+                            Vehicle Type is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Brand</mat-label>
+                        <input matInput placeholder="Brand Name" formControlName="make" required>
+                        <mat-error *ngIf="vehicleDetailsFormControl.make.errors?.required" align="start">
+                            Brand is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="right-container">
+                    <mat-form-field color="accent">
+                        <mat-label>Model Year</mat-label>
+                        <input matInput placeholder="2020, 21Series etc.," formControlName="model" required>
+                        <mat-error *ngIf="vehicleDetailsFormControl.model.errors?.required" align="start">
+                            Model Year is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent">
+                        <mat-label>Reg No.</mat-label>
+                        <input matInput placeholder="AB CD 123, etc.," formControlName="regnNo" required>
+                        <mat-error *ngIf="vehicleDetailsFormControl.regnNo.errors?.required" align="start">
+                            Reg No. is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- <div class="middle-container">
+                    <button color="warn" mat-raised-button *ngIf="idCard?.id"
+                        [disabled]="!vehicleFormGroup.valid || maxEntriesReached || isNotApplicable"
+                        (click)="addLine()">
+                        <mat-icon>add_to_queue</mat-icon> Add Details
+                    </button>
+                </div> -->
+
+                <div >
+                    <button style="background-color:#74C657 ;margin-left: 3%;color: white;border-radius: 0px;" mat-raised-button 
+                        (click)="addLine()">
+                        +Add Details
+                    </button>
+                </div>
+
+
+                <div class="bottom-container">
+                    <!-- *ngIf="vehicleDataSource.length > 0" -->
+                    <table *ngIf="vehicleDataSource.length"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Vehicle Name</th>
+                                <th>Make</th>
+                                <th>Model</th>
+                                <th>Reg. No.</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of vehicleDataSource; let i=index">
+                                <td>{{data.type}}</td>
+                                <td>{{data.make}}</td>
+                                <td>{{data.model}}</td>
+                                <td>{{data.regnNo}}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</mat-expansion-panel>

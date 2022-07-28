@@ -1,0 +1,22 @@
+<mat-accordion class="accordian-container" multi="true">
+
+    <div class="header">
+        <div class="mat-title text-center" style="font-size: 30px; font-weight: 600;">ID Card Form</div>
+        <div>
+            <button mat-button color="black" (click)="navigateToPreview()">
+                Preview <mat-icon style="color: #74C657;">keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <mat-divider style=" border-color: #74C657;width: 94%;margin-left: 34px;" ></mat-divider>
+
+     <app-id-card-details></app-id-card-details>
+    <!-- <mat-divider style=" border-color: #74C657;" ></mat-divider>  -->
+
+    <app-vehicle-details></app-vehicle-details>
+    <!-- <mat-divider style=" border-color: #74C657;" ></mat-divider> -->
+
+
+</mat-accordion>

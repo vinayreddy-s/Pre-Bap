@@ -1,0 +1,67 @@
+<section class="container">
+    <div class="landing-page-container">
+        <div class="top-container">
+            <!-- <div class="mat-display-2 text-center">
+                {{landingPage?.pageName}}
+            </div> -->
+            <div class="totalpic">
+                <div class="propic">
+                    <img mat-card-avatar class="header-image"
+                        [src]="candidate?.photoImage ? candidate?.photoImage : generalUrl" />
+                  <!-- <img src="../assets/images/profile-pic.jpg" alt='' /> -->
+                </div>
+                <div class="propictext">
+                  <h3>Hi, {{candidate?.name}}</h3>
+                </div>
+              </div>
+        </div>
+        <div class="left-container">
+            <!-- <mat-card>
+                <mat-card-header>
+                    <img mat-card-avatar class="header-image"
+                        [src]="candidate?.photoImage ? candidate?.photoImage : generalUrl" />
+                    <mat-card-title>{{candidate?.name}}</mat-card-title>
+                    <mat-card-subtitle>{{candidate?.email}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="mat-body-strong">Status: {{candidate?.status}}</div>
+                    <div class="mat-body">Date of Joining: {{candidate?.dateOfJoining | date:'longDate'}}</div>
+                    <div class="mat-body" *ngIf="candidate?.empCode !== null">Employee Code:
+                        {{candidate?.empCode}}</div>
+                    <div class="mat-body" *ngIf="candidate?.prodaptEmail !== null">Prodapt Email:
+                        {{candidate?.prodaptEmail}}</div>
+                </mat-card-content>
+            </mat-card> -->
+            
+              <div class="protext">
+                  <p>
+                    Welcome to Prodapt,
+                  </p>
+                <p>Let's Start your onboarding process</p>
+              </div>
+            
+        </div>
+        <div class="right-container">
+            <!-- <circle-progress [percent]="percentProgress" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="2"
+                [animation]="true" [animationDuration]="1000">
+            </circle-progress> -->
+            
+            <div class="protext1">
+                <b> Date of Joining </b>
+                  <span>{{candidate?.dateOfJoining | date:'longDate'}}</span>
+              </div>
+            
+              <div class="protext2">
+                <b>Email ID </b>
+                  <span>{{candidate?.email}}</span>
+              </div>
+            
+              <div class="protext3">
+                <b> Steps Completed</b>
+                  <span>1 out of 8</span>
+              </div>
+        </div>
+
+    </div>
+</section>
+<!-- <app-view-faq></app-view-faq> -->

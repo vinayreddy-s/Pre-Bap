@@ -1,0 +1,134 @@
+<mat-accordion class="accordian-container" multi="true">
+
+    <div class="header">
+        <div class="mat-title text-center">Welfare Fund Details</div>
+        <div>
+            <button mat-button color="accent" (click)="navigateToPreview()">
+                Preview <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Welfare Fund Details
+            </mat-panel-title>
+            <mat-panel-description>
+                Name, Contribution Amount etc.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--Progress Bar  -->
+        <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+        <ng-template matExpansionPanelContent>
+            <form [formGroup]="welfareFundFormGroup">
+                <div class="form-container">
+                    <div class="top-container">
+                        <div class="mat-title text-center">
+                            Prodaptian Welfare Fund contribution
+                        </div>
+                        <div>
+                            <img class="fit-picture" src="../../../assets/prodapt_logo_comp.png">
+                        </div>
+                    </div>
+                    <div class="middle-container">
+                         <div class="para-container">
+                            <p class="mat-body">
+                                Prodaptian Welfare fund is an initiative <strong>“By Prodaptian, For
+                                    Prodaptians”</strong> a
+                                financial
+                                assistance
+                                program to support medical emergencies faced by Prodaptians or their immediate family
+                                members
+                                (parents, parents in law, spouse and children).
+                            </p>
+                            <div class="mat-body-strong para-container">How to get involved?</div>
+                            <div class="mat-body para-container">
+                                A monthly contribution (as per Prodaptian’s wish) can be donated to this fund.
+                            </div>
+                            <div class="mat-body-strong para-container">Why be involved?</div>
+                            <div class="mat-body para-container">
+                                Every Prodaptian can ‘make a difference’ and partake in the joy of giving, by spreading
+                                goodwill, showing genuine care and by contributing to the welfare of everyone around us,
+                                <strong>#connectedness</strong> being Prodapt’s motto. The contributions made to this
+                                fund
+                                will be
+                                eligible for
+                                tax benefits, under u/s 80G.
+                            </div>
+							<p class="mat-body">
+                                Please refer to the document in the PreBAP homepage for more information.
+                            </p>
+                        </div>
+                        <div class="mat-body para-container">
+                           <div class="mat-body-strong"><strong>Consent Form :</strong> </div>
+                            <div class="mat-body para-container">I
+                                <strong>{{welfareFundFormControl.empName.value}}</strong> wish to
+                                contribute the
+                                below sum of amount towards the
+                                Prodaptian Welfare fund. I <strong>{{welfareFundFormControl.empName.value}}</strong>
+                                Authorize the
+                                Prodapt
+                                payroll
+                                team to deduct the
+                                below sum of amount(<b>{{welfareFundDetails?.welfareFundAmount}}</b>) on my monthly
+                                payroll.
+                            </div>
+                            <p class="mat-body">
+                                Please refer to the document in the PreBAP homepage for more information.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="last-container">
+                        <mat-checkbox formControlName="welfareFundAmount" class="check-box" [checked]="fund_nil"
+                            (change)="fund_nil = !fund_nil">Nil</mat-checkbox>
+                        <mat-checkbox formControlName="welfareFundAmount" class="check-box" [checked]="fund_100"
+                            (change)="fund_100 = !fund_100">100</mat-checkbox>
+                        <mat-checkbox formControlName="welfareFundAmount" class="check-box" [checked]="fund_300"
+                            (change)="fund_300 = !fund_300">300</mat-checkbox>
+                        <mat-checkbox formControlName="welfareFundAmount" class="check-box" [checked]="fund_500"
+                            (change)="fund_500 = !fund_500">500</mat-checkbox>
+                        <mat-checkbox formControlName="welfareFundAmount" class="check-box" [checked]="fund_free"
+                            (change)="fund_free = !fund_free">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Number Free Text</mat-label>
+                                <input matInput placeholder="eg 1000,200,etc." formControlName="freeText"
+                                    [disabled]="!fund_free">
+                            </mat-form-field>
+                        </mat-checkbox>
+                        <!-- <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button formControlName="welfareFundAmount" [checked]="fund_nil"
+                                (change)="fund_nil = !fund_nil" value="nil">Nil</mat-radio-button>
+                            <mat-radio-button formControlName="welfareFundAmount" [checked]="fund_100"
+                                (change)="fund_100 = !fund_100" value="100">100</mat-radio-button>
+                            <mat-radio-button formControlName="welfareFundAmount" [checked]="fund_300"
+                                (change)="fund_300 = !fund_300" value="300">300</mat-radio-button>
+                            <mat-radio-button formControlName="welfareFundAmount" [checked]="fund_500"
+                                (change)="fund_500 = !fund_500" value="500">500</mat-radio-button>
+                            <mat-radio-button formControlName="welfareFundAmount" [checked]="fund_free"
+                                (change)="fund_free = !fund_free" value="Free">Free</mat-radio-button>
+                        </mat-radio-group> -->
+                    </div>
+                    <div class="left-container">
+                        <img class="fit-picture" *ngIf="imageUrl" [src]="imageUrl">
+                        <div class="mat-body-2">Name : {{welfareFundFormControl.empName.value}}</div>
+                        <div class="mat-body-2">Date : {{welfareFundDetails?.signDate | date}}</div>
+                    </div>
+
+                    <div class="right-container">
+                        <ngx-signature-pad [config]="config" #signPad></ngx-signature-pad>
+                        <button mat-button (click)="clear()">Clear</button>
+                        <button mat-raised-button color="warn" class="pull-right" (click)="getImage()"
+                            [disabled]="isInValid()">Capture
+                            Sign</button>
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+        <mat-action-row>
+            <button color="accent" mat-raised-button [disabled]="!(welfareFundFormGroup.valid && imageUrl)"
+                (click)="saveWelfareFundDetails()">Save
+                Welfare Fund Details</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>

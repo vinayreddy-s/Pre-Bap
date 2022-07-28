@@ -1,0 +1,321 @@
+<mat-expansion-panel>
+    <!-- Expansion Panel Header -->
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Candidate Details
+        </mat-panel-title>
+       
+    </mat-expansion-panel-header>
+    <div class="mat-title">Candidate Details
+    </div>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+   
+    <ng-template  matExpansionPanelContent>
+        <div class="new_main_div">
+        <mat-horizontal-stepper [linear]="false" #stepper>
+            <form [formGroup]="candidateDetailsFormGroup">
+                <mat-step [stepControl]="candidateDetailsFormGroup">
+                    <ng-template  matStepLabel><span>Basic Details</span></ng-template>
+                    <div class="form-container">
+                        <div class="left-container">
+                            <mat-form-field color="accent" >
+                                <mat-label>First Name as per aadhaar name</mat-label>
+                                <input matInput placeholder="First Name as per Aadhaar" formControlName="firstName"
+                                    required>
+                                <mat-error *ngIf="candidateDetailsFormControl.firstName.errors?.required" align="start">
+                                    First name is required!
+                                </mat-error>
+                                <mat-error *ngIf="candidateDetailsFormControl.firstName.errors?.minlength" align="end">
+                                    Min 3 Chars!
+                                </mat-error>
+                                <mat-error *ngIf="candidateDetailsFormControl.firstName.errors?.pattern" align="start">
+                                    Only Letters are Accepted!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" >
+                                <mat-label>Last Name as per aadhaar name</mat-label>
+                                <input matInput placeholder="Last Name as per Aadhaar" formControlName="lastName"
+                                    required>
+                                <mat-error *ngIf="candidateDetailsFormControl.lastName.errors?.required" align="start">
+                                    Last name is required!
+                                </mat-error>
+                                <mat-error *ngIf="candidateDetailsFormControl.lastName.errors?.minlength" align="end">
+                                    Min 3Chars!
+                                </mat-error>
+                                <mat-error *ngIf="candidateDetailsFormControl.lastName.errors?.pattern" align="start">
+                                    Last name is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" >
+                                <mat-label>Date of Birth</mat-label>
+                                <input matInput [matDatepicker]="dobpicker" [max]="today" placeholder="MM/DD/YYYY"
+                                    formControlName="dateOfBirth" [value]="empdob" required>
+                                <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dobpicker></mat-datepicker>
+                                <mat-error *ngIf="candidateDetailsFormControl.dateOfBirth.errors?.required"
+                                    align="start">
+                                    Date of Birth is required!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="right-container">
+                            <mat-form-field color="accent" >
+                                <mat-label>Maritial Status</mat-label>
+                                <mat-select formControlName="maritalStatus" required
+                                    placeholder="Married, Unmarried, Divorcee etc.">
+                                    <mat-option value="Never Married">Never Married</mat-option>
+                                    <mat-option value="Married">Married</mat-option>
+                                    <mat-option value="Seperated">Seperated</mat-option>
+                                    <mat-option value="Widow">Widow</mat-option>
+                                    <mat-option value="Widower">Widower</mat-option>
+                                    <mat-option value="Prefer Not to Disclose">Prefer Not to Disclose</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="candidateDetailsFormControl.maritalStatus.errors?.required">
+                                    Marital Status is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <!-- <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                                    [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                    [searchCountryFlag]="true" [searchCountryField]="[
+                                      SearchCountryField.Iso2,
+                                      SearchCountryField.Name
+                                    ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India"
+                                    [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                    [numberFormat]="PhoneNumberFormat.National" name="phone"
+                                    formControlName="mobileNumber">
+                                </ngx-intl-tel-input> -->
+                            <mat-form-field color="accent" >
+                                <mat-label>Mobile</mat-label>
+                                <input type="tel" matInput placeholder="9876543210" formControlName="mobileNumber"
+                                    required>
+
+                                <mat-icon matSuffix>phone</mat-icon>
+                                <mat-error *ngIf="candidateDetailsFormControl.mobileNumber.errors?.required">
+                                    Mobile Number is required!
+                                </mat-error>
+                                <mat-error *ngIf="candidateDetailsFormControl.mobileNumber.errors?.minlength">
+                                    Must have 10 Digits!
+                                </mat-error>
+                                <mat-error *ngIf="candidateDetailsFormControl.mobileNumber.errors?.maxLength">
+                                    Must have 10 Digits!
+                                </mat-error>
+                                <mat-error align="end" *ngIf="candidateDetailsFormControl.mobileNumber.errors?.pattern">
+                                    Only Numeric Digits Pls!
+                                </mat-error>
+                            </mat-form-field>
+                            <!-- <mat-form-field color="accent" >
+                                <mat-label>email-id</mat-label>
+                                <input matInput placeholder="132@email.com" formControlName="email" required>
+                                <mat-icon matSuffix>email</mat-icon>
+                                <mat-error *ngIf="candidateDetailsFormControl.email.errors?.required">
+                                    email-id is required!
+                                </mat-error>
+                            </mat-form-field> -->
+                        </div>
+                        <div class="nav-buttons right-container nav-buttons1">
+                            <button class="next_btn" mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                                Next
+                            </button>
+                        </div>
+                        <!-- <mat-action-row>
+                            <button class="next_btn" mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                                Next
+                            </button>
+                        </mat-action-row> -->
+                    </div>
+                </mat-step>
+                <!--  -->
+                <mat-step [stepControl]="candidateDetailsFormGroup">
+                    <ng-template matStepLabel><span>Additional Details</span></ng-template>
+                    <div class="form-container">
+                        <div class="left-container">
+                            <mat-form-field color="accent" >
+                                <mat-label>Gender</mat-label>
+                                <mat-select formControlName="gender" required placeholder="Male/Female">
+                                    <mat-option value="Male">Male</mat-option>
+                                    <mat-option value="Female">Female</mat-option>
+                                    <mat-option value="Prefer Not to Disclose">Prefer Not to Disclose</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    <span *ngIf="candidateDetailsFormControl.gender.errors?.required">Gender is
+                                        required!</span>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field color="accent" >
+                                <mat-label>Blood Group</mat-label>
+                                <mat-select formControlName="bloodGroup" required placeholder="A+, B+, AB-, O+ etc.">
+                                    <mat-option value="A+">A+</mat-option>
+                                    <mat-option value="A-">A-</mat-option>
+                                    <mat-option value="B+">B+</mat-option>
+                                    <mat-option value="B-">B-</mat-option>
+                                    <mat-option value="AB+">AB+</mat-option>
+                                    <mat-option value="AB-">AB-</mat-option>
+                                    <mat-option value="O+">O+</mat-option>
+                                    <mat-option value="O-">O-</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    <span *ngIf="candidateDetailsFormControl.bloodGroup.errors?.required">Blood
+                                        Group is required!</span>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field [hidden]="isShorttermIntern || isIntern" color="accent"
+                                >
+                                <mat-label>UAN Number</mat-label>
+                                <input matInput placeholder="250123456789" formControlName="uan">
+                                <mat-hint align="start">
+                                    If Applicable
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="right-container">
+                            <mat-form-field color="accent" >
+                                <mat-label>Father/Spouse Name</mat-label>
+                                <input matInput placeholder="Father/Spouse Name" formControlName="fatherOrSpouseName"
+                                    required>
+                                <mat-hint align="start">
+                                    <span *ngIf="candidateDetailsFormControl.fatherOrSpouseName.errors?.required">Father
+                                        Name is required!</span>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field color="accent" >
+                                <mat-label>Nationality</mat-label>
+                                <mat-select formControlName="nationality" required
+                                    placeholder="India, Canada, USA etc,">
+                                    <mat-option value="Indian">Indian</mat-option>
+                                    <mat-option value="Canadian">Canadian</mat-option>
+                                    <mat-option value="USA">USA</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="candidateDetailsFormControl.nationality.errors?.required"
+                                    align="start">
+                                    Nationality is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <!-- <mat-form-field color="accent" >
+                                <mat-label>Date of Joining</mat-label>
+                                <input matInput [matDatepicker]="dojpicker" placeholder="MM/DD/YYYY"
+                                    formControlName="dateOfJoining" required [value]="empdoj">
+                                <mat-datepicker-toggle matSuffix [for]="dojpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dojpicker></mat-datepicker>
+                                <mat-hint align="start">
+                                    <span *ngIf="candidateDetailsFormControl.dateOfJoining.errors?.required">Date of
+                                        joining is required!</span>
+                                </mat-hint>
+                            </mat-form-field> -->
+                        </div>
+                        <div class="nav-buttons">
+                            <button class="close_btn" mat-raised-button matTooltip="Back" color="accent" matStepperPrevious>
+                                <!-- <mat-icon>keyboard_arrow_left</mat-icon> -->Back
+                            </button>
+                            <button class="next_btn" mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                                <!-- <mat-icon>keyboard_arrow_right</mat-icon> -->
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+                <!--  -->
+                <mat-step [stepControl]="candidateDetailsFormGroup">
+                    <div class="form-container">
+                        <ng-template matStepLabel><span>Emergency Contact Information</span></ng-template>
+                        <div class="left-container">
+                            <mat-form-field color="accent" >
+                                <mat-label>Contact Person Name</mat-label>
+                                <input matInput placeholder="Emergency Contact Person Name"
+                                    formControlName="emgContactName" required>
+                                <mat-hint align="start">
+                                    <span *ngIf="candidateDetailsFormControl.emgContactName.errors?.required">
+                                        Contact Person Name is required!
+                                    </span>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field color="accent" >
+                                <mat-label>Relationship</mat-label>
+                                <mat-select formControlName="emgContactRelation" required
+                                    placeholder="Mother, Father, Spouse, Brother, Sister etc.,">
+                                    <mat-option value="Mother">Mother</mat-option>
+                                    <mat-option value="Father">Father</mat-option>
+                                    <mat-option value="Spouse">Spouse</mat-option>
+                                    <mat-option value="Brother">Brother</mat-option>
+                                    <mat-option value="Sister">Sister</mat-option>
+                                    <mat-option value="Friend">Friend</mat-option>
+                                    <mat-option value="Uncle">Uncle</mat-option>
+                                    <mat-option value="Aunt">Aunt</mat-option>
+                                    <mat-option value="Son">Son</mat-option>
+                                    <mat-option value="Daughter">Daughter</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    <span *ngIf="candidateDetailsFormControl.emgContactRelation.errors?.required">
+                                        Relation is required!
+                                    </span>
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="right-container">
+                            <mat-form-field color="accent" >
+                                <mat-label>Emergency Contact Mobile</mat-label>
+                                <input matInput placeholder="9876543210" formControlName="emgContactMobile" required>
+                                <mat-hint align="start">
+                                    <span *ngIf="candidateDetailsFormControl.emgContactMobile.errors?.required">
+                                        Mobile Number is required!
+                                    </span>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field color="accent" >
+                                <mat-label>Emergency Contact email-id</mat-label>
+                                <input matInput placeholder="132@email.com" formControlName="emgContactEmail" required>
+                                <mat-hint align="start">
+                                    <span *ngIf="candidateDetailsFormControl.emgContactEmail.errors?.required">
+                                        email-id is required!
+                                    </span>
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="nav-buttons">
+                            <button class="close_btn" mat-raised-button matTooltip="Back" color="accent" matStepperPrevious>
+                                <!-- <mat-icon>keyboard_arrow_left</mat-icon> -->Back
+                            </button>
+                            <button class="next_btn" mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                                <!-- <mat-icon>keyboard_arrow_right</mat-icon> -->Next
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+                <!--  -->
+                <mat-step [stepControl]="candidateDetailsFormGroup">
+                    <div class="form-container">
+                        <ng-template matStepLabel><span>LinkedIn Profile URL</span></ng-template>
+                        <div class="left-container">
+                            <mat-form-field color="accent" >
+                                <mat-label>LinkedIn Profile URL</mat-label>
+                                <textarea matInput placeholder="LinkedIn URL" formControlName="socialMediLink"
+                                    required></textarea>
+                                <mat-hint align="start">
+                                    <span *ngIf="candidateDetailsFormControl.socialMediLink.errors?.required">
+                                        LinkedIn URL is required!</span>
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="nav-buttons">
+                            <button class="close_btn" mat-raised-button matTooltip="Back" color="accent" matStepperPrevious>
+                                <!-- <mat-icon>keyboard_arrow_left</mat-icon> -->Back
+                            </button>
+                            <button class="next_btn" mat-raised-button matTooltip="Next" color="accent" matStepperNext [disabled]="!candidateDetailsFormGroup.valid" (click)="saveCandidateDetailsForm()">
+                                <!-- <mat-icon>keyboard_arrow_right</mat-icon> -->
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+                <!--  -->
+            </form>
+        </mat-horizontal-stepper>
+    </div>
+    </ng-template>
+
+    <!-- <mat-action-row>
+        <button color="accent" mat-raised-button [disabled]="!candidateDetailsFormGroup.valid"
+            (click)="saveCandidateDetailsForm()">Save Candidate Details</button>
+    </mat-action-row> -->
+</mat-expansion-panel>

@@ -1,0 +1,102 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Reference Person
+        </mat-panel-title>
+        <mat-panel-description>
+            <!-- Name, designation, etc. (Max - 2 Entries Only) -->
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="mat-title">Reference Person
+        <div class="subtile1">Name, Designation, etc (Max- 2 Entries Only) </div>
+    </div>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <ng-template matExpansionPanelContent>
+        <form [formGroup]="refpersonFormGroup">
+            <div class="form-container">
+
+                <div class="left-container">
+                    <mat-form-field color="accent" >
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Name" formControlName="name" required>
+                        <mat-error *ngIf="refFormControl.name.errors?.required" align="start">
+                            Name is required!
+                        </mat-error>
+                        <mat-error *ngIf="refFormControl.name.errors?.minlength" align="end">
+                            Min 3 Chars!
+                        </mat-error>
+                        <mat-error *ngIf="refFormControl.name.errors?.pattern" align="start">
+                            Only Letters are Accepted!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Mobile Number</mat-label>
+                        <input type="tel" matInput placeholder="9876543210" formControlName="mobileNumber" required>
+                        <mat-icon matSuffix>phone</mat-icon>
+                        <mat-error *ngIf="refFormControl.mobileNumber.errors?.required">
+                            Mobile Number is required!
+                        </mat-error>
+                        <mat-error *ngIf="refFormControl.mobileNumber.errors?.minlength">
+                            Must have 10 Digits!
+                        </mat-error>
+                        <mat-error align="end" *ngIf="refFormControl.mobileNumber.errors?.pattern">
+                            Only Numeric Digits Pls!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="right-container">
+
+                    <mat-form-field color="accent" >
+                        <mat-label>Designation</mat-label>
+                        <input matInput placeholder="TL , Director etc." formControlName="designation" required>
+                        <mat-error *ngIf="refFormControl.designation.errors?.required" align="start">
+                            Designation is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Address</mat-label>
+                        <textarea matInput placeholder="H.No/Flat No. etc.," formControlName="address"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div class="middle-container">
+                    <button color="warn" mat-raised-button *ngIf="candidateDetails?.id"
+                        [disabled]="!refpersonFormGroup.valid || maxEntriesReached" (click)="addLine()">
+                        <mat-icon>add</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-references" *ngIf="refDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Designation</th>
+                                <th>Mobile Number</th>
+                                <th>address</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of refDataSource; let i=index">
+                                <td>{{data.name}}</td>
+                                <td>{{data.designation}}</td>
+                                <td>{{data.mobileNumber}}</td>
+                                <td>{{data.address}}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</mat-expansion-panel>

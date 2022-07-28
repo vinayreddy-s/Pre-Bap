@@ -1,0 +1,16 @@
+<mat-accordion class="accordian-container" multi="true">
+
+    <div class="header">
+        <div class="mat-title text-center">Mediclaim Form</div>
+        <div>
+            <button mat-button color="accent" (click)="navigateToPreview()">
+                Preview <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <app-medi-claim-details></app-medi-claim-details>
+
+    <app-medi-fam-details></app-medi-fam-details>
+
+</mat-accordion>

@@ -1,0 +1,97 @@
+mat-expansion-panel {
+    mat-expansion-panel-header {
+        display: flex;
+        align-items: stretch;
+        flex-basis: auto;
+        mat-panel-title,
+        mat-panel-description {
+            padding: 0.5rem 0 0.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 0;
+        }
+    }
+    .form-container {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(1rem, auto);
+        grid-template-areas:
+            "top-container top-container"
+            "left-container right-container"
+            "middle-container middle-container"
+            "end-container end-container";
+
+        .top-container {
+            grid-area: top-container;
+            margin-right: 2rem;
+            .para-container {
+                margin-left: 2rem;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                border-left: none;
+                position: relative;
+                text-align: justify;
+            }
+        }
+
+        .left-container {
+            grid-area: left-container;
+            margin-top: 2rem;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            mat-form-field {
+                min-width: 30rem;
+            }
+        }
+
+        .right-container {
+            grid-area: right-container;
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            .fit-picture {
+                padding: 2rem;
+                background-color: transparent;
+                width: 280px;
+            }
+
+            .image-container {
+                border: 1px solid blue;
+                border-radius: 2rem;
+                padding: 2rem;
+            }
+
+            mat-form-field {
+                min-width: 30rem;
+            }
+        }
+        .nav-buttons {
+            grid-area: end-container;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        @media all and (max-width: 768px) {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "top-container"
+                "left-container"
+                "right-container"
+                "end-container";
+
+            .left-container .right-container {
+                mat-form-field {
+                    max-width: 20rem;
+                }
+            }
+            .nav-buttons {
+                justify-content: space-between;
+            }
+        }
+    }
+}

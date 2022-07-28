@@ -1,0 +1,26 @@
+<mat-accordion class="accordian-container" multi="true">
+
+    <div class="header">
+        <div class="mat-title text-center title1">Application Form Preview</div>
+        <div>
+            <button mat-button color="accent" (click)="navigateToEditCompanyAppForm()">
+                <mat-icon>edit</mat-icon>
+                <mat-icon class="black_mat">close</mat-icon>
+                <!-- <mat-icon>keyboard_arrow_left</mat-icon>  -->
+                
+            </button>
+        </div>
+    </div>
+
+
+    <app-view-candidate-details></app-view-candidate-details>
+
+    <!-- <app-view-education-docs></app-view-education-docs>
+
+    <app-view-experience-docs></app-view-experience-docs>
+
+    <app-view-identity-docs></app-view-identity-docs>
+
+    <app-view-spec-docs></app-view-spec-docs> -->
+
+</mat-accordion>

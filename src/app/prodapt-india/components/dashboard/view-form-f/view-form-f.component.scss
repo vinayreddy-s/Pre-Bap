@@ -1,0 +1,189 @@
+.accordian-container {
+    .header {
+        display: flex;
+        margin-right: 2rem;
+        justify-content: space-between;
+    }
+    mat-expansion-panel {
+        mat-expansion-panel-header {
+            display: flex;
+            align-items: stretch;
+            flex-basis: auto;
+            mat-panel-title,
+            mat-panel-description {
+                padding: 0.5rem 0 0.5rem 0;
+                display: flex;
+                flex-wrap: wrap;
+                flex-basis: 0;
+            }
+        }
+        .form-container {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: minmax(1rem, auto);
+            grid-template-areas:
+                "top-container top-container"
+                "middle-container middle-container"
+                "table-container table-container"
+                "bottom-container bottom-container";
+
+            .top-container {
+                grid-area: top-container;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .middle-container {
+                grid-area: middle-container;
+                font-size: 1.1em;
+                line-height: 1.6em;
+                padding: 1rem 1rem 1rem 2rem;
+                border-left: none;
+                position: relative;
+                text-align: justify;
+            }
+            .table-container {
+                grid-area: table-container;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 1rem 1rem 1rem 2rem;
+                border-left: none;
+                position: relative;
+
+                .basic-details {
+                    width: 100%;
+                    border-collapse: collapse;
+                    th {
+                        font-weight: 500;
+                        padding: 6px;
+                    }
+
+                    tr {
+                        border: 1px solid #ccc;
+                    }
+
+                    td {
+                        padding: 1rem;
+                        width: 25%;
+                    }
+                    tbody {
+                        .content {
+                            td {
+                                padding: 6px;
+                            }
+                        }
+                    }
+                }
+                .table-nominee {
+                    width: 100%;
+                    border-collapse: collapse;
+                    th {
+                        font-weight: 570;
+                        padding: 1rem;
+                        border: 2px solid #ccc;
+                        text-align: center;
+                    }
+                    tr {
+                        border: 2px solid #ccc;
+                    }
+                    td {
+                        border: 2px solid #ccc;
+                        padding: 1rem;
+                        width: 25%;
+                        text-align: center;
+                    }
+                }
+            }
+            .bottom-container {
+                grid-area: bottom-container;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 1rem 1rem 1rem 2rem;
+                border-left: none;
+                position: relative;
+                .fit-picture {
+                    padding: 2rem;
+                    background-color: transparent;
+                    width: 280px;
+                }
+            }
+
+            @media all and (max-width: 768px) {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "top-container"
+                    "middle-container"
+                    "table-container"
+                    "bottom-container";
+
+                .table-container {
+                    table,
+                    thead,
+                    tbody,
+                    th,
+                    td,
+                    tr {
+                        display: block;
+                        align-items: center;
+                    }
+
+                    .table-nominee {
+                        display: block;
+                        td {
+                            padding: 1rem;
+                            width: 100%;
+                        }
+                        thead tr {
+                            position: absolute;
+                            top: -9999px;
+                            left: -9999px;
+                        }
+
+                        tr {
+                            border: 2px solid #ccc;
+                        }
+
+                        td {
+                            /* Behave  like a "row" */
+                            border: none;
+                            border-bottom: 1px solid #eee;
+                            position: relative;
+                            padding-left: 50%;
+                            align-items: center;
+                            text-align: left;
+                        }
+
+                        td:before {
+                            /* Now like a table header */
+                            position: absolute;
+                            /* Top/left values mimic padding */
+                            top: 6px;
+                            left: 6px;
+                            width: 45%;
+                            padding-right: 10px;
+                            white-space: nowrap;
+                        }
+
+                        td:nth-of-type(1):before {
+                            content: "Name & Address";
+                        }
+                        td:nth-of-type(2):before {
+                            content: "Relationship";
+                        }
+                        td:nth-of-type(3):before {
+                            content: "Age";
+                        }
+                        td:nth-of-type(4):before {
+                            content: "Proportion";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

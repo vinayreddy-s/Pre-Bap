@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="header-content">
+        <div class="mat-display-2 header">Welcome to Pre BAP
+            <p class="mat-h1 subheader">Become A Prodaptian</p>
+        </div>
+
+        <div>
+            <img class="fit-picture" src="../../../assets/prodapt_logo.png">
+        </div>
+    </div>
+
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <div class="mat-headline headline">Welcome New Prodaptian,</div>
+                <div class="mat-title">You made the right choice for a successful career and we
+                    are glad that you are joining us. Please login to start the extraodinary journey with Prodapt.</div>
+            </div>
+        </div>
+        <div>
+            <img class="fit-picture" src="../../../assets/facebook-prodapt.jpg">
+        </div>
+    </div>
+
+    <div class="login-container">
+        <mat-card class="mat-card">
+            <mat-card-title>Enter your e-mail id & password </mat-card-title>
+            <mat-card-subtitle>(received through e-mail)</mat-card-subtitle>
+            <mat-card-content>
+                <form class="formGroup" [formGroup]="loginFormGroup">
+                    <div>
+                        <mat-form-field color="primary" class="email" appearance="outline">
+                            <mat-label>e-mail id</mat-label>
+                            <input matInput placeholder="123@email.com" #email formControlName="email">
+                            <mat-error *ngIf="loginFormControl.email.errors?.required" align="start">
+                                e-mail is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field color="primary" class="password" appearance="outline">
+                            <mat-label>password</mat-label>
+                            <input matInput type="password" placeholder="password" #password formControlName="password">
+                            <mat-error *ngIf="loginFormControl.password.errors?.required" align="start">
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="check-box">
+                        <mat-checkbox formControlName="consent" class="check-box" [checked]="accepted"
+                            (change)="accepted = !accepted"></mat-checkbox>
+                        <span> I acknowledge that I have read, understood and agreed for processing my Personal Data
+                            as per Privacy Policy, understood and agreed for processing my Personal Data as per
+                            <a href="http://www.prodapt.com/privacy-policy/" target="_blank"
+                                rel="noopener noreferrer">Privacy Policy</a>
+                        </span>
+                    </div>
+                </form>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button mat-raised-button color="primary" [disabled]="!accepted" (click)="onSubmit()">
+                    LOGIN
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,184 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Education Details
+        </mat-panel-title>
+        <mat-panel-description>
+            <!-- Degree,12 th,10 th Certificate etc. (Min - 3 Entries) -->
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="mat-title">Education Details
+        <div class="subtile1">Degree, 12th, 10th Certificate etc (Min- 3 Entries) </div>
+    </div>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <ng-template matExpansionPanelContent>
+        <form [formGroup]="educationFormGroup">
+            <div class="form-container">
+
+                <div class="left-container">
+                    <mat-form-field color="accent" >
+                        <mat-label>Course Name</mat-label>
+                        <input matInput placeholder="BTech, B.E, Inter, SSC" formControlName="educationName" required>
+                        <mat-error *ngIf="educationFormControl.educationName.errors?.required" align="start">
+                            Course name is required!
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent" >
+                        <mat-label>Specialization</mat-label>
+                        <input matInput placeholder="CSE, ECE, any other" formControlName="specialization" required>
+                        <mat-error *ngIf="educationFormControl.specialization.errors?.required" align="start">
+                            Specialization is required!
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent" >
+                        <mat-label>Institution Name, City</mat-label>
+                        <input matInput placeholder="Karunya Engg College, Coimbattore etc.,"
+                            formControlName="institution" required>
+                        <mat-error *ngIf="educationFormControl.institution.errors?.required" align="start">
+                            Institution is required!
+                        </mat-error>
+                    </mat-form-field>.
+                    </div>
+
+                    <div class="right-container">
+                    <mat-form-field color="accent" >
+                        <mat-label>Board/University</mat-label>
+                        <input matInput placeholder="Anna University, Osmania University etc.,"
+                            formControlName="boardOrUniversity" required>
+                        <mat-error *ngIf="educationFormControl.boardOrUniversity.errors?.required" align="start">
+                            Board/University is required!
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent" >
+                        <mat-label>Period From</mat-label>
+                        <input matInput [matDatepicker]="dofpicker" [max]="today" placeholder="MM/DD/YYYY"
+                            formControlName="studiedFrom" [value]="stuFrom" required>
+                        <mat-datepicker-toggle matSuffix [for]="dofpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dofpicker></mat-datepicker>
+                        <mat-hint *ngIf="educationFormControl.studiedFrom.errors?.required" align="start">
+                            Period From is required!
+                        </mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent" >
+                        <mat-label>Period To</mat-label>
+                        <input matInput [matDatepicker]="dotpicker" [max]="today" placeholder="MM/DD/YYYY"
+                            formControlName="studiedTo" [value]="stuTo" required>
+                        <mat-datepicker-toggle matSuffix [for]="dotpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dotpicker></mat-datepicker>
+                        <mat-hint *ngIf="educationFormControl.studiedTo.errors?.required" align="start">
+                            Period To is required!
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="right-container1">
+                    <span class="id_doc">Original Degree Certificate</span>
+                    <mat-card class="material-card"
+                        [hidden]="isShorttermIntern || isDirectConsultant || isVendorConsultant || isIntern">
+                        <img mat-card-image *ngIf="imageUrl" [src]="imageUrl">
+                        <div class="pdf-viewer-container" *ngIf="pdfUrl">
+                            <pdf-viewer [src]="pdfUrl" [original-size]="false"></pdf-viewer>
+                        </div>
+
+                            <mat-card-header>
+                                <mat-card-title (click)="imageInput.click()">
+                                    <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps"
+                                (change)="onImageSelected($event)">
+                                Drag your files here<br>or <span class="browse_green">Browse</span> to upload
+                                </mat-card-title>
+                            </mat-card-header>
+
+                    </mat-card>
+                    <span class="id_doc">Provisional Certificate</span>
+                    <mat-card class="material-card"
+                        [hidden]="isShorttermIntern || isDirectConsultant || isVendorConsultant || isIntern">
+                        <img mat-card-image *ngIf="imageUrl1" [src]="imageUrl1">
+                        <div class="pdf-viewer-container" *ngIf="pdfUrl1">
+                            <pdf-viewer [src]="pdfUrl1" [original-size]="false"></pdf-viewer>
+                        </div>
+
+                            <mat-card-header>
+                                <mat-card-title (click)="imageInput1.click()">
+                                    <input #imageInput1 style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps"
+                                (change)="onImage1Selected($event)">
+                                Drag your files here<br>or <span class="browse_green">Browse</span> to upload
+                                </mat-card-title>
+                            </mat-card-header>
+
+                    </mat-card>
+                    <span class="id_doc">Consolidated Marks Sheet</span>
+                    <mat-card class="material-card"
+                        [hidden]="isShorttermIntern || isDirectConsultant || isVendorConsultant || isIntern">
+                        <img mat-card-image *ngIf="imageUrl2" [src]="imageUrl2">
+                        <div class="pdf-viewer-container" *ngIf="pdfUrl2">
+                            <pdf-viewer [src]="pdfUrl2" [original-size]="false"></pdf-viewer>
+                        </div>
+
+                            <mat-card-header>
+                                <mat-card-title (click)="imageInput2.click()">
+                                    <input #imageInput2 style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps"
+                                (change)="onImage2Selected($event)">
+                                Drag your files here<br>or <span class="browse_green">Browse</span> to upload
+                                </mat-card-title>
+                            </mat-card-header>
+
+                    </mat-card>
+
+                </div>
+
+                <div class="middle-container">
+                    <button color="warn" mat-raised-button *ngIf="candidateDetails?.id"
+                        [disabled]="!educationFormGroup.valid || maxEntriesReached || !(fileUrl || fileUrl1 || fileUrl2)"
+                        (click)="addLine()">
+                        <mat-icon>add</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-education" *ngIf="eduDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Specialization</th>
+                                <th>Institution</th>
+                                <th>Board/University</th>
+                                <th>Period From</th>
+                                <th>Period To</th>
+                                <th>Is Approved?</th>
+                                <th>Action</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of eduDataSource; let i=index">
+                                <td>{{data.educationName}}</td>
+                                <td>{{data.specialization}}</td>
+                                <td>{{data.institution}}</td>
+                                <td>{{data.boardOrUniversity}}</td>
+                                <td>{{data.studiedFrom | date:'longDate'}}</td>
+                                <td>{{data.studiedTo | date:'longDate'}}</td>
+                                <td>{{data?.approved ? 'Approved' : 'Pending' }}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                                <td>{{data.remarks}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</mat-expansion-panel>

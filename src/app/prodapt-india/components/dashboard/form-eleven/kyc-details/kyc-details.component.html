@@ -1,0 +1,92 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            KYC Details
+        </mat-panel-title>
+        <mat-panel-description>
+            Passport, Aadhar, PAN etc. (Min - 2 Entries)
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <ng-template matExpansionPanelContent>
+        <form [formGroup]="kycdetailsFormGroup">
+            <div class="form-container">
+                <ng-template matStepLabel>KYC Details</ng-template>
+                <div class="left-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Select KYC</mat-label>
+                        <mat-select formControlName="selectKYC" required placeholder="Aadhaar, Passport,PAN etc.">
+                            <mat-option value="Bank Account-1">Bank Account-1</mat-option>
+                            <mat-option value="Passport">Passport</mat-option>
+                            <mat-option value="Driving License">Driving License</mat-option>
+                            <mat-option value="Aadhaar">Aadhaar</mat-option>
+                            <mat-option value="PAN">PAN</mat-option>
+                            <mat-option value="Election Card">Election Card</mat-option>
+                            <mat-option value="Ration Card">Ration Card</mat-option>
+                            <mat-option value="ESIC Card">ESIC Card</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="kycDetailsFormControl.selectKYC.errors?.required" align="start">
+                            KYC Type is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Number</mat-label>
+                        <input matInput formControlName="docNumber" required>
+                        <mat-error *ngIf="kycDetailsFormControl.docNumber.errors?.required" align="start">
+                            KYC Number is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="right-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="nameAsPerDoc" required>
+                        <mat-error *ngIf="kycDetailsFormControl.nameAsPerDoc.errors?.required" align="start">
+                            KYC Name is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Remarks</mat-label>
+                        <input matInput formControlName="remarks">
+                    </mat-form-field>
+                </div>
+                <div class="middle-container">
+                    <button color="primary" mat-raised-button *ngIf="epfKYCDetails?.id"
+                        [disabled]="!kycdetailsFormGroup.valid || maxEntriesReached" (click)="addLine()">
+                        <mat-icon>add_to_queue</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-kyc" *ngIf="kycDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>KYC Document Type</th>
+                                <th>Name as on KYC Document</th>
+                                <th>KYC Number</th>
+                                <th>Remarks(IFSC or Expiry,if any</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of kycDataSource; let i=index">
+                                <td>{{data.selectKYC}}</td>
+                                <td>{{data.nameAsPerDoc}}</td>
+                                <td>{{data.docNumber}}</td>
+                                <td>{{data.remarks}}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</mat-expansion-panel>

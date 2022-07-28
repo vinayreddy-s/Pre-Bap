@@ -1,0 +1,86 @@
+mat-expansion-panel {
+    mat-expansion-panel-header {
+        display: flex;
+        align-items: stretch;
+        flex-basis: auto;
+        mat-panel-title,
+        mat-panel-description {
+            padding: 0.5rem 0 0.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 0;
+        }
+    }
+
+    .form-container {
+        margin: 3rem 0;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(1rem, auto);
+        grid-template-areas:
+            "left-container right-container"
+            "end-container end-container";
+
+        .left-container {
+            grid-area: left-container;
+            justify-content: center;
+            mat-form-field {
+                min-width: 30rem;
+            }
+        }
+
+        .right-container {
+            grid-area: right-container;
+            justify-content: center;
+            mat-form-field {
+                min-width: 30rem;
+            }
+        }
+
+        .nav-buttons {
+            width: 88%;
+            margin-top: 3rem;
+            grid-area: end-container;
+            display: flex;
+            justify-content: space-between;
+        }
+        .nav-buttons1{
+        justify-content: flex-end !important
+        }
+
+        @media all and (max-width: 768px) {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "left-container"
+                "right-container"
+                "end-container";
+
+            .left-container .right-container {
+                mat-form-field {
+                    max-width: 20rem;
+                }
+            }
+            .nav-buttons {
+                justify-content: space-between;
+            }
+        }
+    }
+}
+.new_main_div{
+    width: 80%;
+}
+.close_btn{
+    background-color: #fff;
+    border: 1px solid #5ac243;
+    box-shadow: none;
+    color: #5ac243;
+    padding: 0px 25px;
+}
+
+.next_btn{
+    padding: 0px 25px;
+}
+.mat-horizontal-stepper-header-container{
+    margin: 20px 0px !important;
+}

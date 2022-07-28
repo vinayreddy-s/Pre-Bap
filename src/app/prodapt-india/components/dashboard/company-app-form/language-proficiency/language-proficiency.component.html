@@ -1,0 +1,78 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Language Proficiency
+        </mat-panel-title>
+        <mat-panel-description>
+            <!-- Language - Read, Write, Speak. (Min - 1 Entry) -->
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="mat-title">Language Proficiency
+        <div class="subtile1">Language - Read, Write, Speak (Min- 1 Entry) </div>
+    </div>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <ng-template matExpansionPanelContent>
+        <form [formGroup]="languageFormGroup">
+            <div class="form-container">
+
+                <div class="left-container">
+                    <mat-form-field color="accent" >
+                        <mat-label>Language</mat-label>
+                        <input matInput placeholder="English, Tamil, Telugu etc.," formControlName="name" required>
+                        <mat-error *ngIf="languageFormControl.name.errors?.required" align="start">
+                            Language is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="right-container">
+                    <mat-checkbox formControlName="read" class="check-box" [checked]="lan_read"
+                        [disabled]="!languageFormGroup.valid" (change)="lan_read = !lan_read">Read</mat-checkbox>
+                    <mat-checkbox formControlName="write" class="check-box" [checked]="lan_write"
+                        [disabled]="!languageFormGroup.valid" (change)="lan_write = !lan_write">Write</mat-checkbox>
+                    <mat-checkbox formControlName="speak" class="check-box" [checked]="lan_speak"
+                        [disabled]="!languageFormGroup.valid" (change)="lan_speak = !lan_speak">Speak</mat-checkbox>
+                </div>
+
+                <div class="middle-container">
+                    <button color="warn" mat-raised-button *ngIf="candidateDetails?.id"
+                        [disabled]="!languageFormGroup.valid || maxEntriesReached || !(lan_read || lan_write || lan_speak)"
+                        (click)="addLine()">
+                        <mat-icon>add</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-language" *ngIf="langDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Language</th>
+                                <th>Read</th>
+                                <th>Write</th>
+                                <th>Speak</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of langDataSource; let i=index">
+                                <td>{{data.name}}</td>
+                                <td>{{data.read && 'Yes' || 'No'}}</td>
+                                <td>{{data.write && 'Yes' || 'No'}}</td>
+                                <td>{{data.speak && 'Yes' || 'No'}}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </form>
+    </ng-template>
+</mat-expansion-panel>

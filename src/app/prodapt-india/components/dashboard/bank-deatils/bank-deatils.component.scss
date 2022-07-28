@@ -1,0 +1,101 @@
+.accordian-container {
+    .header {
+        display: flex;
+        margin-left: 2rem;
+        justify-content: space-between;
+    }
+    mat-expansion-panel {
+        mat-expansion-panel-header {
+            display: flex;
+            align-items: stretch;
+            flex-basis: auto;
+            mat-panel-title,
+            mat-panel-description {
+                padding: 0.5rem 0 0.5rem 0;
+                display: flex;
+                flex-wrap: wrap;
+                flex-basis: 0;
+            }
+        }
+        .form-container {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: minmax(1rem, auto);
+            grid-template-areas:
+                "top-container top-container"
+                "left-container right-container";
+
+            .top-container {
+                grid-area: top-container;
+                font-size: 1.5rem;
+                line-height: 1.6em;
+                padding: 1rem 1rem 1rem 2rem;
+                border-left: none;
+                position: relative;
+                text-align: left;
+            }
+
+            .left-container {
+                grid-area: left-container;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                mat-form-field {
+                    min-width: 30rem;
+                }
+            }
+
+            .right-container {
+                grid-area: right-container;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                padding: 1rem;
+
+                mat-form-field {
+                    min-width: 30rem;
+                }
+
+                .material-card {
+                    margin: 1rem;
+                    width: 28rem;
+                    height: min-content;
+                    align-items: center;
+                    img {
+                        height: 25rem;
+                        object-fit: scale-down;
+                    }
+                    .pdf-viewer-container {
+                        height: 25rem;
+                        margin-top: -1.5rem;
+                        margin-left: -1.5rem;
+                        width: 100%;
+                        pdf-viewer {
+                            height: 20rem;
+                            width: 14.14rem;
+                            object-fit: fit;
+                        }
+                    }
+                }
+            }
+
+            @media only screen and (max-width: 760px) {
+                justify-content: center;
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "top-container"
+                    "left-container"
+                    "right-container";
+
+                .left-container .right-container {
+                    mat-form-field {
+                        max-width: 22rem;
+                    }
+                }
+            }
+        }
+    }
+}

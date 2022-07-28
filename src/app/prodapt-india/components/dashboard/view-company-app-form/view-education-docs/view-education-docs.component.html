@@ -1,0 +1,144 @@
+<!-- <mat-expansion-panel [expanded]="true">
+    
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Education Documents
+        </mat-panel-title>
+        <mat-panel-description>
+            SSLC, Intermediate, Degree, etc.
+        </mat-panel-description>
+    </mat-expansion-panel-header> 
+    -->
+    <!--Progress Bar  -->
+    <div class="subheading_heading">
+        Documents
+    </div>
+    
+    <div class="subheading_head">
+        Education Documents
+    <div class="subheading_subtile">Service Certificates</div>    
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- <ng-template matExpansionPanelContent> -->
+        <div class="form-container" id="pdf-content-education">
+            <div class="table-container">
+                <table class="table table-education table-borderless"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Specialization</th>
+                            <th>Institution</th>
+                            <th>Board/University</th>
+                            <th>Period From</th>
+                            <th>Period To</th>
+                            <th>IsApproved?</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.educationList">
+                            <td>{{data.educationName}}</td>
+                            <td>{{data.specialization}}</td>
+                            <td>{{data.institution}}</td>
+                            <td>{{data.boardOrUniversity}}</td>
+                            <td>{{data.studiedFrom | date:'longDate'}}</td>
+                            <td>{{data.studiedTo | date:'longDate'}}</td>
+                            <td>{{data?.approved ? 'Approved' : 'Pending' }}</td>
+                            <td>{{data.remarks}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="middle-container">
+                <div class="candidate_doc" *ngFor="let data of candidateDetails?.educationList">
+                    <mat-card class="material-card" *ngIf="data?.fileType !== null">
+                      <!-- <img mat-card-image *ngIf="data?.fileType ==='image/jpeg' || data?.fileType === 'image/png' 
+                        || data?.fileType === 'image/x-eps' " [src]="data?.educationImage">-->
+                        <div class="pdf-viewer-container" *ngIf="data?.fileType === 'application/pdf'">
+                            <pdf-viewer *ngIf="data?.fileType === 'application/pdf'" [src]="data?.educationImage"
+                                [original-size]="false"></pdf-viewer>
+                        </div>
+
+                        <!-- <mat-card> -->
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <div class="pdf_card">
+                                        <img class="pdf_picture" src="../../../assets/pdf-icon.png"><br>
+                                    </div>
+                                    Original Degree Certificate
+                                </mat-card-title>
+                                <mat-card-subtitle color="accent">
+                                    {{data.educationName}}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            
+                        <!-- </mat-card> -->
+
+                        <mat-card-actions class="text-center">
+                            <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps">
+                        </mat-card-actions>
+                    </mat-card>
+
+                    <mat-card class="material-card" *ngIf="data?.fileType1 !== null">
+                      <!--  <img mat-card-image *ngIf="data?.fileType1 ==='image/jpeg' || data?.fileType1 === 'image/png' 
+                        || data?.fileType1 === 'image/x-eps' " [src]="data?.educationImage1">-->
+                        <div class="pdf-viewer-container" *ngIf="data?.fileType1 === 'application/pdf'">
+                            <pdf-viewer *ngIf="data?.fileType1 === 'application/pdf'" [src]="data?.educationImage1"
+                                [original-size]="false"></pdf-viewer>
+                        </div>
+
+                        <!-- <mat-card> -->
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <div class="pdf_card">
+                                        <img class="pdf_picture" src="../../../assets/pdf-icon.png"><br>
+                                    </div>
+                                    Provisional Certificate
+                                </mat-card-title>
+                                <mat-card-subtitle color="accent">
+                                    {{data.educationName}}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                        <!-- </mat-card> -->
+
+                        <mat-card-actions class="text-center">
+                            <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps">
+                        </mat-card-actions>
+                    </mat-card>
+
+                    <mat-card class="material-card" *ngIf="data?.fileType2 !== null">
+                       <!-- <img mat-card-image *ngIf="data?.fileType2 ==='image/jpeg' || data?.fileType2 === 'image/png' 
+                        || data?.fileType2 === 'image/x-eps' " [src]="data?.educationImage2">-->
+                        <div class="pdf-viewer-container" *ngIf="data?.fileType2 === 'application/pdf'">
+                            <pdf-viewer *ngIf="data?.fileType2 === 'application/pdf'" [src]="data?.educationImage2"
+                                [original-size]="false"></pdf-viewer>
+                        </div>
+
+                        <!-- <mat-card> -->
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <div class="pdf_card">
+                                        <img class="pdf_picture" src="../../../assets/pdf-icon.png"><br>
+                                    </div>
+                                    Mark Sheet
+                                </mat-card-title>
+                                <mat-card-subtitle color="accent">
+                                    {{data.educationName}}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                        <!-- </mat-card> -->
+
+                        <mat-card-actions class="text-center">
+                            <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps">
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    <!-- </ng-template> -->
+<!-- </mat-expansion-panel> -->

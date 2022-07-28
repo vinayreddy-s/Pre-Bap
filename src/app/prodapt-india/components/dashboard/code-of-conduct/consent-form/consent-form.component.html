@@ -1,0 +1,63 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Consent Form
+        </mat-panel-title>
+        <mat-panel-description>
+
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+        <div class="form-container" id="pdf-content-consent">
+            <div class="top-container">
+                <div class="mat-title text-center">
+                    CONSENT FORM
+                </div>
+                <div class="text-right">
+                    <img class="fit-picture" src="../../../assets/prodapt_logo_comp.png">
+                </div>
+            </div>
+
+            <div class="middle-container">
+                Dear {{candidate?.name}},
+                <p class="mat-body">
+                    <br>
+                    The Company will collect Personal Data of yours to process your application for the Position
+                    mentioned in your Company Application Form.
+                    We collect your Personal Data as per our Privacy Policy located at
+                    <a href="http://www.prodapt.com/privacy-policy/" target="_blank" rel="noopener noreferrer"> private
+                        policy </a>, which may be updated from time to time.
+                    We recommend that you read our Privacy Policy in full to ensure you are fully informed. If
+                    you have any questions about this Privacy Policy or about
+                    Prodapt’s data collection, use and disclosure practices, please contact us at
+                    <a href="mailto:data.privacy@prodapt.com">data.privacy@prodapt.com</a>
+                </p>
+                <p class="mat-body">
+
+                    You acknowledge that you have read, understood and agreed for processing your Personal Data
+                    as per Privacy Policy.
+                    <br> <br>
+                </p>
+            </div>
+
+            <div class="left-container">
+
+                <img class="fit-picture" *ngIf="imageUrl" [src]="imageUrl">
+                <div class="mat-body-2">Name : {{declarations?.empName}}</div>
+                <div class="mat-body-2">Date : {{consentDocument?.signDate | date}}</div>
+            </div>
+
+            <div class="right-container">
+                <ngx-signature-pad [config]="config" #signPad></ngx-signature-pad>
+                <button mat-button (click)="clear()">Clear</button>
+                <button mat-raised-button color="warn" class="pull-right" (click)="getImage()"
+                    [disabled]="isInValid()">Capture Sign</button>
+            </div>
+        </div>
+    </ng-template>
+
+    <mat-action-row>
+        <button ngxPrint printSectionId="pdf-content-consent" [useExistingCss]="true" color="accent"
+            mat-raised-button>Download Consent Document</button>
+    </mat-action-row>
+</mat-expansion-panel>

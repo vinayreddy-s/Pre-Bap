@@ -1,0 +1,31 @@
+<div class="dialog">
+    <h1 mat-dialog-title class="text-center">Consent Form</h1>
+    <div mat-dialog-content class="dialog-content">
+        Dear {{candidate?.name}},
+        <p class="mat-body">
+            <br>
+            The Company will collect Personal Data of yours to process your application for the Position
+            mentioned in your Company Application Form.
+            We collect your Personal Data as per our Privacy Policy located at
+            <a href="http://www.prodapt.com/privacy-policy/" target="_blank" rel="noopener noreferrer"> private policy
+            </a>, which may be updated from time to time.
+            We recommend that you read our Privacy Policy in full to ensure you are fully informed. If
+            you have any questions about this Privacy Policy or about
+            Prodapt’s data collection, use and disclosure practices, please contact us at
+            <a href="mailto:data.privacy@prodapt.com">data.privacy@prodapt.com</a>
+        </p>
+        <p class="mat-body">
+            You acknowledge that you have read, understood and agreed for processing your Personal Data
+            as per Privacy Policy.
+            <br> <br>
+        </p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onCancelClick()">
+            Cancel <mat-icon>cancel</mat-icon>
+        </button>
+        <button mat-raised-button color="warn" (click)="onAcceptedClick()" cdkFocusInitial>
+            Accept <mat-icon>done_outline</mat-icon>
+        </button>
+    </div>
+</div>

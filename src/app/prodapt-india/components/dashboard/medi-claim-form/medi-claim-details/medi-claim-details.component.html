@@ -1,0 +1,68 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Mediclaim Form
+        </mat-panel-title>
+        <mat-panel-description>
+            Name, gender, DOB, etc.
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <form [formGroup]="mediclaimFormGroup">
+
+        <div class="form-container">
+            <div class="left-container">
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Employee Name</mat-label>
+                    <input matInput placeholder="Employee Name" formControlName="name" required>
+                    <mat-error *ngIf="mediclaimFormControl.name.errors?.required" align="start">
+                        Employee Name is required!
+                    </mat-error>
+                    <mat-error *ngIf="mediclaimFormControl.name.errors?.minlength" align="end">
+                        Min 3 Chars!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender" required placeholder="Male/Female">
+                        <mat-option value="Male">Male</mat-option>
+                        <mat-option value="Female">Female</mat-option>
+                        <mat-option value="Transgender">Transgender</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="mediclaimFormControl.gender.errors?.required" align="start">
+                        Gender is required!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="right-container">
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="dobpicker" [max]="today" placeholder="MM/dd/YYYY"
+                        formControlName="dateOfBirth" [value]="dob" required>
+                    <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dobpicker></mat-datepicker>
+                    <mat-error *ngIf="mediclaimFormControl.dateOfBirth.errors?.required" align="start">
+                        Date of Birth is required!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Covid Vaccination</mat-label>
+                    <mat-select formControlName="covidVaccination" required placeholder="Dose1/Dose2">
+                        <mat-option value="Vaccinated Dose 1">Vaccinated Dose 1</mat-option>
+                        <mat-option value="Vaccinated Dose 1 & 2">Vaccinated Dose 1 & 2</mat-option>
+                        <mat-option value="Not yet vaccinated">Not yet vaccinated</mat-option>
+                        <mat-option value="Do not want to disclose">Do not want to disclose</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="mediclaimFormControl.covidVaccination.errors?.required" align="start">
+                        Covid Vaccination Detail is required!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    <mat-action-row>
+        <button color="accent" mat-raised-button [disabled]="!mediclaimFormGroup.valid"
+            (click)="saveMediClaimDetailsForm()">Save Mediclaim Details</button>
+    </mat-action-row>
+</mat-expansion-panel>

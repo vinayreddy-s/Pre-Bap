@@ -1,0 +1,173 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Address Details
+        </mat-panel-title>
+        <mat-panel-description>
+            <!-- Country, State, City, Area, Postal Code etc. (Max - 2 Entries Only) -->
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="mat-title">Address Details
+        <div class="subtile1">Country, State, City, Postal code, etc (Max- 2 Entries only) </div>
+    </div>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <div>
+        <form [formGroup]="addreslistFormGroup">
+            <div class="form-container">
+                <div class="top-container">
+                    <blockquote>
+                        <p class="mat-body">
+                            Both permanent address and communication address are mandatory.
+                            If both addresses are same, please tick on below check box.
+                        </p>
+                    </blockquote>
+                    <div>
+                        <mat-checkbox *ngIf="candidateDetails?.id"
+                            [disabled]="maxEntriesReached || (this.dataSource?.length! > 0)" class="check-box"
+                            [checked]="isSameAddress" (change)="isSameAddress = !isSameAddress">
+                            Permanent Address & Communication</mat-checkbox>
+                    </div>
+                </div>
+                
+                <div class="left-container">
+                    <mat-form-field color="accent" >
+                        <mat-label>Address Type</mat-label>
+                        <mat-select formControlName="type" required placeholder="Permanent / Communication Address">
+                            <mat-option value="Permanent Address">Permanent Address</mat-option>
+                            <mat-option value="Communication Address">Communication Address</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addressFormControl.type.errors?.required">
+                            Address Type is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Country</mat-label>
+                        <mat-select formControlName="country" required placeholder="India, Canada, USA etc,">
+                            <mat-option value="India">India</mat-option>
+                            <mat-option value="Canada">Canada</mat-option>
+                            <mat-option value="Netherlands">Netherlands</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addressFormControl.country.errors?.required" align="start">
+                            Country is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>State</mat-label>
+                        <mat-select formControlName="state" required placeholder="TN, AP, etc,">
+                            <mat-option value="Goa">Goa</mat-option>
+                            <mat-option value="Sikkim">Sikkim</mat-option>
+                            <mat-option value="Delhi">Delhi</mat-option>
+                            <mat-option value="Chandigarh">Chandigarh</mat-option>
+                            <mat-option value="Haryana">Haryana</mat-option>
+                            <mat-option value="Tamil Nadu">Tamil Nadu</mat-option>
+                            <mat-option value="Telangana">Telangana</mat-option>
+                            <mat-option value="Kerala">Kerala</mat-option>
+                            <mat-option value="Karnataka">Karnataka</mat-option>
+                            <mat-option value="Gujarat">Gujarat</mat-option>
+                            <mat-option value="Puducherry">Puducherry</mat-option>
+                            <mat-option value="Andaman & Nicobar Islands">Andaman & Nicobar Islands</mat-option>
+                            <mat-option value="Maharastra">Maharastra</mat-option>
+                            <mat-option value="Uttarakhand">Uttarakhand</mat-option>
+                            <mat-option value="Mizoram">Mizoram</mat-option>
+                            <mat-option value="Himachal Pradesh">Himachal Pradesh</mat-option>
+                            <mat-option value="Andhra Pradesh">Andhra Pradesh</mat-option>
+                            <mat-option value="Arunachal Pradesh">Arunachal Pradesh</mat-option>
+                            <mat-option value="Punjab">Punjab</mat-option>
+                            <mat-option value="Tripura">Tripura</mat-option>
+                            <mat-option value="Nagaland">Nagaland</mat-option>
+                            <mat-option value="West Bengal">West Bengal</mat-option>
+                            <mat-option value="Jammu & Kashmir">Jammu & Kashmir</mat-option>
+                            <mat-option value="Rajastan">Rajastan</mat-option>
+                            <mat-option value="Chhattisgarh">Chhattisgarh</mat-option>
+                            <mat-option value="Odisha">Odisha</mat-option>
+                            <mat-option value="Madhya Pradesh">Madhya Pradesh</mat-option>
+                            <mat-option value="Assam">Assam</mat-option>
+                            <mat-option value="Meghalaya">Meghalaya</mat-option>
+                            <mat-option value="Manipur">Manipur</mat-option>
+                            <mat-option value="Jharkhand">Jharkhand</mat-option>
+                            <mat-option value="Uttar Pradesh">Uttar Pradesh</mat-option>
+                            <mat-option value="Bihar">Bihar</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addressFormControl.state.errors?.required" align="start">
+                            State is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>City</mat-label>
+                        <input matInput placeholder="Chennai, Bengaluru, etc" formControlName="city" required>
+                        <mat-error *ngIf="addressFormControl.city.errors?.required" align="start">
+                            City is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="right-container">
+                    <mat-form-field color="accent" >
+                        <mat-label>Address Line 1</mat-label>
+                        <input matInput placeholder="No.123, abc Street" formControlName="addressLine1" required>
+                        <mat-error *ngIf="addressFormControl.addressLine1.errors?.required" align="start">
+                            Address Line 1 is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Address Line 2</mat-label>
+                        <input matInput placeholder="Near park etc." formControlName="addressLine2" required>
+                        <mat-error *ngIf="addressFormControl.addressLine2.errors?.required" align="start">
+                            Address Line 2 is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Postal Code</mat-label>
+                        <input matInput placeholder="CV 123454" formControlName="zipOrPostalCode" required>
+                        <mat-error *ngIf="addressFormControl.zipOrPostalCode.errors?.required" align="start">
+                            Postal Code is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="middle-container">
+                    <button color="warn" mat-raised-button *ngIf="candidateDetails?.id"
+                        [disabled]="!addreslistFormGroup.valid || maxEntriesReached" (click)="addLine()">
+                        <mat-icon>add</mat-icon> Add Details 
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table address-table table-borderless table-address" *ngIf="addressDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Address Line 1</th>
+                                <th>Address Line 2</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Country</th>
+                                <th>Postal Code</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of addressDataSource; let i=index">
+                                <td>{{data.type}}</td>
+                                <td>{{data.addressLine1}}</td>
+                                <td>{{data.addressLine2}}</td>
+                                <td>{{data.city}}</td>
+                                <td>{{data.state}}</td>
+                                <td>{{data.country}}</td>
+                                <td>{{data.zipOrPostalCode}}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-expansion-panel>

@@ -1,0 +1,604 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Declaration Form
+        </mat-panel-title>
+        <mat-panel-description>
+            PF details, previous employment details, other details etc.
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <div>
+        <mat-vertical-stepper [linear]="false" #stepper>
+            <form [formGroup]="declarationFormGroup">
+                <!-- Step 1 -->
+                <mat-step [stepControl]="declarationFormGroup">
+                    <ng-template matStepLabel>Basic Details</ng-template>
+
+                    <div class="form-container">
+                        <div class="top-container">
+                            <div class="mat-h1 text-center">
+                                FORM No. 11(Declaration Form)
+                                <br>
+                                <p class="mat-body">(To be retained by the Employer for future reference) </p>
+                                <p class="mat-h2">EMPLOYEES’ PROVIDENT FUND ORGANIZATION</p>
+                                <p class="mat-body">THE EMPLOYEES’ PROVIDENT FUNDS SCHEME, 1952 (PARAGRAPH-34 & 57) and
+                                </p>
+                                <p class="mat-body">THE EMPLOYEES’ PENSION SCHEME, 1955 (PARAGRAPH-24)</p>
+                                <blockquote>
+                                    <p class="mat-body">
+                                        Declaration by a person taking up employment in any establishment on which
+                                        EPF SCHEME, 1952 and for EPS, 1995 is
+                                        applicable.
+                                    </p>
+                                </blockquote>
+                                <p class="mat-body-strong">Please go through the instructions.</p>
+                            </div>
+                        </div>
+                        <div class="left-container">
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Name of Member (Aadhar Name)</mat-label>
+                                <input matInput placeholder="Name of Member" formControlName="name" required>
+                                <mat-hint align="start">
+                                    1) Name of Member (Aadhar Name)
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.name.errors?.required" align="start">
+                                    Name of Member is required!
+                                </mat-error>
+                                <mat-error *ngIf="declarationFormControl.name.errors?.minlength" align="end">
+                                    Min 3 Chars!
+                                </mat-error>
+                                <mat-error *ngIf="declarationFormControl.name.errors?.pattern" align="start">
+                                    Only Letters are Accepted!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Father/Spouse Name</mat-label>
+                                <input matInput formControlName="fatherOrSpouseName" required>
+                                <mat-hint align="start">
+                                    2) Father/Spouse Name
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.fatherOrSpouseName.errors?.required"
+                                    align="end">
+                                    Father/Spouse Name is required!
+                                </mat-error>
+                                <mat-error *ngIf="declarationFormControl.fatherOrSpouseName.errors?.minlength"
+                                    align="end">
+                                    Min 3 Chars!
+                                </mat-error>
+                                <mat-error *ngIf="declarationFormControl.fatherOrSpouseName.errors?.pattern"
+                                    align="start">
+                                    Only Letters are Accepted!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Relationship</mat-label>
+                                <mat-select formControlName="relationship" required placeholder="Father/Spouse">
+                                    <mat-option value="Father">Father</mat-option>
+                                    <mat-option value="Spouse">Spouse</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    Relationship with the mentioned
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.relationship.errors?.required" align="end">
+                                    Relationship is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    Date of Birth
+                                </mat-label>
+                                <input matInput [matDatepicker]="dobpicker" [max]="today" placeholder="MM/DD/YYYY"
+                                    formControlName="dateOfBirth" [value]="dob" required>
+                                <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dobpicker></mat-datepicker>
+                                <mat-hint align="start">
+                                    3) Date of Birth
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.dateOfBirth.errors?.required" align="end">
+                                    Date of Birth is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Gender</mat-label>
+                                <mat-select formControlName="gender" required placeholder="Male/Female">
+                                    <mat-option value="Male">Male</mat-option>
+                                    <mat-option value="Female">Female</mat-option>
+                                    <mat-option value="Prefer Not to Disclose">Prefer Not to Disclose</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    4) Gender
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.gender.errors?.required" align="end">
+                                    Gender is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="right-container">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Maritial Status</mat-label>
+                                <mat-select formControlName="maritialStatus" required
+                                    placeholder="Married, Unmarried, Divorcee etc.">
+                                    <mat-option value="Never Married">Never Married</mat-option>
+                                    <mat-option value="Married">Married</mat-option>
+                                    <mat-option value="Seperated">Seperated</mat-option>
+                                    <mat-option value="Widow">Widow</mat-option>
+                                    <mat-option value="Widower">Widower</mat-option>
+                                    <mat-option value="Prefer Not to Disclose">Prefer Not to Disclose</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    5) Maritial Status
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.maritialStatus.errors?.required" align="start">
+                                    Maritial Status is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Email ID</mat-label>
+                                <input matInput placeholder="abc@gmail.com" formControlName="email" required>
+                                <mat-hint align="start">
+                                    6(A) Email ID
+                                </mat-hint>
+                                <mat-icon matSuffix>email</mat-icon>
+                                <mat-error *ngIf="declarationFormControl.email.errors?.required">
+                                    email-id is required!
+                                </mat-error>
+                                <mat-error align="end" *ngIf="declarationFormControl.email.errors?.email">
+                                    Valid Email is required
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Mobile Number (Aadhar Registered)</mat-label>
+                                <input matInput placeholder="9876543210" formControlName="mobile" required>
+                                <mat-hint align="start">
+                                    6(B) Mobile Number (Aadhar Registered)
+                                </mat-hint>
+                                <mat-icon matSuffix>phone</mat-icon>
+                                <mat-error *ngIf="declarationFormControl.mobile.errors?.required" align="end">
+                                    Mobile Number is required!
+                                </mat-error>
+                                <mat-error *ngIf="declarationFormControl.mobile.errors?.minlength">
+                                    Must have 10 Digits!
+                                </mat-error>
+                                <mat-error align="end" *ngIf="declarationFormControl.mobile.errors?.pattern">
+                                    Only Numeric Digits Pls!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    Member of Employees Provident Fund?
+                                </mat-label>
+                                <mat-select formControlName="memberOfEPF" required placeholder="Yes/No">
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    7) Whether earlier a member of the
+                                    Employees Provident Fund Scheme, 1952?
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.memberOfEPF.errors?.required" align="end">
+                                    This field is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    Member of Employee Pension Scheme?
+                                </mat-label>
+                                <mat-select formControlName="memberOfEPS" required placeholder="Yes/No">
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    8) Whether earlier a member of the
+                                    employees' Pension Scheme 1995?
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.memberOfEPS.errors?.required" align="end">
+                                    This field is required!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="bottom-container">
+                            <blockquote>
+                                <p class="mat-body-strong">
+                                    “Previous Employment details ? (If Yes, 7 & 8 details above)”
+                                </p>
+                            </blockquote>
+                        </div>
+                        <div class="nav-buttons">
+                            <button mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                                <mat-icon>keyboard_arrow_right</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+                </mat-step>
+                <!-- Step 2 -->
+                <mat-step>
+                    <ng-template matStepLabel>Previous Employment Details</ng-template>
+                    <div class="form-container">
+
+                        <div class="top-container">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>UAN Number</mat-label>
+                                <input matInput placeholder="250123456789" formControlName="uan">
+                                <mat-hint align="start">
+                                    9(A) UAN Number
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <p class="mat-body">
+                                9(A) The details of the Universal Account Number (UAN) Or Previous PF
+                                Member Id [9(A.1)-9(A.4)]
+                            </p>
+                        </div>
+
+                        <div class="left-container">
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Region Code</mat-label>
+                                <input matInput formControlName="regionCode">
+                                <mat-hint align="start">
+                                    9(A.1) Region Code
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Office Code</mat-label>
+                                <input matInput formControlName="officeCode">
+                                <mat-hint align="start">
+                                    9(A.2) Office Code
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Establishment ID Code</mat-label>
+                                <input matInput formControlName="establishmentId">
+                                <mat-hint align="start">
+                                    9(A.3) Establishment ID Code
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Extension</mat-label>
+                                <input matInput formControlName="extension">
+                                <mat-hint align="start">
+                                    9(A.4) Extension
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Account Number</mat-label>
+                                <input matInput formControlName="accountNumber">
+                                <mat-hint align="start">
+                                    9(B) Employee Provident Fund/ Employee Pension Fund Account Number
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="right-container">
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    Date of exit
+                                </mat-label>
+                                <input matInput [matDatepicker]="doepicker" [max]="today" placeholder="MM/DD/YYYY"
+                                    formControlName="dateOfExit" [value]="doe">
+                                <mat-datepicker-toggle matSuffix [for]="doepicker"></mat-datepicker-toggle>
+                                <mat-datepicker #doepicker></mat-datepicker>
+                                <mat-hint align="start">
+                                    9(C) Date of exit from previous employment
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    Date of joining
+                                </mat-label>
+                                <input matInput [matDatepicker]="dojPrevpicker" [max]="today" placeholder="MM/DD/YYYY"
+                                    formControlName="dateOfJoiningPrev" [value]="dojPrev">
+                                <mat-datepicker-toggle matSuffix [for]="dojPrevpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dojPrevpicker></mat-datepicker>
+                                <mat-hint align="start">
+                                    Date of joining into previous employment
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    Scheme Certificate Number?
+                                </mat-label>
+                                <input matInput placeholder="Certificate Number"
+                                    formControlName="schemeCertificateNumber">
+                                <mat-hint align="start">
+                                    9(D) If scheme certificate issued for previous employment,
+                                    then scheme certificate number
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    PPO Number?
+                                </mat-label>
+                                <input matInput placeholder="PPO Number" formControlName="ppoNumber">
+                                <mat-hint align="start">
+                                    9(E) If pension payment order (PPO) issued for previous
+                                    employment, then PPO number
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="nav-buttons">
+                            <button mat-raised-button matTooltip="Back" color="accent" matStepperPrevious>
+                                <mat-icon>keyboard_arrow_left</mat-icon>
+                            </button>
+                            <button mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                                <mat-icon>keyboard_arrow_right</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+                <!-- Step 3 -->
+                <mat-step>
+                    <ng-template matStepLabel>Other Details</ng-template>
+                    <div class="form-container">
+                        <div class="left-container">
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    International Worker?
+                                </mat-label>
+                                <mat-select formControlName="isInternationWorker" required placeholder="Yes/No">
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    10(A) International Worker
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.isInternationWorker.errors?.required"
+                                    align="end">
+                                    This field is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline"
+                                *ngIf="declarationFormControl.isInternationWorker.value == 'Yes'">
+                                <mat-label>Country of Origin</mat-label>
+                                <input matInput formControlName="countryOforigin">
+                                <mat-hint align="start">
+                                    10(B) Country of Origin
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline"
+                                *ngIf="declarationFormControl.isInternationWorker.value == 'Yes'">
+                                <mat-label>Passport Number</mat-label>
+                                <input matInput formControlName="passportNumber">
+                                <mat-hint align="start">
+                                    10(C) Passport Number
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline"
+                                *ngIf="declarationFormControl.isInternationWorker.value == 'Yes'">
+                                <mat-label>Valid from</mat-label>
+                                <input matInput [matDatepicker]="dofpicker" [max]="today" placeholder="MM/DD/YYYY"
+                                    formControlName="validFrom" [value]="validFrom">
+                                <mat-datepicker-toggle matSuffix [for]="dofpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dofpicker></mat-datepicker>
+                                <mat-hint align="start">
+                                    10(D) Valid from
+                                </mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline"
+                                *ngIf="declarationFormControl.isInternationWorker.value == 'Yes'">
+                                <mat-label>Valid till</mat-label>
+                                <input matInput [matDatepicker]="dotpicker" placeholder="MM/DD/YYYY"
+                                    formControlName="validTo" [value]="validTo">
+                                <mat-datepicker-toggle matSuffix [for]="dotpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dotpicker></mat-datepicker>
+                                <mat-hint align="start">
+                                    10(D) Valid till
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="right-container">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Educational Qualification</mat-label>
+                                <mat-select formControlName="eduQualifications" required
+                                    placeholder="Matric, Graduate, Doctor etc.">
+                                    <mat-option value="Illiterate">Illiterate</mat-option>
+                                    <mat-option value="Non-matric">Non-matric</mat-option>
+                                    <mat-option value="Matric">Matric</mat-option>
+                                    <mat-option value="Senior Secondary">Senior Secondary</mat-option>
+                                    <mat-option value="Graduate">Graduate</mat-option>
+                                    <mat-option value="Doctor">Doctor</mat-option>
+                                    <mat-option value="TechnicalProfssional">TechnicalProfssional</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    11(A) Educational Qualification
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.eduQualifications.errors?.required"
+                                    align="start">
+                                    Educational Qualification is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Specially abled?</mat-label>
+                                <mat-select formControlName="speciallyabled" required placeholder="Yes/No">
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    11(B) Specially abled
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.speciallyabled.errors?.required" align="start">
+                                    Specially abled is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="outline"
+                                *ngIf="declarationFormControl.speciallyabled.value == 'Yes'">
+                                <mat-label>Disabled Category</mat-label>
+                                <mat-select formControlName="disabledCategory" placeholder="Locomotive/Visual/Hearing"
+                                    [required]="declarationFormControl.speciallyabled.value == 'Yes'">
+                                    <mat-option value="Locomotive">Locomotive</mat-option>
+                                    <mat-option value="Visual">Visual</mat-option>
+                                    <mat-option value="Hearing">Hearing</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    11(C) Disabled Category (If "Yes" for Specially abled?)
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.disabledCategory.errors?.required"
+                                    align="start">
+                                    Disabled Category is required!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="nav-buttons">
+                            <button mat-raised-button matTooltip="Back" color="accent" matStepperPrevious>
+                                <mat-icon>keyboard_arrow_left</mat-icon>
+                            </button>
+                            <button mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                                <mat-icon>keyboard_arrow_right</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+                <!-- Step 4 -->
+                <mat-step>
+                    <ng-template matStepLabel>EPF Details</ng-template>
+                    <div class="form-container">
+                        <div class="left-container">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>First EPF Member
+                                    Enrolled Date</mat-label>
+                                <input matInput [matDatepicker]="dompicker" [max]="today" placeholder="MM/DD/YYYY"
+                                    formControlName="epfEnrolledDate" [value]="epfEnrolledDate"
+                                    [required]="declarationFormControl.memberOfEPF.value == 'Yes'">
+                                <mat-datepicker-toggle matSuffix [for]="dompicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dompicker></mat-datepicker>
+                                <mat-hint align="start">
+                                    12(A) First EPF Member
+                                    Enrolled Date (If "Yes" for Member of EPF?)
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.epfEnrolledDate.errors?.required"
+                                    align="start">
+                                    First EPF Member
+                                    Enrolled Date is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>First Employment EPF
+                                    Wages</mat-label>
+                                <input matInput formControlName="epfWages" placeholder="12345"
+                                    [required]="declarationFormControl.memberOfEPF.value == 'Yes'">
+                                <mat-hint align="start">
+                                    12(B) First Employment EPF
+                                    Wages (If "Yes" for Member of EPF?)
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.epfWages.errors?.required" align="start">
+                                    First Employment EPF
+                                    Wages is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    Are you EPF Member
+                                    before 01/09/2014?
+                                </mat-label>
+                                <mat-select formControlName="epfMember" placeholder="Yes/No"
+                                    [required]="declarationFormControl.memberOfEPF.value == 'Yes'">
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    12(C) Are you EPF Member
+                                    before 01/09/2014? (If "Yes" for Member of EPF?)
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.epfMember.errors?.required" align="end">
+                                    EPF Member is required!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="right-container">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    If Yes, EPF Amount
+                                    Withdrawn?
+                                </mat-label>
+                                <mat-select formControlName="epfWithdrawn" placeholder="Yes/No"
+                                    [required]="declarationFormControl.epfMember.value == 'Yes'">
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    12(D) EPF Amount
+                                    Withdrawn? (If "Yes" for 12(C))
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.epfWithdrawn.errors?.required" align="end">
+                                    EPF Amount
+                                    Withdrawn is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    If Yes, EPS (Pension)
+                                    Amount Withdrawn?
+                                </mat-label>
+                                <mat-select formControlName="epsWithdrawn" placeholder="Yes/No"
+                                    [required]="declarationFormControl.epfMember.value == 'Yes'">
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    12(E) EPS (Pension)
+                                    Amount Withdrawn (If "Yes" for 12(C))
+                                </mat-hint>
+                                <mat-error *ngIf="declarationFormControl.epsWithdrawn.errors?.required" align="end">
+                                    EPS (Pension)
+                                    Amount Withdrawn is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>
+                                    After Sep 2014 earned EPS
+                                    (Pension) Amount Withdrawn
+                                    before Join current Employer?
+                                </mat-label>
+                                <mat-select formControlName="epsEarned" placeholder="Yes/No">
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    12(F) After Sep 2014 earned EPS
+                                    (Pension) Amount Withdrawn
+                                    before Join current Employer?
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="nav-buttons">
+                            <button mat-raised-button matTooltip="Back" color="accent" matStepperPrevious>
+                                <mat-icon>keyboard_arrow_left</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+            </form>
+        </mat-vertical-stepper>
+    </div>
+    <mat-action-row>
+        <button color="accent" mat-raised-button [disabled]="!declarationFormGroup.valid"
+            (click)="saveDeclarationForm()">Save Declaration Form</button>
+    </mat-action-row>
+</mat-expansion-panel>

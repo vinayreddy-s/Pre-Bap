@@ -1,0 +1,21 @@
+<mat-accordion class="accordian-container" multi="true">
+    <div class="header">
+        <div>
+            <button mat-button color="accent" (click)="navigateHomePage()">
+                <mat-icon>keyboard_arrow_left</mat-icon> Home Page
+            </button>
+        </div>
+        <div class="mat-title text-center">{{ faqSectionSelected }}</div>
+    </div>
+
+    <mat-expansion-panel [expanded]="false" *ngFor="let faq of dataSource; let i = index">
+        <mat-expansion-panel-header [ngClass]="(faq.importantFAQ) ? 'demo-2': ''">
+            <mat-panel-title>
+                <p> ({{ i+1 }}) {{faq.question}} </p>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+            <p matLine> {{faq.answer}} </p>
+        </ng-template>
+    </mat-expansion-panel>
+</mat-accordion>

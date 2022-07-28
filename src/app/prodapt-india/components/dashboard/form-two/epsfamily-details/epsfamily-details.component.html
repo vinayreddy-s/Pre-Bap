@@ -1,0 +1,142 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            EPS - Family Details
+        </mat-panel-title>
+        <mat-panel-description>
+            Name, relationship, address etc. (Min - 1 Entry)
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <div>
+        <form [formGroup]="epsFamilyFormGroup">
+            <div class="form-container">
+                <div class="top-container">
+                </div>
+                <div class="left-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Name of the Family Member</mat-label>
+                        <input matInput placeholder="Name" formControlName="name" required>
+                        <mat-error *ngIf="epsFamilyDetailsFormControl.name.errors?.required" align="start">
+                            Name is required!
+                        </mat-error>
+                        <mat-error *ngIf="epsFamilyDetailsFormControl.name.errors?.minlength" align="end">
+                            Min 3 Chars!
+                        </mat-error>
+                        <mat-error *ngIf="epsFamilyDetailsFormControl.name.errors?.pattern" align="start">
+                            Only Letters are Accepted!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Date of Birth</mat-label>
+                        <input matInput [matDatepicker]="dobpicker" [max]="today" placeholder="MM/DD/YYYY"
+                            formControlName="dateOfBirth" [value]="dob" required>
+                        <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dobpicker></mat-datepicker>
+                        <mat-error *ngIf="epsFamilyDetailsFormControl.dateOfBirth.errors?.required" align="start">
+                            Date of Birth is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="right-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Relationship</mat-label>
+                        <mat-select formControlName="relationship" required placeholder="Father, Mother, Son etc.,">
+                            <mat-option value="Father">Father</mat-option>
+                            <mat-option value="Mother">Mother</mat-option>
+                            <mat-option value="Son">Son</mat-option>
+                            <mat-option value="Daughter">Daughter</mat-option>
+                            <mat-option value="Sister">Sister</mat-option>
+                            <mat-option value="Brother">Brother</mat-option>
+                            <mat-option value="Spouse">Spouse</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="epsFamilyDetailsFormControl.relationship.errors?.required" align="start">
+                            Relationship is required!
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Address of the Nominee</mat-label>
+                        <textarea matInput placeholder="H.No/Flat No. etc.," formControlName="address"
+                            required></textarea>
+                        <mat-error *ngIf="epsFamilyDetailsFormControl.address.errors?.required" align="start">
+                            Nominee Address is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="middle-container">
+                    <button color="primary" mat-raised-button *ngIf="epfNomination?.id"
+                        [disabled]="!epsFamilyFormGroup.valid || maxEntriesReached" (click)="addLine()">
+                        <mat-icon>add_to_queue</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-epsfamily" *ngIf="epsFamilyDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Family Member Name</th>
+                                <th>Relationship with the Member</th>
+                                <th>Date of Birth</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of epsFamilyDataSource; let i=index">
+                                <td>{{data.name}}</td>
+                                <td>{{data.relationship}}</td>
+                                <td>{{data.dateOfBirth | date:'longDate'}}</td>
+                                <td>{{data.address}}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="last-container">
+                    <p class="mat-body">
+                        I hereby furnish below particulars of the members of my family who would be eligible
+                        to receive widow/children pension in the event of my death.
+                    </p>
+                    <p class="mat-body">
+                        ** Certified that I have no family, as defined in para 2(vii) of Employees’ Pension Scheme,
+                        1995 and should I acquire a family hereafter I shall furnish particulars thereon in the above
+                        form.
+                    </p>
+                    <p class="mat-body">
+                        I hereby nominate the following person for receiving the monthly widow pension (admissible under
+                        para 16 2(a)(i) and (ii) in the event of my death without leaving any eligible family member for
+                        receiving Pension.
+                    </p>
+                </div>
+                <div class="end-left-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]="docpicker" [max]="today" placeholder="MM/dd/YYYY"
+                            formControlName="epsNomineeDate" [value]="doc">
+                        <mat-datepicker-toggle matSuffix [for]="docpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #docpicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="end-right-container">
+                    <div class="image-container">
+                        <ngx-signature-pad [config]="config" #signPad></ngx-signature-pad>
+                        <button mat-button (click)="clear()">Clear</button>
+                        <button mat-raised-button color="warn" class="pull-right" (click)="getImage()"
+                            [disabled]="isInValid()">Capture Sign</button>
+                    </div>
+                    <div class="mat-body-2">Signature of the subscriber : </div>
+                    <img class="fit-picture" *ngIf="epsnomineeSignUrl" [src]="epsnomineeSignUrl">
+                    <div class="mat-body-2">({{epfNomination?.empName}})</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-expansion-panel>

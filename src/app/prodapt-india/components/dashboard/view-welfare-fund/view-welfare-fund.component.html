@@ -1,0 +1,89 @@
+<mat-accordion class="accordian-container" multi="true">
+
+    <div class="header">
+        <div>
+            <button mat-button color="accent" (click)="navigateToEditWelfareForm()">
+                <mat-icon>keyboard_arrow_left</mat-icon> Edit
+            </button>
+        </div>
+        <div class="mat-title text-center">Preview Welfare Fund</div>
+    </div>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Welfare Fund Details
+            </mat-panel-title>
+            <mat-panel-description>
+                Name, Contribution Amount etc.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--Progress Bar  -->
+        <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+        <ng-template matExpansionPanelContent>
+            <div class="form-container" id="pdf-content-welfareFund" #welfareFund>
+                <div class="top-container">
+                    <div class="mat-title text-center">
+                        Prodaptian Welfare Fund contribution
+                    </div>
+                    <div>
+                        <img class="fit-picture" src="../../../assets/prodapt_logo_comp.png">
+                    </div>
+                </div>
+                <div class="middle-container">
+                   <div class="para-container">
+                        <p class="mat-body">
+                            Prodaptian Welfare fund is an initiative <strong>“By Prodaptian, For Prodaptians”</strong> a
+                            financial
+                            assistance
+                            program to support medical emergencies faced by Prodaptians or their immediate family
+                            members
+                            (parents, parents in law, spouse and children).
+                        </p>
+                        <div class="mat-body-strong para-container">How to get involved?</div>
+                        <div class="mat-body para-container">
+                            A monthly contribution (as per Prodaptian’s wish) can be donated to this fund.
+                        </div>
+                        <div class="mat-body-strong para-container">Why be involved?</div>
+                        <div class="mat-body para-container">
+                            Every Prodaptian can ‘make a difference’ and partake in the joy of giving, by spreading
+                            goodwill, showing genuine care and by contributing to the welfare of everyone around us,
+                            <strong>#connectedness</strong> being Prodapt’s motto. The contributions made to this fund
+                            will be
+                            eligible for
+                            tax benefits, under u/s 80G.
+                        </div>
+						<p class="mat-body">
+                                Please refer to the document in the PreBAP homepage for more information.
+                            </p>
+                    </div>
+                    <div class="mat-body para-container">
+                        <div class="mat-body-strong"><strong>Consent Form :</strong> </div>
+                        <div class="mat-body para-container">I <strong>{{welfareFundDetails?.empName}}</strong> wish to
+                            contribute the
+                            below sum of amount towards the
+                            Prodaptian Welfare fund. I <strong>{{welfareFundDetails?.empName}}</strong> Authorize the
+                            Prodapt
+                            payroll
+                            team to deduct the
+                            below sum of amount(<b>{{welfareFundDetails?.welfareFundAmount}}</b>) on my monthly payroll.
+                        </div>
+                        <p class="mat-body">
+                            Please refer to the document in the PreBAP homepage for more information.
+                        </p>
+                    </div>
+                </div>
+                <div class="left-container">
+
+                    <img class="fit-picture" *ngIf="imageUrl" [src]="imageUrl">
+                    <div class="mat-body-2">Name : {{welfareFundDetails?.empName}}</div>
+                    <div class="mat-body-2">Date : {{welfareFundDetails?.signDate | date}}</div>
+                </div>
+            </div>
+        </ng-template>
+        <mat-action-row>
+            <button ngxPrint printSectionId="pdf-content-welfareFund" [useExistingCss]="true" color="accent"
+                mat-raised-button>Export PDF</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>

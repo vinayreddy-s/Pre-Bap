@@ -1,0 +1,7 @@
+<div class="mat-typography mat-app-background">
+    <app-messaging></app-messaging>
+    <div class="mat-typography mat-app-background" [@slideTransition]="prepareRoute(outlet)">
+        <mat-progress-bar color="accent" mode="indeterminate" *ngIf="(isLoading$ | async)"></mat-progress-bar>
+        <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+</div>

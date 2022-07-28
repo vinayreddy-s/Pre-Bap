@@ -1,0 +1,295 @@
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header class="hide_class">
+        <mat-panel-title>
+            COMPANY APPLICATION FORM
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <ng-template matExpansionPanelContent>
+        <div class="main-container" id="pdf-content-company">
+            <div class="top-container">
+                <div class="mat-title text-center subheading1">
+                    COMPANY APPLICATION FORM
+                    <div class="subtile1 ">Full Name, DOB, gender, email, mobile, etc.
+                    </div>
+                </div>
+                
+                <!-- <div>
+                    <img class="fit-picture" src="../../../assets/prodapt_logo_comp.png">
+                </div> -->
+            </div>
+            
+
+            <div class="middle-container">
+                <table class="table table-bordered basic-details"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <tr>
+                        <th class="mat-body-2">First Name</th>
+                        <td>{{candidateDetails?.firstName}}</td>
+                        <th class="mat-body-2"> Date of Birth</th>
+                        <td>{{candidateDetails?.dateOfBirth | date:'longDate'}}</td>
+                    </tr>
+                    <tr>
+                        <th class="mat-body-2">Last Name</th>
+                        <td>{{candidateDetails?.lastName}}</td>
+                        <th class="mat-body-2">Blood Group</th>
+                        <td>{{candidateDetails?.bloodGroup}}</td>
+                    </tr>
+                    <tr>
+                        <th class="mat-body-2">Phone Number</th>
+                        <td>{{candidateDetails?.mobileNumber}}</td>
+                        <th class="mat-body-2">LinkedIn Profile URL</th>
+                        <td>{{candidateDetails?.socialMediLink}}</td>
+                    </tr>
+                    <tr>
+                        <th class="mat-body-2">Marital Status</th>
+                        <td>{{candidateDetails?.maritalStatus}}</td>
+                        <th class="mat-body-2">Father/Spouse Name</th>
+                        <td>{{candidateDetails?.fatherOrSpouseName}}</td>
+                    </tr>
+                    <tr>
+                        <th class="mat-body-2">Date of Joining</th>
+                        <td>{{candidateDetails?.dateOfJoining | date:'longDate'}}</td>
+                        <th class="mat-body-2">Personal Email-ID</th>
+                        <td>{{candidateDetails?.email}}</td>
+                    </tr>
+                    <tr>
+                        <th class="mat-body-2">Nationality</th>
+                        <td>{{candidateDetails?.nationality}}</td>
+                        <th *ngIf="!isShorttermIntern && !isIntern" class="mat-body-2">UAN Number</th>
+                        <td *ngIf="!isShorttermIntern && !isIntern">{{candidateDetails?.uan}}</td>
+                    </tr>
+                </table>
+
+                <p class="mat-body-strong subheading">Employee Address:</p>
+                <table class="table table-bordered table-address"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Address Line 1</th>
+                            <th>Address Line 2</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Country</th>
+                            <th>Postal Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.addressList ">
+                            <td>{{data.type}}</td>
+                            <td>{{data.addressLine1}}</td>
+                            <td>{{data.addressLine2}}</td>
+                            <td>{{data.city}}</td>
+                            <td>{{data.state}}</td>
+                            <td>{{data.country}}</td>
+                            <td>{{data.zipOrPostalCode}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="mat-body-strong subheading">Identification Information:</p>
+                <table class="table table-bordered table-identity"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Document Name</th>
+                            <th>Document Number</th>
+                            <th>Name in Document</th>
+                            <th>Dependent</th>
+                            <th>Valid From</th>
+                            <th>Valid To</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.identityList ">
+                            <td>{{data.docName}}</td>
+                            <td>{{data.docNumber}}</td>
+                            <td>{{data.nameInDoc}}</td>
+                            <td>{{data.docIssuedCountry}}</td>
+                            <td>{{(data.docValidFrom === 0) ? 'NA' : data.docValidFrom |
+                                date:'longDate'}}</td>
+                            <td>{{(data.docValidTo === 0) ? 'NA' : data.docValidTo |
+                                date:'longDate'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="mat-body-strong subheading">Language Proficiency:</p>
+                <table class="table  table-bordered table-language"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Language</th>
+                            <th>Read</th>
+                            <th>Write</th>
+                            <th>Speak</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.languageList">
+                            <td>{{data.name}}</td>
+                            <td>{{data.read && 'Yes' || 'No'}}</td>
+                            <td>{{data.write && 'Yes' || 'No'}}</td>
+                            <td>{{data.speak && 'Yes' || 'No'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="mat-body-strong subheading">References:</p>
+                <table class="table table-bordered table-references"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Reference Name</th>
+                            <th>Designation</th>
+                            <th>Mobile Number</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.refPersonList">
+                            <td>{{data.name}}</td>
+                            <td>{{data.designation}}</td>
+                            <td>{{data.mobileNumber}}</td>
+                            <td>{{data.address}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="mat-body-strong subheading">Education Details:</p>
+                <table class="table table-bordered table-education"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Specialization</th>
+                            <th>Institution</th>
+                            <th>Board/University</th>
+                            <th>Period From</th>
+                            <th>Period To</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.educationList ">
+                            <td>{{data.educationName}}</td>
+                            <td>{{data.specialization}}</td>
+                            <td>{{data.institution}}</td>
+                            <td>{{data.boardOrUniversity}}</td>
+                            <td>{{data.studiedFrom | date:'longDate'}}</td>
+                            <td>{{data.studiedTo | date:'longDate'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="mat-body-strong subheading">Certifications:</p>
+                <table class="table table-bordered table-specialized"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Institute Name</th>
+                            <th>Completion Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.specializationList">
+                            <td>{{data.name}}</td>
+                            <td>{{data.details}}</td>
+                            <td>{{(data.dateOfCompletion === 0) ? 'NA' : data.dateOfCompletion |
+                                date:'longDate'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="mat-body-strong subheading">Work Experience:</p>
+                <table class="table table-bordered table-experience"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Designation</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Industry</th>
+                            <th>Organization</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.workList ">
+                            <td>{{data.companyName}}</td>
+                            <td>{{data.designation}}</td>
+                            <td>{{(data.workedFrom === 0) ? 'NA' : data.workedFrom |
+                                date:'longDate'}}</td>
+                            <td>{{(data.workedTo === 0) ? 'NA' : data.workedTo |
+                                date:'longDate'}}</td>
+                            <td>{{data.industryType}}</td>
+                            <td>{{data.organizationType}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="mat-body-strong subheading">Emergency Contact Information:</p>
+                <table class="table table-bordered emergency-contact"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <tr>
+                        <th class="mat-body-2">Contact Person</th>
+                        <td>{{candidateDetails?.emgContactName}}</td>
+                    </tr>
+                    <tr>
+                        <th class="mat-body-2">Relationship</th>
+                        <td>{{candidateDetails?.emgContactRelation}}</td>
+                    </tr>
+                    <tr>
+                        <th class="mat-body-2">Phone</th>
+                        <td>{{candidateDetails?.emgContactMobile}}</td>
+                    <tr>
+                        <th class="mat-body-2">Email ID</th>
+                        <td>{{candidateDetails?.emgContactEmail}}</td>
+                    </tr>
+                </table>
+
+                
+                <p class="mat-body-strong subheading">Work Permit Details:</p>
+                <table class="table table-bordered table-travel"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Travel Type</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Visa Type</th>
+                            <th>Visa Issued Embassy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.travelList ">
+                            <td>{{data.countryVisited}}</td>
+                            <td>{{data.travelType}}</td>
+                            <td>{{(data.stayedFrom === 0) ? 'NA' : data.stayedFrom |
+                                date:'longDate'}}</td>
+                            <td>{{(data.stayedTo === 0) ? 'NA' : data.stayedTo |
+                                date:'longDate'}}</td>
+                            <td>{{data.travelType}}</td>
+                            <td>{{data.visaIssuedEmbassy}}</td>
+                        </tr>
+                    </tbody>
+
+
+                </table>
+
+                <app-view-education-docs></app-view-education-docs>
+
+                <app-view-experience-docs></app-view-experience-docs>
+
+                <app-view-identity-docs></app-view-identity-docs>
+
+                <app-view-spec-docs></app-view-spec-docs>
+
+                
+            </div>
+        </div>
+    </ng-template>
+</mat-expansion-panel>

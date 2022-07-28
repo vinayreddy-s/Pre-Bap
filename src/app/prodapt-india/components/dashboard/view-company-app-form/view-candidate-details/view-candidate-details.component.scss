@@ -1,0 +1,903 @@
+mat-expansion-panel {
+    mat-expansion-panel-header {
+        display: flex;
+        align-items: stretch;
+        flex-basis: auto;
+        mat-panel-title,
+        mat-panel-description {
+            padding: 0.5rem 0 0.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 0;
+        }
+    }
+    .main-container {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(1rem, auto);
+        grid-template-areas:
+            "top-container top-container"
+            "middle-container middle-container";
+
+        .top-container {
+            grid-area: top-container;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 2rem;
+
+            .fit-picture {
+                padding: 2rem;
+                margin: 2rem 0 0 0;
+                background-color: transparent;
+                width: 280px;
+                justify-content: center;
+            }
+        }
+
+        .middle-container {
+            grid-area: middle-container;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem 1rem 1rem 2rem;
+            border-left: none;
+            position: relative;
+
+            .basic-details {
+                width: 100%;
+                border-collapse: collapse;
+                border-color: #000;
+                border: 1px solid;
+                th {
+                    border: none;
+                    font-weight: 500;
+                    padding: 6px 25px;
+                    background-color: #f1f1f1;
+                }
+
+                tr {
+                    border: 2px solid #e6e6e6;
+                }
+
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 25%;
+                    padding: 6px 0px 6px 25px;
+                }
+                tbody {
+                    .content {
+                        td {
+                            padding: 6px;
+                        }
+                    }
+                }
+            }
+
+            .table-address {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                th {
+                    font-weight: 570;
+                    padding: 1rem;
+                    border: none;
+                    text-align: center;
+                    background: #f1f1f1;
+                }
+                tr {
+                   // border: 2px solid #ccc;
+                   border: none;
+                }
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 14%;
+                    text-align: center;
+                }
+            }
+
+            .table-emergency-contant {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                th {
+                    font-weight: 570;
+                    padding: 1rem;
+                    border: none;
+                }
+                tr {
+                  //  border: 2px solid #ccc;
+                  border: none;
+                }
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 25%;
+                }
+            }
+
+            .table-education {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                th {
+                    font-weight: 570;
+                    padding: 1rem;
+                    border: none;
+                    text-align: center;
+                    background: #f1f1f1;
+                }
+                tr {
+                    //border: 2px solid #ccc;
+                    border: none;
+                }
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 16.6%;
+                    text-align: center;
+                }
+            }
+
+            .table-experience {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                th {
+                    font-weight: 570;
+                    padding: 1rem;
+                    border: none;
+                    text-align: center;
+                    background: #f1f1f1;
+                }
+                tr {
+                    //border: 2px solid #ccc;
+                    border: none;
+                }
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 20%;
+                    text-align: center;
+                }
+            }
+
+            .table-identity {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                th {
+                    font-weight: 570;
+                    padding: 1rem;
+                    border: none;
+                    text-align: center;
+                    background: #f1f1f1;
+                }
+                tr {
+                   // border: 2px solid #ccc;
+                   border: none;
+                }
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 16%;
+                    text-align: center;
+                }
+            }
+
+            .table-travel {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                th {
+                    font-weight: 570;
+                    padding: 1rem;
+                    border: none;
+                    text-align: center;
+                    background: #f1f1f1;
+                }
+                tr {
+                   // border: 2px solid #ccc;
+                   border: none;
+                }
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 16%;
+                    text-align: center;
+                }
+            }
+
+            .table-specialized {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                th {
+                    font-weight: 570;
+                    padding: 1rem;
+                    border: none;
+                    text-align: center;
+                    background: #f1f1f1;
+                }
+                tr {
+                    //border: 2px solid #ccc;
+                    border: none;
+                }
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 33%;
+                    text-align: center;
+                }
+            }
+
+            .table-language {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                th {
+                    font-weight: 570;
+                    padding: 1rem;
+                    border: none;
+                    text-align: center;
+                    background: #f1f1f1;
+                }
+                tr {
+                    //border: 2px solid #ccc;
+                    border: none;
+                }
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 25%;
+                    text-align: center;
+                }
+            }
+
+            .table-references {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                th {
+                    font-weight: 570;
+                    padding: 1rem;
+                    border: none;
+                    text-align: center;
+                    background: #f1f1f1;
+                }
+                tr {
+                    //border: 2px solid #ccc;
+                    border: none;
+                }
+                td {
+                    border: none;
+                    padding: 1rem;
+                    width: 25%;
+                    text-align: center;
+                }
+            }
+        }
+
+        @media print {
+            .middle-container {
+                grid-area: middle-container;
+                display: flex;
+                justify-content: center;
+
+                table {
+                    width: 50%;
+                    border-collapse: collapse;
+
+                    td {
+                        padding: 1rem;
+                        width: 50%;
+                    }
+                }
+            }
+        }
+
+        @media only screen and (max-width: 760px) {
+            justify-content: center;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "top-container"
+                "middle-container";
+
+            .top-container {
+                margin-top: 2rem;
+                justify-content: space-around;
+            }
+
+            .middle-container {
+                table,
+                thead,
+                tbody,
+                th,
+                td,
+                tr {
+                    display: block;
+                    align-items: center;
+                }
+
+                .basic-details {
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        border: 2px solid #ccc;
+                        align-items: center;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 1rem;
+                        align-items: center;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+                }
+
+                .table-address {
+                    display: block;
+                    border: 1px solid #ccc;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                       // border: 2px solid #ccc;
+                       border: none;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Type";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Address Line 1";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "Address Line 2";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "City";
+                    }
+                    td:nth-of-type(5):before {
+                        content: "State";
+                    }
+                    td:nth-of-type(6):before {
+                        content: "Country";
+                    }
+                    td:nth-of-type(7):before {
+                        content: "Postal Code";
+                    }
+                }
+
+                .table-emergency-contant {
+                    display: block;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        border: 2px solid #ccc;
+                        align-items: left;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Contact Person";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Relationship";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "Phone";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "Email ID";
+                    }
+                }
+
+                .table-education {
+                    display: block;
+                    border: 1px solid #ccc;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                       // border: 2px solid #ccc;
+                       border: none;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Course Name";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Specialization";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "Institution";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "Board/University";
+                    }
+                    td:nth-of-type(5):before {
+                        content: "Period From";
+                    }
+                    td:nth-of-type(6):before {
+                        content: "Period To";
+                    }
+                }
+
+                .table-experience {
+                    display: block;
+                    border: 1px solid #ccc;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                       // border: 2px solid #ccc;
+                       border: none;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Company Name";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Designation";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "From Date";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "To Date";
+                    }
+                    td:nth-of-type(5):before {
+                        content: "Industry";
+                    }
+                    td:nth-of-type(6):before {
+                        content: "Organization";
+                    }
+                }
+
+                .table-identity {
+                    border: 1px solid #ccc;
+                    display: block;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        //border: 2px solid #ccc;
+                        border: none;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Document Name";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Document Number";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "Name in Document";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "Doc Issued Country";
+                    }
+                    td:nth-of-type(5):before {
+                        content: "Valid From";
+                    }
+                    td:nth-of-type(6):before {
+                        content: "Valid To";
+                    }
+                }
+
+                .table-travel {
+                    display: block;
+                    border: 1px solid #ccc;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        //border: 2px solid #ccc;
+                        border: none;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Country";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Travel Type";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "From Date";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "To Date";
+                    }
+                    td:nth-of-type(5):before {
+                        content: "Visa Type";
+                    }
+                    td:nth-of-type(6):before {
+                        content: "Visa Issued Embassy";
+                    }
+                }
+
+                .table-specialized {
+                    display: block;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        border: 2px solid #ccc;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Course Name";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Institute Name";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "Completion Date";
+                    }
+                }
+
+                .table-language {
+                    display: block;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        border: 2px solid #ccc;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Language";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Read";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "Write";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "Speak";
+                    }
+                }
+
+                .table-references {
+                    display: block;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        border: 2px solid #ccc;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Reference Name";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Designation";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "Mobile Number";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "Address";
+                    }
+                }
+            }
+        }
+    }
+}
+.subtile1{
+    font-size: 13px;
+    color: #3d3d3d;
+    line-height: 15px;
+    text-align: initial;
+}
+.subheading{
+    margin: 25px 0px 20px;
+    font-size: 25px;
+    font-weight: 900;
+}
+.subheading1{
+    font-weight: 400;
+    color: #3d3d3d;
+}
+
+.emergency-contact{
+    width: 50% !important;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+        th {
+            font-weight: 500;
+            padding: 6px 25px;
+            background-color: #f1f1f1;
+            border: none;
+        }
+
+        tr {
+            border: 2px solid #e6e6e6;
+            }
+
+        td {
+            border: none;
+            padding: 1rem;
+            width: 50%;
+            padding: 6px 0px 6px 25px;
+        }
+        tbody {
+            .content {
+                td {
+                    padding: 6px;
+                }
+            }
+        }
+}
+.mat-expansion-panel-header-title{
+    padding-left: 20px !important;
+}

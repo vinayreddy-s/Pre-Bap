@@ -1,0 +1,122 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Certifications
+        </mat-panel-title>
+        <mat-panel-description>
+            <!-- Course, Institution, DOC etc. (Min - 1 Entry) -->
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="mat-title">Certifications
+        <div class="subtile1">Course, Institution, DOC etc (Min- 1 Entry) </div>
+    </div>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <ng-template matExpansionPanelContent>
+        <form [formGroup]="trainingFormGroup">
+            <div class="form-container">
+                <div class="top-container">
+                    <blockquote>
+                        <p class="mat-body">
+                            Please select the checkbox if the fields that are not applicable to
+                            you.
+                        </p>
+                    </blockquote>
+                    <div>
+                        <mat-checkbox *ngIf="candidateDetails?.id" [disabled]="trainingDataSource.length > 0"
+                            class="check-box" [checked]="isNotApplicable" (change)="checkboxChecked()">
+                            Not Applicable</mat-checkbox>
+                    </div>
+                </div>
+                <div class="left-container">
+                    <mat-form-field color="accent" >
+                        <mat-label>Course Name</mat-label>
+                        <input matInput placeholder="Date Science,DevOps etc.," formControlName="name" required>
+                        <mat-error *ngIf="trainingFormControl.name.errors?.required" align="start">
+                            Course Name is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Completion Date</mat-label>
+                        <input matInput [matDatepicker]="docpicker" [max]="today" placeholder="MM/DD/YYYY"
+                            formControlName="dateOfCompletion" [value]="doc" required>
+                        <mat-datepicker-toggle matSuffix [for]="docpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #docpicker></mat-datepicker>
+                        <mat-error *ngIf="trainingFormControl.dateOfCompletion.errors?.required" align="start">
+                            Completion Date is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                    <div class="right-container"> 
+                    <mat-form-field color="accent" >
+                        <mat-label>Name of the Institute</mat-label>
+                        <input matInput placeholder="Udemy,Coursera etc.," formControlName="details" required>
+                        <mat-error *ngIf="trainingFormControl.details.errors?.required" align="start">
+                            Institute Name is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="right-container1">
+                    <span class="id_doc">Certification Documents</span>
+                    <mat-card class="material-card">
+                        <img mat-card-image *ngIf="imageUrl" [src]="imageUrl">
+                        <div class="pdf-viewer-container" *ngIf="pdfUrl">
+                            <pdf-viewer [src]="pdfUrl" [original-size]="false"></pdf-viewer>
+                        </div>
+
+                            <mat-card-header>
+                                <mat-card-title (click)="imageInput.click()">
+                                    <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps"
+                                (change)="onImageSelected($event)">
+                                Drag your files here<br>or <span class="browse_green">Browse</span> to upload
+                                </mat-card-title>
+                            </mat-card-header>
+
+                    </mat-card>
+                </div>
+
+                <div class="middle-container">
+                    <button color="primary" mat-raised-button *ngIf="candidateDetails?.id"
+                        [disabled]="!trainingFormGroup.valid || maxEntriesReached || isNotApplicable"
+                        (click)="addLine()">
+                        <mat-icon>add</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-specialized" *ngIf="trainingDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Institute Name</th>
+                                <th>Completion Date</th>
+                                <th>IsApproved?</th>
+                                <th>Action</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of trainingDataSource; let i=index">
+                                <td>{{data.name}}</td>
+                                <td>{{data.details}}</td>
+                                <td>{{(data.dateOfCompletion === 0) ? 'NA' : data.dateOfCompletion |
+                                    date:'longDate'}}</td>
+                                <td>{{data?.approved ? 'Approved' : 'Pending' }}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                                <td>{{data.remarks}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</mat-expansion-panel>

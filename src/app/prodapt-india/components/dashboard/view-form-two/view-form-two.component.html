@@ -1,0 +1,179 @@
+<mat-accordion class="accordian-container" multi="true">
+
+    <div class="header">
+        <div>
+            <button mat-button color="accent" (click)="navigateToEditFormTwo()">
+                <mat-icon>keyboard_arrow_left</mat-icon> Edit
+            </button>
+        </div>
+        <div class="mat-title text-center">Preview Form 2</div>
+    </div>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Form 2 Details
+            </mat-panel-title>
+            <mat-panel-description>
+                Name, gender, marital status, etc.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--Progress Bar  -->
+        <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+        <ng-template matExpansionPanelContent>
+            <div class="form-container" id="pdf-content-formtwo">
+                <div class="top-container">
+                    <div class="mat-h1 text-center">
+                        FORM 2(Revised)
+                        <br>
+                        <div class="mat-h3 text-center">
+                            NOMINATION AND DECLARATION FORM FOR UNEXEMPTED/<br>EXEMPTED ESTABLISHMENTS
+                        </div>
+                        <div class="mat-h3 text-center">
+                            Declaration and Nomination Form under the Employees’ Provident Funds and<br> Employees’
+                            Pension Scheme
+                        </div>
+                    </div>
+                </div>
+                <div class="middle-container">
+                    <p class="mat-body"> (Paragraphs 33 & 61 (1) of the Employees Provident Fund Scheme, 1952 and
+                        Paragraph
+                        18 of the Employees’ Pension scheme, 1995)</p>
+                </div>
+
+                <div class="bottom-container">
+
+                    <p class="mat-title text-left">General Information</p>
+                    <div class="mat-body-2">1. Name : {{epfNomination?.empName}}</div>
+                    <div class="mat-body-2">2. Father’s/Husband’s Name : {{epfNomination?.empFatherOrSpouseName}}</div>
+                    <div class="mat-body-2">3. Date of Birth : {{epfNomination?.dateOfBirth | date:'longDate'}}</div>
+                    <div class="mat-body-2">4. Sex : {{epfNomination?.gender}}</div>
+                    <div class="mat-body-2">5. Marital Status : {{epfNomination?.maritialStatus}}</div>
+                    <div class="mat-body-2">6. Account No. : {{epfNomination?.accountNumber}}</div>
+
+                    <div class="mat-body-2">7.Address <br> Permanent Address : {{epfNomination?.permanentAddress}}</div>
+                    <div class="mat-body-2">Temporary address : {{epfNomination?.presentAddress}}</div>
+                    <div class="mat-body-2">8. Date of joining : {{epfNomination?.dateOfJoining | date:'longDate'}}
+                    </div>
+
+                    <p class="mat-title text-center">PART – A (EPF)</p>
+                    <p class="mat-body">I hereby nominate the person(s) /cancel the nomination made by me previously and
+                        nominate the person(s) mentioned below to receive the amount standing to my credit in the
+                        Employees’ Provident Fund in the event of my death : </p>
+
+                    <table class="table table-bordered table-epfnominee"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Name of the Nominee/nominees</th>
+                                <th>Address</th>
+                                <th>Nominee's relationship with the member</th>
+                                <th>Date of Birth</th>
+                                <th>Total amount of share of<br>Accumulations in Provident Fund to
+                                    be
+                                    paid
+                                    to each nominee</th>
+                                <th>If the nominee is a minor, <br>name & relationship & <br>address
+                                    of the guardian who may receive the amount during the minority of nominee</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of epfNomination?.epfNomineeList;">
+                                <td>{{data.name}}</td>
+                                <td>{{data.address}}</td>
+                                <td>{{data.relationship}}</td>
+                                <td>{{data.dateOfBirth | date:'longDate'}}</td>
+                                <td>{{data.proportion}}</td>
+                                <td>{{data.minorDetails}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="mat-body"> *Certified that I have no family as defined in para 2(g) of the Employees’
+                        Provident Fund Scheme, 1952 and should I acquire a Family hereafter, the above nomination should
+                        be deemed as cancelled.</p>
+                    <p class="mat-body">*Certified that my father/mother is/are dependent upon me.</p>
+
+                    <div class="mat-body-2">Signature of the subscriber : </div>
+                    <img class="fit-picture" *ngIf="epfnomineeSignUrl" [src]="epfnomineeSignUrl">
+                    <div class="mat-body-2">({{epfNomination?.empName}})</div>
+
+                    <p class="mat-title text-center">Part B (EPS)(Para 18)</p>
+                    <p class="mat-body">I hereby furnish below particulars of the members of my family who would be
+                        eligible to receive widow/children pension in the event of my death : </p>
+
+                    <table class="table table-bordered table-epsfamily"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Name of the Family Member</th>
+                                <th>Address</th>
+                                <th>Date of Birth</th>
+                                <th>Relationship with the Member</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of epfNomination?.epsFamilyList;">
+                                <td>{{data.name}}</td>
+                                <td>{{data.address}}</td>
+                                <td>{{data.dateOfBirth | date:'longDate'}}</td>
+                                <td>{{data.relationship}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="mat-body">** Certified that I have no family, as defined in para 2(vii) of Employees’
+                        Pension Scheme, 1995 and should I acquire a family hereafter I shall furnish particulars thereon
+                        in the above form.</p>
+                    <p class="mat-body">
+                        I hereby nominate the following person for receiving the monthly widow pension (admissible under
+                        para 16 2(a)(i) and (ii) in the event of my death without leaving any eligible family member for
+                        receiving Pension.</p>
+
+                    <table class="table table-bordered table-nominee"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Name of the Nominee</th>
+                                <th>Address of the Nominee</th>
+                                <th>Date of Birth</th>
+                                <th>Relationship with the member</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of epfNomination?.nomineeList;">
+                                <td>{{data.name}}</td>
+                                <td>{{data.address}}</td>
+                                <td>{{data.dateOfBirth | date:'longDate'}}</td>
+                                <td>{{data.relationship}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="mat-body-2">Date: {{epfNomination?.epsNomineeDate | date:'longDate'}}</div>
+                    <div class="mat-body-2">Signature of the subscriber : </div>
+                    <img class="fit-picture" *ngIf="epsnomineeSignUrl" [src]="epsnomineeSignUrl">
+                    <div class="mat-body-2">({{epfNomination?.empName}})</div>
+
+
+                    <div class="end-container para-container">
+                        <p class="mat-title text-center">CERTIFICATE BY EMPLOYER</p>
+                        <div class="mat-body para-container">
+                            Certified that the above declaration and nomination has been signed/thumb impressed before
+                            me by Shri/Smt./Kum.<br>
+                            employed in my establishment after he/she has read the entries/entries have been read over
+                            to him/her by me and got confirmed by him/her.
+                        </div>
+                        <div class="mat-body-2">Place : </div>
+                        <div class="mat-body-2">Date : </div>
+                        <div class="mat-body-2">Signature of the employer or other Authoried Officers of the
+                            Establishment. : </div>
+                        <div class="mat-body-2">Designation : </div>
+                        <div class="mat-body-2">Name & Address of the Factory/ Establishment or Rubber Stamp Thereon :
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </mat-expansion-panel>
+</mat-accordion>

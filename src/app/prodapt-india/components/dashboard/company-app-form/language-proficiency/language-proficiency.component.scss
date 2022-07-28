@@ -1,0 +1,213 @@
+mat-expansion-panel {
+    mat-expansion-panel-header {
+        display: flex;
+        align-items: stretch;
+        flex-basis: auto;
+        mat-panel-title,
+        mat-panel-description {
+            padding: 0.5rem 0 0.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 0;
+        }
+    }
+
+    .form-container {
+        display: block;
+        justify-content: center;
+        // grid-template-columns: 1fr 1fr;
+        // grid-template-rows: minmax(1rem, auto);
+        // grid-template-areas:
+        //     "left-container right-container"
+        //     "middle-container middle-container"
+        //     "end-container end-container";
+
+        .left-container {
+          //  grid-area: left-container;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            mat-form-field {
+                min-width: 30rem;
+            }
+        }
+
+        .right-container {
+          //  grid-area: right-container;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+
+            mat-form-field {
+                min-width: 30rem;
+            }
+        }
+
+        .middle-container {
+          //  grid-area: middle-container;
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .bottom-container {
+            //grid-area: end-container;
+            display: flex;
+            justify-content: space-around;
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+
+                th {
+                    font-weight: bold;
+                    padding: 6px;
+                    text-align: center;
+                }
+                td {
+                    padding: 6px;
+                    width: 20%;
+                    text-align: center;
+                }
+            }
+        }
+
+        @media only screen and (max-width: 760px) {
+            justify-content: center;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "left-container"
+                "right-container"
+                "middle-container"
+                "end-container";
+
+            .left-container .right-container {
+                mat-form-field {
+                    max-width: 22rem;
+                }
+            }
+
+            .bottom-container {
+                table,
+                thead,
+                tbody,
+                th,
+                td,
+                tr {
+                    display: block;
+                    align-items: center;
+                }
+
+                .table-language {
+                    display: block;
+                    td {
+                        padding: 1rem;
+                        width: 100%;
+                    }
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        border: 2px solid #ccc;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                        align-items: center;
+                        text-align: left;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    td:nth-of-type(1):before {
+                        content: "Language";
+                    }
+                    td:nth-of-type(2):before {
+                        content: "Read";
+                    }
+                    td:nth-of-type(3):before {
+                        content: "Write";
+                    }
+                    td:nth-of-type(4):before {
+                        content: "Speak";
+                    }
+                    td:nth-of-type(5):before {
+                        content: "Action";
+                    }
+                }
+            }
+        }
+    }
+}
+.table-language{
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    border: 1px solid #ccc;
+
+    th {
+
+        font-weight: 500 !important;
+
+        padding: 1rem;
+
+        border: none;
+
+        text-align: center;
+
+        background: #f1f1f1;
+
+    }
+
+    tr {
+
+        //border: 2px solid #ccc;
+
+        border: none;
+
+    }
+
+    td {
+
+        border: none;
+
+        padding: 1rem;
+
+        width: 16.6%;
+
+        text-align: center;
+
+    }
+
+}
+
+.check-box{
+    width: 100px;
+}
+.mat-checkbox-disabled .mat-checkbox-label{
+    color: #0000008a !important;
+    font-weight: 400 !important;
+}
+
+
+
+

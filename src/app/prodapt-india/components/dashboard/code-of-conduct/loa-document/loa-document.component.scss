@@ -1,0 +1,106 @@
+mat-expansion-panel {
+    mat-expansion-panel-header {
+        display: flex;
+        align-items: stretch;
+        flex-basis: auto;
+        mat-panel-title,
+        mat-panel-description {
+            padding: 0.5rem 0 0.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 0;
+        }
+    }
+    .form-container {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(1rem, auto);
+        grid-template-areas:
+            "top-container top-container"
+            "middle-container middle-container"
+            "left-container right-container";
+
+        .top-container {
+            grid-area: top-container;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 2rem;
+            .fit-picture {
+                padding: 2rem;
+                margin: 0 auto 1rem auto;
+                background-color: transparent;
+                width: 280px;
+            }
+        }
+
+        .middle-container {
+            grid-area: middle-container;
+            margin-right: 2rem;
+            .para-container {
+                margin-left: 2rem;
+                padding-bottom: 1rem;
+                border-left: none;
+                position: relative;
+                text-align: justify;
+            }
+        }
+
+        .left-container {
+            grid-area: left-container;
+            font-size: 1.1em;
+            line-height: 1.6em;
+            padding: 1rem 1rem 1rem 2rem;
+            border-left: none;
+            position: relative;
+            justify-content: left;
+
+            .fit-picture {
+                padding: 2rem;
+                background-color: transparent;
+                width: 280px;
+            }
+        }
+
+        .right-container {
+            grid-area: right-container;
+            font-size: 1.1em;
+            line-height: 1.6em;
+            padding: 1rem 1rem 1rem 2rem;
+            border: 1px solid blue;
+            border-radius: 2rem;
+            position: relative;
+            justify-content: left;
+        }
+
+        @media all and (max-width: 768px) {
+            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
+            grid-template-areas:
+                "top-container"
+                "middle-container"
+                "left-container"
+                "right-container";
+
+            .left-container .right-container {
+                mat-form-field {
+                    max-width: 20rem;
+                }
+            }
+
+            .middle-container {
+                .para-container {
+                    text-align: left;
+                }
+            }
+
+            .nav-buttons {
+                justify-content: space-between;
+            }
+        }
+    }
+}

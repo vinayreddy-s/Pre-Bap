@@ -1,0 +1,277 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Form F
+        </mat-panel-title>
+        <mat-panel-description>
+            Company Name, Full Name, address etc.
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <div>
+        <mat-vertical-stepper [linear]="false" #stepper>
+            <form [formGroup]="gratuityFormGroup">
+                <!-- Step 1 -->
+                <mat-step [stepControl]="gratuityFormGroup">
+                    <ng-template matStepLabel>Basic Details</ng-template>
+                    <div class="form-container">
+                        <div class="top-container">
+                            <div class="block">To: </div>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Company Name</mat-label>
+                                <textarea rows="4" class="comname" matInput formControlName="companyAddress"></textarea>
+                                <mat-hint align="start">
+                                    (Give here name or description of the establishment with full address)
+                                </mat-hint>
+                            </mat-form-field>
+                            <br>
+                            <br>
+                            <div class="mat-body">1) Shri / Shrimati / Kumari</div>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Full Name</mat-label>
+                                <input matInput placeholder="Full Name" formControlName="empName" required>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.empName.errors?.required"
+                                    align="start">
+                                    Name field is required!
+                                </mat-error>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.empName.errors?.minlength" align="end">
+                                    Min 3 Chars!
+                                </mat-error>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.empName.errors?.pattern" align="start">
+                                    Only Letters are Accepted!
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="bottom-container">
+                            <p class="mat-body">
+                                Whose particulars are given in the statement below, I
+                                <strong>{{ gratuityFormGroup.value.empName }}</strong>,
+                                hereby nominate the person(s) mentioned below to receive the gratuity payable after my
+                                death as also the gratuity standing to my credit in the event of my death before that
+                                amount has become payable, or having become payable has not been paid and direct that
+                                the said amount of gratuity shall be paid in proportion indicated against the name(s) of
+                                the nominee(s).
+                            </p>
+
+                            <p class="mat-body">
+                                2) I hereby certify that the person(s) mentioned is a/are member(s) of my family within
+                                the meaning of clause (h) of section (2) of the Payment of Gratuity Act, 1972.
+                            </p>
+                            <p class="mat-body">
+                                3) I hereby declare that I have no family within the meaning of clause (h) of section
+                                (2)
+                                of the said Act.
+                            </p>
+                            <p class="mat-body">
+                                4) (a) My father/mother/parents is/are not dependent on me. (b) my husband's
+                                father/mother/parents is/are not dependent on my husband.
+                            </p>
+                            <p class="mat-body">
+                                5) I have excluded my husband from my family by a notice dated the to the Controlling
+                                Authority
+                                in terms of the proviso to clause (h) of section 2 of the said Act.
+                            </p>
+                            <p class="mat-body">
+                                6) Nomination made herein invalidates my previous nomination
+                            </p>
+                        </div>
+                        <div class="nav-buttons">
+                            <button mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                                <mat-icon>keyboard_arrow_right</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+                <!-- Step 2 -->
+                <mat-step [stepControl]="gratuityFormGroup">
+                    <div class="form-container">
+                        <ng-template matStepLabel>Statement</ng-template>
+                        <div class="left-container">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Full Name</mat-label>
+                                <input matInput placeholder="Full Name" formControlName="empName" required>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.empName.errors?.required"
+                                    align="start">
+                                    Full Name is required!
+                                </mat-error>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.empName.errors?.minlength" align="end">
+                                    Min 3 Chars!
+                                </mat-error>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.empName.errors?.pattern" align="start">
+                                    Only Letters are Accepted!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Religion</mat-label>
+                                <mat-select formControlName="religion" required
+                                    placeholder="Hindu, Christian, Muslim etc,">
+                                    <mat-option value="Hindu">Hindu</mat-option>
+                                    <mat-option value="Muslim">Muslim</mat-option>
+                                    <mat-option value="Christian">Christian</mat-option>
+                                    <mat-option value="Sikh">Sikh</mat-option>
+                                    <mat-option value="Bhuddist">Bhuddist</mat-option>
+                                    <mat-option value="Jain">Jain</mat-option>
+                                    <mat-option value="Other">Ohter</mat-option>
+                                    <mat-option value="Non Religious">Non Religious</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.religion.errors?.required"
+                                    align="start">
+                                    Religion is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Date</mat-label>
+                                <input matInput [matDatepicker]="doapicker" [max]="today" placeholder="MM/DD/YYYY"
+                                    formControlName="dateOfAppointment" [value]="empDateApp">
+                                <mat-datepicker-toggle matSuffix [for]="doapicker"></mat-datepicker-toggle>
+                                <mat-datepicker #doapicker></mat-datepicker>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Post held with Ticket or Serial No.</mat-label>
+                                <input type="number" matInput formControlName="empTicketOrSerialNo">
+                            </mat-form-field>
+                        </div>
+                        <div class="right-container">
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Gender</mat-label>
+                                <mat-select formControlName="gender" required placeholder="Male/Female">
+                                    <mat-option value="Male">Male</mat-option>
+                                    <mat-option value="Female">Female</mat-option>
+                                    <mat-option value="Prefer Not to Disclose">Prefer Not to Disclose</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.gender.errors?.required" align="start">
+                                    Gender is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Maritial Status</mat-label>
+                                <mat-select formControlName="maritialStatus" required
+                                    placeholder="Married, Unmarried, Divorcee etc.">
+                                    <mat-option value="Never Married">Never Married</mat-option>
+                                    <mat-option value="Married">Married</mat-option>
+                                    <mat-option value="Seperated">Seperated</mat-option>
+                                    <mat-option value="Widow">Widow</mat-option>
+                                    <mat-option value="Widower">Widower</mat-option>
+                                    <mat-option value="Prefer Not to Disclose">Prefer Not to Disclose</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.maritialStatus.errors?.required"
+                                    align="start">
+                                    Marital Status is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Dept./Branch/Section were on employed</mat-label>
+                                <input matInput formControlName="empDept">
+                            </mat-form-field>
+                        </div>
+                        <div class="nav-buttons">
+                            <button mat-raised-button matTooltip="Back" color="accent" matStepperPrevious>
+                                <mat-icon>keyboard_arrow_left</mat-icon>
+                            </button>
+                            <button mat-raised-button matTooltip="Next" color="accent" matStepperNext>
+                                <mat-icon>keyboard_arrow_right</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+                <!-- Step 3 -->
+                <mat-step [stepControl]="gratuityFormGroup">
+                    <div class="form-container">
+                        <ng-template matStepLabel>Permanent Address</ng-template>
+                        <div class="left-container">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Permanent Address</mat-label>
+                                <textarea matInput placeholder="H.No/Flat No. etc.," formControlName="empAddress"
+                                    required></textarea>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.empAddress.errors?.required"
+                                    align="start">
+                                    Permanent Address is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Thana</mat-label>
+                                <input matInput formControlName="empThana">
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Post Offie</mat-label>
+                                <input matInput formControlName="empPostOffice">
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input matInput formControlName="empState" required>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.empState.errors?.required"
+                                    align="start">
+                                    State is required!
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Village</mat-label>
+                                <input matInput formControlName="empVillage">
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Sub-division</mat-label>
+                                <input matInput formControlName="empSubDivision">
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>District</mat-label>
+                                <input matInput formControlName="empDistrict" required>
+                                <mat-error *ngIf="gratuityFormDetailsFormControl.empDistrict.errors?.required"
+                                    align="start">
+                                    District is required!
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="right-container">
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Place</mat-label>
+                                <input matInput formControlName="placeOn">
+                            </mat-form-field>
+
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Date</mat-label>
+                                <input matInput [matDatepicker]="dobpicker" [max]="today" placeholder="MM/DD/YYYY"
+                                    formControlName="dateOn" [value]="empDateOn">
+                                <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dobpicker></mat-datepicker>
+                            </mat-form-field>
+                            <div class="image-container">
+                                <ngx-signature-pad [config]="config" #signPad></ngx-signature-pad>
+                                <button mat-button (click)="clear()">Clear</button>
+                                <button mat-raised-button color="warn" class="pull-right" (click)="getImage()"
+                                    [disabled]="isInValid()">Capture Sign</button>
+                            </div>
+                            <div class="mat-body-2" *ngIf="formfSignImageUrl">Signature of the employee : </div>
+                            <img class="fit-picture" *ngIf="formfSignImageUrl" [src]="formfSignImageUrl">
+                            <div class="mat-body-2" *ngIf="formfSignImageUrl">({{gratuity?.empName}}) </div>
+                        </div>
+                        <div class="nav-buttons">
+                            <button mat-raised-button matTooltip="Back" color="accent" matStepperPrevious>
+                                <mat-icon>keyboard_arrow_left</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+            </form>
+        </mat-vertical-stepper>
+    </div>
+    <mat-action-row>
+        <button color="accent" mat-raised-button [disabled]="!gratuityFormGroup.valid" (click)="saveGratuityForm()">Save
+            Form F Details</button>
+    </mat-action-row>
+</mat-expansion-panel>

@@ -1,0 +1,233 @@
+<mat-accordion class="accordian-container" multi="true">
+
+    <div class="header">
+        <div>
+            <button mat-button color="accent" (click)="navigateToEditFormEleven()">
+                <mat-icon>keyboard_arrow_left</mat-icon> Edit
+            </button>
+        </div>
+        <div class="mat-title text-center">Preview Form 11</div>
+    </div>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Form 11 Details
+            </mat-panel-title>
+            <mat-panel-description>
+                PF details, previous employment details, other details etc.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--Progress Bar  -->
+        <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+        <ng-template matExpansionPanelContent>
+            <div class="form-container" id="pdf-content-formeleven">
+                <div class="top-container">
+                    <div class="mat-h1 text-center">
+                        FORM No. 11(Declaration Form)
+                        <br>
+                        <p class="mat-body">(To be retained by the Employer for future reference) </p>
+                        <p class="mat-h2">EMPLOYEES’ PROVIDENT FUND ORGANIZATION</p>
+                        <p class="mat-body">THE EMPLOYEES’ PROVIDENT FUNDS SCHEME, 1952 (PARAGRAPH-34 & 57) and</p>
+                        <p class="mat-body">THE EMPLOYEES’ PENSION SCHEME, 1955 (PARAGRAPH-24)</p>
+                        <blockquote>
+                            <p class="mat-body">
+                                Declaration by a person taking up employment in any establishment on which
+                                EPF SCHEME, 1952 and for EPS, 1995 is
+                                applicable.
+                            </p>
+                        </blockquote>
+                        <p class="mat-body-strong">Please go through the instructions.</p>
+                    </div>
+                </div>
+
+                <div class="middle-container">
+
+                    <p class="mat-title text-left">General Information</p>
+                    <div class="mat-body-2">1. Name of Member (Aadhar Name): {{epfKYCDetails?.name}}</div>
+                    <div class="mat-body-2">2. Father’s/Husband’s Name : {{epfKYCDetails?.fatherOrSpouseName}}</div>
+                    <div class="mat-body-2"> Relationship in Respect of (2) above : {{epfKYCDetails?.relationship}}
+                    </div>
+                    <div class="mat-body-2">3. Date of Birth: {{epfKYCDetails?.dateOfBirth | date:'longDate'}}</div>
+                    <div class="mat-body-2">4. Gender : {{epfKYCDetails?.gender}}</div>
+                    <div class="mat-body-2">5. Marital Status : {{epfKYCDetails?.maritialStatus}}</div>
+                    <div class="mat-body-2">6(A). Email ID : {{epfKYCDetails?.email}}</div>
+                    <div class="mat-body-2">6(B). Mobile Number (Aadhar Registered) : {{epfKYCDetails?.mobile}}</div>
+                    <div class="mat-body-2"> Date of Joining : {{epfKYCDetails?.dateOfJoining | date:'longDate' }}
+                    </div>
+                    <div class="mat-body-2">7. Whether earlier a member of the employees' provident fund scheme,1952? :
+                        {{epfKYCDetails?.memberOfEPF}}</div>
+                    <div class="mat-body-2">8. Whether earlier a member of the employees' pension scheme,1995? :
+                        {{epfKYCDetails?.memberOfEPS}}</div>
+
+                    <p class="mat-body-strong">
+                        “Previous Employment details ? (If Yes, 7 & 8 details above)”
+                    </p>
+
+                    <p class="mat-title text-left">A.Previous Employment Details</p>
+                    <div class="mat-body-2">9(A). UAN Number : {{epfKYCDetails?.uan}}</div>
+                    <p class="mat-body">
+                        The details of the Universal Account Number (UAN) Or Previous PF
+                        Member Id
+                    </p>
+                    <p class="mat-body-strong">Previous PF
+                        Member Id:</p>
+                    <table class="table table-bordered pf-details"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <tr>
+                            <th class="mat-body-2">Region Code</th>
+                            <td>{{epfKYCDetails?.regionCode}}</td>
+                        </tr>
+                        <tr>
+                            <th class="mat-body-2">Office Code</th>
+                            <td>{{epfKYCDetails?.officeCode}}</td>
+                        </tr>
+                        <tr>
+                            <th class="mat-body-2">Establishment ID</th>
+                            <td>{{epfKYCDetails?.establishmentId}}</td>
+                        </tr>
+                        <tr>
+                            <th class="mat-body-2">Extension</th>
+                            <td>{{epfKYCDetails?.extension}}</td>
+                        </tr>
+                    </table>
+                    <div class="mat-body-2">9(B). Previous PF a/c No : {{epfKYCDetails?.accountNumber}}</div>
+                    <div class="mat-body-2">9(C). Date of exit for Previous Employment : {{(epfKYCDetails?.dateOfExit
+                        ===
+                        0) ? '--' :
+                        epfKYCDetails?.dateOfExit |
+                        date:'longDate'}}</div>
+                    <div class="mat-body-2"> Date of joining for Previous Employment :
+                        {{(epfKYCDetails?.dateOfJoiningPrev === 0) ? '--' :
+                        epfKYCDetails?.dateOfJoiningPrev |
+                        date:'longDate'}}</div>
+                    <div class="mat-body-2">9(D). Scheme Certificate Number (if issued) :
+                        {{epfKYCDetails?.schemeCertificateNumber}}</div>
+                    <div class="mat-body-2">9(E). PPO Number (if issued) : {{epfKYCDetails?.ppoNumber}}</div>
+
+                    <p class="mat-title text-left">B.Other Details</p>
+                    <div class="mat-body-2">10(A). International Worker : {{epfKYCDetails?.isInternationWorker}}</div>
+                    <div class="mat-body-2">10(B). Country of Origin : {{epfKYCDetails?.countryOforigin}}</div>
+                    <div class="mat-body-2">10(C). Passport Number : {{epfKYCDetails?.passportNumber}}</div>
+                    <div class="mat-body-2">10(D). Passport Valid From : {{(epfKYCDetails?.validFrom === 0) ? '--' :
+                        epfKYCDetails?.validFrom |
+                        date:'longDate'}}
+                    </div>
+                    <div class="mat-body-2">10(D). Passport Valid To : {{(epfKYCDetails?.validTo === 0) ? '--' :
+                        epfKYCDetails?.validTo |
+                        date:'longDate'}}
+                    </div>
+                    <div class="mat-body-2">11(A).Educational Qualification : {{epfKYCDetails?.eduQualifications}}</div>
+
+                    <div class="mat-body-2">11(B).Specially Abled : {{epfKYCDetails?.speciallyabled}}</div>
+                    <div class="mat-body-2">11(C).Disabled Category : {{epfKYCDetails?.disabledCategory}}</div>
+
+                    <p class="mat-title text-left">KYC Details:</p>
+                    <table class="table table-bordered table-kyc"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>KYC Document Type</th>
+                                <th>Name as on KYC Document</th>
+                                <th>KYC Number</th>
+                                <th>Remarks(IFSC or Expiry,if any</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of epfKYCDetails?.kycDetailList">
+                                <td>{{data.selectKYC}}</td>
+                                <td>{{data.nameAsPerDoc}}</td>
+                                <td>{{data.docNumber}}</td>
+                                <td>{{data.remarks}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="mat-title text-left">EPF Details:</p>
+                    <div class="mat-body-2">12(A).First EPF Member
+                        Enrolled Date : {{(epfKYCDetails?.epfEnrolledDate === 0) ? '--' :
+                        epfKYCDetails?.epfEnrolledDate |
+                        date:'longDate'}}
+                    </div>
+                    <div class="mat-body-2">12(B).First Employment EPF
+                        Wages : {{epfKYCDetails?.epfWages}}</div>
+                    <div class="mat-body-2">12(C).Are you EPF Member
+                        before 01/09/2014 : {{epfKYCDetails?.epfMember}}</div>
+                    <div class="mat-body-2">12(D).If Yes, EPF Amount
+                        Withdrawn? : {{epfKYCDetails?.epfWithdrawn}}</div>
+                    <div class="mat-body-2">12(E).If Yes, EPS (Pension)
+                        Amount Withdrawn? : {{epfKYCDetails?.epsWithdrawn}}</div>
+                    <div class="mat-body-2">12(F).After Sep 2014 earned EPS
+                        (Pension) Amount Withdrawn
+                        before Join current Employer? : {{epfKYCDetails?.epsEarned}}</div>
+
+                    <div class="bottom-container para-container">
+                        <p class="mat-title text-center">Undertaking</p>
+                        <div class="mat-body para-container">
+                            1) Certified that the Particulars are true to best of my knowledge
+                        </div>
+                        <div class="mat-body para-container">
+                            2) I authorize EPFO to use my Aadhar for verification / authentication / e KYC purpose for
+                            service delivery
+                        </div>
+                        <div class="mat-body para-container">
+                            3) Kindly transfer the funds and service details, if applicable, from the previous PF
+                            account as
+                            declared above to the present PF account.
+                            <br>(The transfer would be possble only if the
+                            identified
+                            KYC details approved by previous employer has been verifiedby the persent employer)
+                        </div>
+                        <div class="mat-body para-container">
+                            4) In case of changes in above details, the same will be intimate to employer at the
+                            earliest.
+                        </div>
+                        <br>
+                        <div class="mat-body-2">Date : {{(epfKYCDetails?.dateOfConsent === 0) ? '--' :
+                            epfKYCDetails?.dateOfConsent |
+                            date:'longDate'}}</div>
+                        <div class="mat-body-2">Place : {{epfKYCDetails?.placeOfConsent}}</div>
+                        <div class="mat-body-2">Signature of the member : </div>
+                        <img class="fit-picture" *ngIf="epfSignImageUrl" [src]="epfSignImageUrl">
+                        <div class="mat-body-2">({{epfKYCDetails?.name}})</div>
+                    </div>
+
+                    <div class="end-container para-container">
+                        <p class="mat-title text-center">DECLARATION BY THE PRESENT EMPLOYER</p>
+                        <div class="mat-body para-container">
+                            A) The member Mr./Ms./Mrs. ........................ has joined on .........................
+                            and has been alloted PF Number....................
+                        </div>
+                        <div class="mat-body para-container">
+                            B) In case person was earlier not a member of EPF Scheme, 1952 and EPS,1995
+                            <p class="mat-body"><b>(Post allotment of UAN)</b> The UAN Allotted for the member is
+                                ..................</p>
+                            <p class="mat-body"><b>Please tick the Appropriate Option:</b></p>
+                            <p class="mat-body"> The KYC details of the above member in the UAN database
+                            </p>
+                            <p class="mat-body para-container">
+                                i)Have not been uploaded<br>
+                                ii)Have been uploaded but not approved<br>
+                                iii)Have been uploaded and approved with DSC
+                            </p>
+                        </div>
+                        <div class="mat-body para-container">
+                            C) In case the person was earlier a member of EPF Scheme,1952 and EPS,1955 :
+                            <p class="mat-body">The above PF account number/UAN of the memeber as mentioned in (a) above
+                                has been
+                                tagged with his/her UAN/previous memeber as declared by member</p>
+                            <p class="mat-body"> <b> Please Tick the Appropriate Option:</b></p>
+                            <p class="mat-body para-container">
+                                i)The KYC details of the above member in the UAN database have been approved with
+                                Digital
+                                Signature Certifcate and trasfer request has been generated on portal.<br>
+                                ii)As the DSC of establishment are not registered with EPFO the member has been informed
+                                to
+                                file physical claim (Form 13) for transfer of funds from his previous establishment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </mat-expansion-panel>
+</mat-accordion>

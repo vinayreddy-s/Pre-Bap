@@ -1,0 +1,886 @@
+/* * {
+  font-family: "KareliaWeb Medium", sans-serif;
+} */
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  li,
+  span {
+    /* font-family: "KareliaWeb Medium", sans-serif; */
+    /* font-family: 'Karla', sans-serif; */
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  h5 {
+    margin-top: 6px !important;
+  }
+  
+  .left {
+    display: inline-block;
+    position: relative;
+    left: 100px;
+    align-self: start;
+  }
+  
+  .left img {
+    width: 200px;
+  }
+  
+  .right a {
+    display: inline-block;
+    position: absolute;
+    right: 50px;
+    top: 30px;
+    color: rgb(241, 11, 11);
+    text-decoration: none;
+    font-family: "KareliaWeb Medium", sans-serif;
+  
+  }
+  
+  .rightpro a {
+    display: inline-block;
+    position: absolute;
+    right: 180px;
+    top: 15px;
+    padding-right: 20px;
+    color: rgb(12, 12, 12);
+    text-decoration: none;
+    font-family: "KareliaWeb Medium", sans-serif;
+  
+  }
+  
+  .right a {
+    padding: 20px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: "KareliaWeb Medium", sans-serif;
+    top: -2px;
+  }
+  
+  
+  .propic img {
+    width: 100px;
+    margin-top: 65px;
+    margin-left: 80px;
+    border: 2px solid black;
+    border-radius: 50%;
+  }
+  
+  .propictext h3 {
+    margin-top: -6px;
+    margin-left: 204px;
+    font-size: 38px;
+    text-decoration: none;
+    align-items: center;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    position: relative;
+    bottom: 71px;
+  }
+  
+  .protext {
+    display: inline-block;
+    position: absolute;
+    left: 136px;
+    top: 278px;
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  .protext1 {
+    display: inline-block;
+    position: absolute;
+    left: 600px;
+    top: 278px;
+    padding: 0 20 0 20;
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  .protext2 {
+    display: inline-block;
+    position: absolute;
+    left: 800px;
+    top: 278px;
+    padding: 0 20 0 20;
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  .protext3 {
+    display: inline-block;
+    position: absolute;
+    left: 1000px;
+    top: 278px;
+    padding: 0 20 0 20;
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  h6 {
+    margin: 3px;
+    font-weight: 200;
+  }
+  
+  .greenbox {
+    margin-top: 78px;
+    padding-right: 86x;
+    /* background-color: #5ac243; */
+    background-image: url("..\assets\Propel Application Assets\bg-1.png");
+    padding-left: 21px;
+    padding-right: 103px;
+  }
+  
+  /* tab icons */
+  
+  .candidate_Icon1 {
+    position: absolute;
+    top: -55px;
+    left: 48px;
+  }
+  
+  .candidate_Icon2 {
+    position: absolute;
+    top: -55px;
+    left: 48px;
+  }
+  
+  .candidate_Icon3 {
+    position: absolute;
+    top: -55px;
+    left: 48px;
+  }
+  
+  .candidate_Icon4 {
+    position: absolute;
+    top: -55px;
+    left: 48px;
+  }
+  
+  .candidate_Icon5 {
+    position: absolute;
+    top: -55px;
+    left: 48px;
+  }
+  
+  .candidate_Icon6 {
+    position: absolute;
+    top: -55px;
+    left: 48px;
+  }
+  
+  .candidate_Icon7 {
+    position: absolute;
+    top: -55px;
+    left: 48px;
+  }
+  
+  .candidate_Icon8 {
+    position: absolute;
+    top: -55px;
+    left: 48px;
+  }
+  
+  /* candidate details alignments*/
+  .topnav li a.can-det {
+    left: -2px !important;
+  }
+  
+  
+  .topnav li a.mediclam {
+    left: -10px !important;
+  }
+  
+  .topnav li a.gavity {
+    left: 10px !important;
+  }
+  
+  .topnav li a.kvf {
+    left: 11px !important;
+  }
+  
+  .topnav li a.epf {
+    left: 24px !important;
+  }
+  
+  .topnav li a.final {
+    left: -6px !important;
+  }
+  
+  .topnav {
+  
+    justify-content: space-between;
+    padding-top: 69px;
+    padding-left: 39px;
+    padding-right: 53px;
+    display: flex;
+  
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav li a {
+  
+    color: #f7f4f4;
+    text-align: -webkit-auto;
+    position: relative;
+    left: 17px;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: "KareliaWeb Regular", sans-serif;
+    float: right;
+    top: 5px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    color: rgb(93, 194, 124);
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    /* background-color: #5ac243; */
+    color: rgb(10, 10, 10);
+  }
+  
+  /* .center{
+      position: absolute;
+      top: 325%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+      width: 150%;
+      background: white;
+      
+    } */
+  .center h4 {
+    text-align: left;
+    padding: 5px 0;
+    /* border-bottom: 1px solid silver;*/
+  }
+  
+  .center form {
+    padding: 20px 80px;
+  }
+  
+  form .txt_field {
+    position: relative;
+    /*border-bottom: 2px solid #adadad;*/
+    margin: 30px 0;
+    /*border-bottom: 1px solid silver*/
+    font-family: "KareliaWeb Medium", sans-serif;
+  
+  }
+  
+  .txt_field input {
+    width: 100%;
+    padding: 5px;
+    height: 20px;
+    font-size: 18px;
+    border: none;
+    background: none;
+    outline: none;
+    border-bottom: 1px solid silver;
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  input[type="submit"] {
+    width: 10%;
+    /* float: right; */
+    height: 40px;
+    border: 1px solid;
+    background: #5ac243;
+    /* border-radius: 5px; */
+    font-size: 12px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    border-color: #2691d9;
+    transition: .5s;
+  }
+  
+  .peopletxt a {
+    display: inline-block;
+    font-size: 35px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin-left: 70px;
+  }
+  
+  .txt a {
+    display: inline-block;
+    color: black;
+    font-size: 55px;
+    font-weight: bold;
+    left: 70px;
+    margin-left: 70px;
+    font-family: "KareliaWeb Medium", sans-serif;
+    margin-top: 115px;
+  }
+  
+  .img img {
+    /* margin-left: 70px; */
+    width: 100%;
+  }
+  
+  .gbox {
+    margin-top: 20px;
+    height: 35 0px;
+    /* background-color: #5ac243; */
+    /* background-image:url("..\assets\Propel Application Assets\bg-1.png"); */
+    background-image: url("..\assets\Propel Application Assets\bg-2.png");
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  .gbox a {
+    display: inline-block;
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+    margin-left: 70px;
+    line-height: 25px;
+    font-family: "KareliaWeb Medium", sans-serif;
+    margin-top: 49px;
+  }
+  
+  /* ---------------------------- */
+  .colleagues {
+    margin-top: 5px;
+  }
+  
+  .flex-row {
+    display: flex;
+    padding: 90px 0;
+  }
+  
+  .flex-row a {
+    font-size: 15px;
+    text-decoration: none;
+  
+    text-transform: uppercase;
+  }
+  
+  .flex-row a span {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .onbo {
+  
+    display: inline-block;
+    width: 1000px;
+    height: 400px;
+    color: rgb(7, 7, 7);
+    margin-left: 270px;
+  
+  }
+  
+  .onbo a {
+    display: inline-block;
+    font-size: 25px;
+    margin-left: -200px;
+    margin-top: 10px;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+  
+  }
+  
+  .accordion {
+    max-width: 1000px;
+  }
+  
+  .accordion .contentBx {
+    position: relative;
+    margin: 10px 20px;
+  }
+  
+  .accordion .contentBx .label {
+    position: relative;
+    padding: 35px;
+    background-color: white;
+    color: #222;
+    cursor: pointer;
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  .accordion .contentBx .label::before {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+  }
+  
+  .accordion .contentBx .content {
+    position: relative;
+    background: #fff;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    overflow-y: auto;
+  
+  }
+  
+  .accordion .contentBx.active .content {
+    height: 150px;
+    padding: 10px;
+  }
+  
+  .accordion .contentBx.active .label::before {
+    content: '-';
+  }
+  
+  
+  /* .onboli ul {
+    padding: 0;
+  }
+  .onbo > a{
+    padding-left: 70px;
+  } */
+  /* .onboli a{
+    display: inline-block;
+    display: flex;
+    font-size: 15px;
+    font-weight: normal;
+  
+  
+  } */
+  .onboli {
+    margin-left: 250px;
+    margin-top: 20px;
+  }
+  
+  input[type="submit"] {
+    width: 12%;
+    height: 35px;
+    border: 1px solid;
+    background: #5ac243;
+    font-size: 12px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 37px;
+  }
+  
+  input[type="submit"]:hover {
+    border-color: #2691d9;
+    transition: .5s;
+  }
+  
+  imgal a {
+    margin-top: 50px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 30px;
+    margin-left: 70px;
+    color: black;
+  }
+  
+  .fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50px;
+  }
+  
+  .fa-instagram {
+    background: rgb(14, 12, 12);
+    color: rgb(250, 245, 245);
+  }
+  
+  .gallary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+    gap: 1.5 rem;
+  }
+  
+  .imgall {
+    margin-left: 70px;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .imgall a {
+    display: inline-block;
+    font-size: 25px;
+    margin-top: 15px;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "KareliaWeb Medium", sans-serif;
+  }
+  
+  .img1 img {
+    width: 400px;
+    height: 350px;
+    background-color: #E7E9EB;
+  
+  
+  
+  }
+  
+  .img1 p {
+    width: 400px;
+    /* text-align:left; */
+    background-color: #E7E9EB;
+    line-height: 37px;
+    margin-top: 0px;
+    /* font-family: "KareliaWeb Medium", sans-serif; */
+  
+  }
+  
+  .img2 img {
+    width: 400px;
+    height: 350px;
+  }
+  
+  .img22 p {
+    width: 400px;
+    /* text-align: justify; */
+    background-color: #E7E9EB;
+    line-height: 37px;
+    margin-top: 0px;
+  }
+  
+  .img3 img {
+    width: 400px;
+    height: 350px;
+  }
+  
+  .img33 p {
+    width: 400px;
+    /* text-align: justify; */
+    line-height: 28px;
+    margin-top: 0px;
+    background-color: #E7E9EB;
+  }
+  
+  .imgall2 {
+    margin-left: 70px;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .img4 img {
+    width: 400px;
+    height: 350px;
+  }
+  
+  .img4 p {
+    width: 400px;
+    /* text-align: justify; */
+    line-height: 30px;
+    margin-top: 0px;
+    background-color: #E7E9EB;
+  }
+  
+  .img5 img {
+    width: 400px;
+    height: 350px;
+  }
+  
+  .img5 p {
+    width: 400px;
+    text-align: justify;
+    background-color: #E7E9EB;
+    line-height: 30px;
+    margin-top: 0px;
+  }
+  
+  .img6 img {
+    width: 400px;
+    height: 350px;
+  }
+  
+  .img6 p {
+    width: 400px;
+    text-align: justify;
+    background-color: #E7E9EB;
+    line-height: 30px;
+    margin-top: 0px;
+  }
+  
+  /* id card */
+  /* a.id_form {
+      position: relative;
+      bottom: 10px;
+     
+      
+  } */
+  /* tabs */
+  .wraper {
+    padding: 67px;
+    text-align: center;
+    font-family: "KareliaWeb Medium", sans-serif;
+    /* width: 735px; */
+    margin: 10px auto;
+    /* background-color: #5ac243; */
+    height: 138px;
+  }
+  
+  h1 {
+    margin: 50px auto;
+  }
+  
+  
+  
+  .topnav {
+    margin-left: 55px;
+    display: flex;
+    list-style: none;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: stretch;
+  }
+  
+  @media(min-width: 992px) {
+    .container {
+      max-width: 1146px;
+      margin: 0 auto;
+    }
+  }
+  
+  .link {
+    position: relative;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  /* .link {
+      font-weight: bold;
+      text-decoration: none;
+      color: #ffffff;
+      /* text-transform: uppercase; */
+  /* font-size: 15px;
+  } */
+  .topnav {
+    border-top: 1px solid #000;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: stretch;
+  
+  }
+  
+  .link:first-child {
+    margin-left: -55px;
+  }
+  
+  .link:last-child {
+    margin-right: -55px;
+  }
+  
+  .link::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    position: absolute;
+    border-radius: 10px;
+    top: -17px;
+    left: 50%;
+    transform: translatex(-50%);
+    border: 2px;
+  }
+  
+  .active::after {
+    background: black;
+  }
+  
+  p.lead {
+    font-weight: 600;
+    margin: 50px auto;
+    line-height: 1.5;
+  }
+  
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  
+  
+  /* .link {
+      background-image: url("C:\Users\navyasree.a\Desktop\Tabview\correct.PNG");
+  } */
+  
+  .link.active::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 136px;
+    height: 0;
+    width: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    padding: 0px;
+    border-top: 50px solid #5ac243;
+  }
+  
+  span.sub-span-con {
+    font-size: 14px;
+    /* margin-top: 18px; */
+    padding-top: 6px !important;
+  }
+  
+  /* .container li.active {
+      color: #000000;
+  } */
+  
+  p.candidate {
+    margin-bottom: -6px;
+    text-align: right;
+    /* margin-left: 16px; */
+    margin-right: -21px;
+  }
+  
+  /* ---------------------------------------------- */
+  
+  /* icons/facebook/.fa-instagram */
+  .socialicons_btn {
+    display: block;
+    padding: 20px;
+    color: transparent;
+    margin-left: 150px;
+  }
+  
+  /* .gal2smlink{
+  float: right;
+  color: transparent;
+  } */
+  .lap {
+    margin-top: 102px;
+    font-size: 25px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .lap a {
+    font-size: 25px;
+    /* margin-top: -200px; */
+    margin-left: 23px;
+    font-weight: bold;
+    font-family: "KareliaWeb Medium", sans-serif;
+  
+  }
+  
+  /* .life{
+     margin-top: 30px;
+   }
+    */
+  .smi {
+    float: right;
+    padding-right: 20px;
+  
+  }
+  
+  /* .container{
+    min-height: 45vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    } */
+  .card {
+    position: relative;
+    background: rgb(228, 226, 226);
+    max-width: 400px;
+    width: 400px;
+    margin: 10px;
+    border-radius: 2px;
+    box-shadow: 0px 5px 25px rgb(1 1 1 /10%);
+  }
+  
+  .card-image {
+    max-height: 900px;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 300px;
+  }
+  
+  .card-info {
+    position: relative;
+    color: #222;
+    padding: 5px;
+  }
+  
+  .card-info p {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+  
+  .card-info .mediaIcons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+  }
+  
+  .card-info .mediaIcons a {
+    color: #999;
+    font-size: 1.4em;
+    margin: 0 5px;
+    background: #eee;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 10%;
+  }
+  
+  .card-info .mediaIcons a:hover {
+    color: #222;
+  
+  }
+  
+  /* images align */
+  .card-align {
+    display: flex;
+    margin: 10px;
+    /* justify-content: space-between; */
+  }
+  
+  /* --------------------------------- */
+  
+  li.right-arrow {
+    left: 5px;
+    bottom: 6px;
+    /* right: 10px; */
+    width: 0px !important;
+    height: 0px !important;
+    border-top: 5px solid transparent !important;
+    border-bottom: 5px solid transparent !important;
+    border-left: 5px solid black !important;
+    position: relative;
+  }

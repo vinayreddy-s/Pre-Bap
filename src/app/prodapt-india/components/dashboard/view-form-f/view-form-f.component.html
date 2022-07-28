@@ -1,0 +1,172 @@
+<mat-accordion class="accordian-container" multi="true">
+
+    <div class="header">
+        <div>
+            <button mat-button color="accent" (click)="navigateToEditFormF()">
+                <mat-icon>keyboard_arrow_left</mat-icon> Edit
+            </button>
+        </div>
+        <div class="mat-title text-center">Preview Form F</div>
+    </div>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Form F Details
+            </mat-panel-title>
+            <mat-panel-description>
+                Name, Age, Proportion, etc.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--Progress Bar  -->
+        <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+        <ng-template matExpansionPanelContent>
+            <div class="form-container" id="pdf-content-formf">
+
+                <div class="top-container">
+                    <div class="mat-title text-center">
+                        FORM 'F'
+                        <div class="mat-h3 text-center">
+                            [See sub-rule (1) of rule 6]
+                        </div>
+                        <div class="mat-title text-center">
+                            Nomination
+                        </div>
+                    </div>
+                </div>
+
+                <div class="middle-container">
+                    <div class="mat-body-2">To : {{gratuity?.companyAddress}}</div>
+                    <div class="mat-body-2 text-left">[Give here name or description of the establishment with full
+                        address]</div>
+                    <br>
+                    <div class="mat-body">
+                        <p class="mat-body">1) Shri / Shrimati / Kumari {{gratuity?.empName}} [Name in full here] whose
+                            particulars are given in the statement below,
+                            hereby nominate the person(s) mentioned below to receive the gratuity payable after my
+                            death as also the gratuity standing to my credit in the event of my death before that
+                            amount has become payable, or having become payable has not been paid and direct that
+                            the said amount of gratuity shall be paid in proportion indicated against the name(s) of
+                            the nominee(s).
+                        </p>
+
+                        <p class="mat-body">
+                            2) I hereby certify that the person(s) mentioned is a/are member(s) of my family within
+                            the meaning of clause (h) of section (2) of the Payment of Gratuity Act, 1972.
+                        </p>
+                        <p class="mat-body">
+                            3) I hereby declare that I have no family within the meaning of clause (h) of section (2)
+                            of the said Act.
+                        </p>
+                        <p class="mat-body">
+                            4) (a) My father/mother/parents is/are not dependent on me.
+
+                            (b) my husband's
+                            father/mother/parents is/are not dependent on my husband.
+                        </p>
+                        <p class="mat-body">
+                            5) I have excluded my husband from my family by a notice dated the to the Controlling
+                            Authority
+                            in terms of the proviso to clause (h) of section 2 of the said Act.
+                        </p>
+                        <p class="mat-body">
+                            6) Nomination made herein invalidates my previous nomination
+                        </p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <p class="mat-title text-center">Nominee(s)</p>
+                    <table class="table table-bordered table-nominee"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Name in full with full address of nominee(s)</th>
+                                <th>Relationship with the employee</th>
+                                <th>Age of Nominee</th>
+                                <th>Proportion by which the gratuity will be
+                                    shared</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of gratuity?.nomineeList;">
+                                <td>{{data.name}} {{data.address}}</td>
+                                <td>{{data.relationship}}</td>
+                                <td>{{data.age}}</td>
+                                <td>{{data.proportion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bottom-container">
+                    <p class="mat-title text-center">Statement</p>
+                    <div class="mat-body-2">1. Name of employee in full : {{gratuity?.empName}}</div>
+                    <div class="mat-body-2">2. Sex : {{gratuity?.gender}}</div>
+                    <div class="mat-body-2">3. Religion : {{gratuity?.religion}}</div>
+                    <div class="mat-body-2">4. Whether unmarried/married/widow/widower :
+                        {{gratuity?.maritialStatus}}</div>
+                    <div class="mat-body-2">5. Department/Branch/Section where employed : {{gratuity?.empDept}}
+                    </div>
+                    <div class="mat-body-2">6. Post held with Ticket or Serial No., if any :
+                        {{gratuity?.empTicketOrSerialNo}}
+                    </div>
+                    <div class="mat-body-2">7. Date of appointment : {{(gratuity?.dateOfAppointment === 0) ? '--' :
+                        gratuity?.dateOfAppointment |
+                        date:'longDate'}}
+                    </div>
+                    <div class="mat-body-2">8. Permanent address : {{gratuity?.empAddress}}</div>
+                    <div class="mat-body-2">Village : {{gratuity?.empVillage}}</div>
+                    <div class="mat-body-2">Thana : {{gratuity?.empThana}}</div>
+                    <div class="mat-body-2">Sub-division : {{gratuity?.empSubDivision}}</div>
+                    <div class="mat-body-2">Post Office : {{gratuity?.empPostOffice}}</div>
+                    <div class="mat-body-2">District : {{gratuity?.empDistrict}}</div>
+                    <div class="mat-body-2">State : {{gratuity?.empState}}</div>
+                    <div class="mat-body-2">Place : {{gratuity?.placeOn}}</div>
+                    <div class="mat-body-2">Date : {{(gratuity?.dateOn === 0) ? '--' : gratuity?.dateOn |
+                        date:'longDate'}}</div>
+                    <div class="mat-body-2">Signature of the employee :</div>
+                    <img class="fit-picture" *ngIf="formfSignImageUrl" [src]="formfSignImageUrl">
+                    <div class="mat-body-2" *ngIf="formfSignImageUrl">({{gratuity?.empName}}) </div>
+                    <p class="mat-title text-center">Declaration by witnesses</p>
+                    <div class="mat-body-strong para-container">Name in full and full <br>
+                        address of witnesses.</div>
+                    <div class="mat-body para-container">
+                        1.
+                    </div>
+                    <div class="mat-body para-container">
+                        2.
+                    </div>
+                    <div class="mat-body-strong para-container">Signature of witnesses.</div>
+                    <div class="mat-body para-container">
+                        1.
+                    </div>
+                    <div class="mat-body para-container">
+                        2.
+                    </div>
+                    <div class="mat-body-2">Place : </div>
+                    <div class="mat-body-2">Date : </div>
+
+                    <p class="mat-title text-center">Certificate by the employer</p>
+                    <div class="mat-body-strong para-container">Employer's Reference No., if any.</div>
+                    <div class="mat-body-strong para-container">Signature of the employer/ <br>officer authorised</div>
+                    <div class="mat-body-strong para-container">Designation :</div>
+                    <div class="mat-body-strong para-container">Name and address of the<br>
+                        establishment or rubber stamp thereof.</div>
+                    <div class="mat-body-2">Date : </div>
+
+                    <p class="mat-title text-center">Acknowledgement by the employee</p>
+                    <div class="mat-body-strong para-container">
+                        Received the duplicate copy of nomination in Form 'F' filed by me and duly certified by the
+                        employer.
+                    </div>
+                    <div class="mat-body-2">Date : {{(gratuity?.ackDate === 0) ? ' ' : gratuity?.ackDate |
+                        date:'longDate'}} </div>
+                    <div class="mat-body-2">Signature of the employee : </div>
+                    <img class="fit-picture" *ngIf="ackSignImageUrl" [src]="ackSignImageUrl">
+                    <div class="mat-body-2" *ngIf="ackSignImageUrl">({{gratuity?.empName}}) </div>
+
+                </div>
+            </div>
+        </ng-template>
+    </mat-expansion-panel>
+</mat-accordion>

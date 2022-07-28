@@ -1,0 +1,84 @@
+<!-- <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Id Proof Documents
+        </mat-panel-title>
+        <mat-panel-description>
+            Aadhar, PAN, UAN Card, etc.
+        </mat-panel-description>
+    </mat-expansion-panel-header> -->
+    <!--Progress Bar  -->
+    
+    <div class="subheading_head">
+        Id Proof Documents
+    <div class="subheading_subtile">Aadhar, PAN  caed, UAN</div>    
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- <ng-template matExpansionPanelContent> -->
+        <div class="form-container" id="pdf-content-identity">
+            <div class="table-container">
+                <table class="table table-identity table-borderless"
+                    [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                    <thead>
+                        <tr>
+                            <th>Document Name</th>
+                            <th>Document Number</th>
+                            <th>Name in Document</th>
+                            <th>Issued Country</th>
+                            <th>Valid From</th>
+                            <th>Valid To</th>
+                            <th>IsApproved?</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of candidateDetails?.identityList">
+                            <td>{{data.docName}}</td>
+                            <td>{{data.docNumber}}</td>
+                            <td>{{data.nameInDoc}}</td>
+                            <td>{{data.docIssuedCountry}}</td>
+                            <td>{{(data.docValidFrom === 0) ? 'NA' : data.docValidFrom |
+                                date:'longDate'}}</td>
+                            <td>{{(data.docValidTo === 0) ? 'NA' : data.docValidTo |
+                                date:'longDate'}}</td>
+                            <td>{{data?.approved ? 'Approved' : 'Pending' }}</td>
+                            <td>{{data.remarks}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="middle-container">
+                <div class="education_doc" *ngFor="let data of candidateDetails?.identityList">
+                    <mat-card class="material-card" *ngIf="data?.fileType !== null">
+                        <!-- <img mat-card-image *ngIf="data?.fileType ==='image/jpeg' || data?.fileType === 'image/png' 
+                        || data?.fileType === 'image/x-eps' " [src]="data?.identityImage"> -->
+                        <div class="pdf-viewer-container" *ngIf="data?.fileType === 'application/pdf' ">
+                            <pdf-viewer *ngIf="data?.fileType === 'application/pdf' " [src]="data?.identityImage"
+                                [original-size]="false"></pdf-viewer>
+                        </div>
+
+                        <!-- <mat-card> -->
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <div class="pdf_card">
+                                        <img class="pdf_picture" src="../../../assets/pdf-icon.png"><br>
+                                    </div>
+                                    Id Proof Documents 
+                                </mat-card-title>
+                                <mat-card-subtitle color="accent">
+                                    {{data.docName}}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                        <!-- </mat-card> -->
+
+                        <mat-card-actions class="text-center">
+                            <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps">
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+   <!-- </ng-template>
+ </mat-expansion-panel> -->

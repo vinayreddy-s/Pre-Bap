@@ -1,0 +1,166 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Identity Details
+        </mat-panel-title>
+        <mat-panel-description>
+            <!-- Aadhaar, PAN, Passport (Max - 3 Entries Only) -->
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="mat-title">Identity Details
+        <div class="subtile1">Aadhaar, PAN, Passport etc (Max- 3 Entries only) </div>
+    </div>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <div>
+        <form [formGroup]="identityFormGroup">
+            <div class="form-container">
+                <div class="top-container">
+                    <blockquote>
+                        <p class="mat-body">
+                            Aadhaar and PAN Card details are mandatory.
+                        </p>
+                    </blockquote>
+                </div>
+
+                <div class="left-container">
+                    <mat-form-field color="accent">
+                        <mat-label>Identity Type</mat-label>
+                        <mat-select #docname (change)="docSelected()" formControlName="docName" required
+                            placeholder="Aadhaar , PAN, Passport">
+                            <mat-option value="Aadhaar Card">Aadhaar Card</mat-option>
+                            <mat-option value="PAN Card">PAN Card</mat-option>
+                            <mat-option value="Passport">Passport</mat-option>
+                        </mat-select>
+                        <!-- <mat-select #docname (change)="docSelected($event)" formControlName="docName" required
+                            placeholder="Aadhaar , PAN, Passport">
+                            <mat-option *ngFor="let doc of docValues" [value]="doc.id">
+                                {{doc.docName}}
+                            </mat-option>
+                        </mat-select> -->
+                        <mat-error *ngIf="identityDetailsFormControl.docName.errors?.required" align="start">
+                            Identity Type is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Document Number</mat-label>
+                        <input matInput placeholder="1234-5678-9876/ABCDE1234Z" formControlName="docNumber" required>
+                        <mat-error *ngIf="identityDetailsFormControl.docNumber.errors?.required" align="start">
+                            Document Number is required!
+                        </mat-error>
+                        <mat-error *ngIf="identityDetailsFormControl.docNumber.errors?.pattern" align="start">
+                            Valid PAN/Aadhaar is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Name in Document</mat-label>
+                        <input matInput placeholder="Name in Document" formControlName="nameInDoc" required>
+                        <mat-error *ngIf="identityDetailsFormControl.nameInDoc.errors?.required" align="start">
+                            Name is required!
+                        </mat-error>
+                        <mat-error *ngIf="identityDetailsFormControl.nameInDoc.errors?.minlength" align="end">
+                            Min 3 Chars!
+                        </mat-error>
+                        <mat-error *ngIf="identityDetailsFormControl.nameInDoc.errors?.pattern" align="start">
+                            Only Letters are Accepted!
+                        </mat-error>
+                    </mat-form-field>
+                    </div>
+                    <div class="right-container">
+                    <mat-form-field color="accent" >
+                        <mat-label>Document Issued Country</mat-label>
+                        <input matInput placeholder="Country Name" formControlName="docIssuedCountry" required>
+                        <mat-error *ngIf="identityDetailsFormControl.docIssuedCountry.errors?.required" align="start">
+                            Document Issued Country is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" >
+                        <mat-label>Valid From</mat-label><input matInput [matDatepicker]="dofpicker" [max]="today"
+                            placeholder="MM/DD/YYYY" formControlName="docValidFrom" [value]="docFrom">
+                        <mat-datepicker-toggle matSuffix [for]="dofpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dofpicker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field color="accent">
+                        <mat-label>Valid To</mat-label><input matInput [matDatepicker]="dotpicker"
+                            placeholder="MM/DD/YYYY" formControlName="docValidTo" [value]="docTo">
+                        <mat-datepicker-toggle matSuffix [for]="dotpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dotpicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="middle-container1">
+                    <span class="id_doc">Id Proof Documents</span>
+                    <mat-card class="material-card">
+                        <div class="pdf-viewer-container" *ngIf="pdfUrl">
+                            <pdf-viewer [src]="pdfUrl" [original-size]="false"></pdf-viewer>
+                        </div>
+
+                            <mat-card-header>
+                                <mat-card-title >
+                                    <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps"
+                                (change)="onImageSelected($event)">
+                                  <span (click)="imageInput.click()"> Drag your files here<br>or <span class="browse_green">Browse</span> to upload</span>
+                                </mat-card-title>
+                            </mat-card-header>
+
+                       <!-- <mat-card-actions class="text-center">
+                            <input #imageInput style="display : none" type="file"
+                                accept="image/jpeg,image/png,application/pdf,image/x-eps"
+                                (change)="onImageSelected($event)">
+                            <button mat-raised-button color="accent" (click)="imageInput.click()">
+                                <mat-icon>note_add</mat-icon> Select
+                            </button>
+                        </mat-card-actions>-->
+                    </mat-card>
+                </div>
+
+                <div class="middle-container">
+                    <button color="warn" mat-raised-button *ngIf="candidateDetails?.id"
+                        [disabled]="!identityFormGroup.valid || maxEntriesReached || !fileUrl" (click)="addLine()">
+                        <mat-icon>add</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-identity" *ngIf="identityDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>DocumentName</th>
+                                <th>Document Number</th>
+                                <th>Name in Document</th>
+                                <th>Document Issued Country</th>
+                                <th>Valid From</th>
+                                <th>Valid To</th>
+                                <th>Is Approved?</th>
+                                <th>Action</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of identityDataSource; let i=index">
+                                <td>{{data.docName}}</td>
+                                <td>{{data.docNumber}}</td>
+                                <td>{{data.nameInDoc}}</td>
+                                <td>{{data.docIssuedCountry}}</td>
+                                <td>{{(data.docValidFrom === 0) ? 'NA' : data.docValidFrom |
+                                    date:'longDate'}}</td>
+                                <td>{{(data.docValidTo === 0) ? 'NA' : data.docValidTo |
+                                    date:'longDate'}}</td>
+                                <td>{{data?.approved ? 'Approved' : 'Pending' }}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                                <td>{{data.remarks}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-expansion-panel>

@@ -1,0 +1,115 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Dependent Details
+        </mat-panel-title>
+        <mat-panel-description>
+            Employee Coverage (Spouse and 2 Kids) & Parental Coverage (Any 2)
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+
+    <div>
+        <form [formGroup]="medifamFormGroup">
+            <div class="form-container">
+
+                <div class="left-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Name" formControlName="name" required>
+                        <mat-error *ngIf="familyDetailsFormControl.name.errors?.required" align="start">
+                            Name is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender" required placeholder="Male/Female">
+                            <mat-option value="Male">Male</mat-option>
+                            <mat-option value="Female">Female</mat-option>
+                            <mat-option value="Transgender">Transgender</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="familyDetailsFormControl.gender.errors?.required" align="start">
+                            Gender is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Dependent</mat-label>
+                        <mat-select formControlName="isDependant" required placeholder="Yes / No">
+                            <mat-option value="Yes">Yes</mat-option>
+                            <mat-option value="No">No</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="familyDetailsFormControl.isDependant.errors?.required" align="start">
+                            Dependent is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="right-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Relationship</mat-label>
+                        <mat-select formControlName="type" required placeholder="Son, Father, Mother etc.">
+                            <mat-option value="Son">Son</mat-option>
+                            <mat-option value="Daughter">Daughter</mat-option>
+                            <mat-option value="Spouse">Spouse</mat-option>
+                            <mat-option value="Father">Father</mat-option>
+                            <mat-option value="Mother">Mother</mat-option>
+                            <mat-option value="Father-in-law">Father-in-law</mat-option>
+                            <mat-option value="Mother-in-law">Mother-in-law</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="familyDetailsFormControl.type.errors?.required" align="start">
+                            Relationship is required!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Date of Birth</mat-label><input matInput [matDatepicker]="dobpicker" [max]="today"
+                            placeholder="MM/DD/YYYY" formControlName="dateOfBirth" [value]="dob" required>
+                        <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dobpicker></mat-datepicker>
+                        <mat-error *ngIf="familyDetailsFormControl.dateOfBirth.errors?.required" align="start">
+                            DOB is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="middle-container">
+                    <button color="warn" mat-raised-button *ngIf="mediclaim?.id"
+                        [disabled]="!medifamFormGroup.valid || maxEntriesReached" (click)="addLine()">
+                        <mat-icon>add_to_queue</mat-icon> Add Details
+                    </button>
+                </div>
+
+                <div class="bottom-container">
+                    <table class="table table-borderless table-family" *ngIf="familyDataSource.length > 0"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Relationship Type</th>
+                                <th>Gender</th>
+                                <th>Date of Birth</th>
+                                <th>Dependent</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of familyDataSource; let i=index">
+                                <td>{{data.name}}</td>
+                                <td>{{data.type}}</td>
+                                <td>{{data.gender}}</td>
+                                <td>{{data.dateOfBirth | date:'longDate' }}</td>
+                                <td>{{data.isDependant}}</td>
+                                <td>
+                                    <button mat-button color="primary" (click)="removeLine(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-expansion-panel>

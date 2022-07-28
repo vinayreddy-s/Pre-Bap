@@ -1,0 +1,145 @@
+<div class="header">
+    <div>
+        <!-- <button mat-button color="accent" (click)="navigateToEditIdCard()">
+            <mat-icon>keyboard_arrow_left</mat-icon> Edit
+        </button> -->
+    </div>
+    <!-- <div class="mat-title text-center">Preview ID Card</div> -->
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+<div>
+    <div class="form-container" id="pdf-content-idcard">
+        <div class="top-container">
+            <div class="mat-title text-center" style="font-size:28px; font-weight: bolder; ">
+                ID Card Form Preview
+                <br>
+                <br>
+            </div>
+
+            <div style="margin-left:65% !important">
+
+                <button style="color: #74C657;" mat-icon-button>
+                    <mat-icon>create</mat-icon>
+                    </button>
+                <button style="margin-left:-5px" mat-icon-button>
+                    <mat-icon>clear</mat-icon>
+                   
+                  </button>
+                 
+            
+            </div>
+
+        <div class="mat-title text-center" style="font-size:24px; margin-right: 71% !important; margin-top: -5px; font-weight:400;margin: 0px; ">
+            ID CARD FORM
+        </div>
+           
+            <!-- <div>
+                <img class="fit-picture" src="../../../assets/prodapt_logo_comp.png">
+            </div> -->
+        </div>
+
+        
+
+        <div class="left-container">
+            <p class="mat-body">
+                Prince Info City-II,<br>
+                No.283/4,4th Floor,<br>
+                Rajiv Gandhi salai (OMR),<br>
+                Kandanchavadi,<br>
+                Chennai - 600 096, India.<br>
+                Ph: +91 44 4903 3000<br>
+                <a href="https://www.prodapt.com/en/"> www.prodapt.com </a>
+            </p>
+
+            
+        <div class="table-container" style="padding: 0 !important;width: 146%;">
+            <p class="mat-body-strong" style="font-size:23px; font-weight:900;">Employee Address</p>
+            <table class="table table-bordered table-vehicle"
+                [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                <thead>
+                    <tr>
+                        <th style="width:30% !important;background: gainsboro;">Employee Name</th>
+                        <td style="width:70% !important;text-align: left;">{{idCard?.empName}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:30% !important;background: gainsboro;">Employee Code </th>
+                        <td style="width:70% !important;text-align: left;">{{idCard?.empCode}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:30% !important;background: gainsboro;">Blood Group</th>
+                        <td style="width:70% !important;text-align: left;">{{idCard?.bloodGroup}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:30% !important;background: gainsboro;">Residential Address</th>
+                        <td style="width:70% !important;text-align: left;">{{idCard?.address}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:30% !important;background: gainsboro;">Contact Number</th>
+                        <td style="width:70% !important;text-align: left;">{{idCard?.mobile}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:30% !important;background: gainsboro;">Nationality</th>
+                        <td style="width:70% !important;text-align: left;">Indian</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+            <!-- <div>
+                <p class="mat-title text-left" style="font-weight:900;">Employee Address</p>
+                <div class="mat-body-2">Employee Name : {{idCard?.empName}}</div>
+                <div class="mat-body-2">Employee Code : {{idCard?.empCode}}</div>
+                <div class="mat-body-2">Blood Group : {{idCard?.bloodGroup}}</div>
+                <div class="mat-body-2">Residential Address : {{idCard?.address}}</div>
+                <div class="mat-body-2">Emergency Contact Number : {{idCard?.mobile}}</div>
+            </div> -->
+        </div>
+
+        <!-- <div class="right-container">
+            <mat-card class="material-card" *ngIf="ppImageUrl">
+                <img mat-card-image *ngIf="ppImageUrl" [src]="ppImageUrl">
+                <mat-card-actions class="text-center">
+                    <input #ppImageInput style="display : none" type="file" accept="image/jpeg,image/png,image/x-eps">
+                </mat-card-actions>
+            </mat-card>
+        </div> -->
+
+
+        <div class="bottom-container mat-body-1">
+            <blockquote class="blockquote">
+                <strong style="font-size:23px; font-weight:900">Instructions : </strong>
+                <br>
+                This badge issued exclusively for the purpose of identifications.
+                It is valid so long as user employed by the company and is non-transferable.
+                The user is solely reponsible for loss. If it is found somewhere please return to
+                the company.
+                The card holder must keep the identiy card during the working hours.
+            </blockquote>
+        </div>
+
+        <div class="table-container">
+            <p class="mat-body-strong" style="font-size:23px; font-weight:900;">Vehicle Details:</p>
+            <table class="table table-bordered table-vehicle"
+                [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                <thead>
+                    <tr>
+                        <th>Vehicle Name</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Reg. No.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of idCard?.vehicleDetails">
+                        <td>{{data.type}}</td>
+                        <td>{{data.make}}</td>
+                        <td>{{data.model}}</td>
+                        <td>{{data.regnNo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <mat-divider style=" border-color: #74C657;" ></mat-divider>

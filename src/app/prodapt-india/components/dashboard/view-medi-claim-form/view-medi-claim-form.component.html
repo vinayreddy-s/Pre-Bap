@@ -1,0 +1,88 @@
+<mat-accordion class="accordian-container" multi="true">
+
+    <div class="header">
+        <div>
+            <button mat-button color="accent" (click)="navigateToEditMediClaim()">
+                <mat-icon>keyboard_arrow_left</mat-icon> Edit
+            </button>
+        </div>
+        <div class="mat-title text-center">Preview Mediclaim Form</div>
+    </div>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Mediclaim Form Details
+            </mat-panel-title>
+            <mat-panel-description>
+                Name, gender, DOB, etc.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--Progress Bar  -->
+        <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+        <ng-template matExpansionPanelContent>
+            <div class="form-container" id="pdf-content-mediclaim">
+                <div class="top-container">
+                    <div class="mat-title text-center">
+                        Mediclaim Form
+                    </div>
+                    <div>
+                        <img class="fit-picture" src="../../../assets/prodapt_logo_comp.png">
+                    </div>
+                </div>
+                <div class="middle-container">
+                    <table class="table table-bordered basic-details"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <tr>
+                            <th class="mat-body-2">Employee Name</th>
+                            <td>{{mediclaim?.name}}</td>
+                        </tr>
+                        <tr>
+                            <th class="mat-body-2">Employee Code</th>
+                            <td>{{mediclaim?.empCode}}</td>
+                        </tr>
+                        <tr>
+                            <th class="mat-body-2">Employee Gender</th>
+                            <td>{{mediclaim?.gender}}</td>
+                        </tr>
+                        <tr>
+                            <th class="mat-body-2">Employee DOB</th>
+                            <td>{{mediclaim?.dateOfBirth | date:'longDate' }}</td>
+                        </tr>
+                        <tr>
+                            <th class="mat-body-2">Employee DOJ</th>
+                            <td>{{mediclaim?.dateOfJoining | date:'longDate' }}</td>
+                        </tr>
+                        <tr>
+                            <th class="mat-body-2">Covid Vaccination Detail</th>
+                            <td>{{mediclaim?.covidVaccination}}</td>
+                        </tr>
+                    </table>
+
+                    <p class="mat-body-strong">Dependent Details:</p>
+                    <table class="table table-bordered table-family"
+                        [ngClass]="loaderService.isDarkTheme? 'table-dark' : 'table'">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Relationship Type</th>
+                                <th>Gender</th>
+                                <th>Date of Birth</th>
+                                <th>Dependent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of mediclaim?.relationList">
+                                <td>{{data.name}}</td>
+                                <td>{{data.type}}</td>
+                                <td>{{data.gender}}</td>
+                                <td>{{data.dateOfBirth | date:'longDate' }}</td>
+                                <td>{{data.isDependant}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </ng-template>
+    </mat-expansion-panel>
+</mat-accordion>

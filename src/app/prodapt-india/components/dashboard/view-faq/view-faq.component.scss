@@ -1,0 +1,125 @@
+.accordian-container {
+    .header {
+        display: flex;
+        margin-right: 2rem;
+        justify-content: space-between;
+    }
+
+    mat-expansion-panel {
+        mat-expansion-panel-header {
+            display: flex;
+            align-items: stretch;
+            flex-basis: auto;
+            mat-panel-title {
+                padding: 0.5rem 0 0.5rem 0;
+                display: flex;
+                flex-wrap: wrap;
+                flex-basis: 0;
+            }
+        }
+        .demo-2 {
+            background-color: #d93c35;
+        }
+        .form-container {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: minmax(1rem, auto);
+            grid-template-areas:
+                "top-container top-container"
+                "middle-container middle-container";
+
+            .top-container {
+                grid-area: top-container;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .middle-container {
+                grid-area: middle-container;
+                margin: 2rem;
+                .mat-h2 {
+                    margin-left: 2rem;
+                }
+                .virtual-scroll {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+
+                    mat-card {
+                        margin: 1rem;
+                        width: 32rem;
+                        height: fit-content;
+                        border-style: solid;
+                        border-width: 1px;
+                        border-color: red;
+                    }
+
+                    mat-card:hover {
+                        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+                    }
+
+                    youtube-player {
+                        width: fit-content;
+                        margin: 1rem;
+                    }
+
+                    .faq-mat-card {
+                        max-width: fit-content;
+                        min-width: 35rem;
+                        height: fit-content;
+                        margin: 1rem;
+                    }
+                }
+            }
+
+            @media print {
+                .middle-container {
+                    grid-area: middle-container;
+                    display: flex;
+                    justify-content: center;
+
+                    table {
+                        width: 50%;
+                        border-collapse: collapse;
+
+                        td {
+                            padding: 1rem;
+                            width: 50%;
+                        }
+                    }
+                }
+            }
+
+            @media only screen and (max-width: 760px) {
+                justify-content: center;
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "top-container"
+                    "middle-container";
+
+                .top-container {
+                    margin-top: 2rem;
+                    justify-content: space-around;
+                }
+
+                .middle-container {
+                    table,
+                    thead,
+                    tbody,
+                    th,
+                    td,
+                    tr {
+                        display: block;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,228 @@
+.header {
+    display: flex;
+    margin-right: 2rem;
+    justify-content: space-between;
+}
+
+.form-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: minmax(1rem, auto);
+    grid-template-areas:
+        "top-container top-container top-container"
+        "left-container left-container right-container"
+        "bottom-container bottom-container bottom-container"
+        "table-container table-container table-container";
+
+    .top-container {
+        grid-area: top-container;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: 2rem;
+
+        .fit-picture {
+            padding: 2rem;
+            margin: 2rem 0 0 0;
+            background-color: transparent;
+            width: 280px;
+            justify-content: center;
+        }
+    }
+    .middle-container {
+        grid-area: middle-container;
+        font-size: 1.1em;
+        line-height: 1.6em;
+        padding: 1rem 1rem 1rem 2rem;
+        border-left: none;
+        position: relative;
+        text-align: justify;
+    }
+
+    .right-container {
+        grid-area: right-container;
+        padding: 1rem 1rem 1rem 1rem;
+        position: relative;
+        .material-card {
+            margin: 1rem;
+            align-items: right;
+            width: 25rem;
+            height: min-content;
+            img {
+                object-fit: cover;
+            }
+        }
+    }
+
+    .left-container {
+        grid-area: left-container;
+        width: 100%;
+        font-size: 1.1em;
+        line-height: 1.6em;
+        padding: 1rem 1rem 1rem 2rem;
+        border-left: none;
+        position: relative;
+        justify-content: left;
+    }
+
+    .bottom-container {
+        grid-area: bottom-container;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        blockquote {
+            font-size: 1.1em;
+            line-height: 1.6em;
+            padding: 1rem 1rem 1rem 2rem;
+            border-left: none;
+            position: relative;
+            text-align: justify;
+        }
+    }
+
+    
+    .new .table-container {
+        grid-area: table-container;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-left: none;
+        position: relative;
+    }
+
+    .table-container {
+        grid-area: table-container;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem 1rem 1rem 2rem;
+        border-left: none;
+        position: relative;
+
+
+    
+
+        .table-vehicle {
+            width: 100%;
+            border-collapse: collapse;
+            th {
+                font-weight: 570;
+                padding: 1rem;
+                border: 2px solid #ccc;
+                text-align: center;
+            }
+            tr {
+                border: 2px solid #ccc;
+            }
+            td {
+                border: 2px solid #ccc;
+                padding: 1rem;
+                width: 25%;
+                text-align: center;
+            }
+        }
+    }
+
+    
+
+    button {
+        margin: 2rem;
+        width: fit-content;
+    }
+
+    @media only screen and (max-width: 760px) {
+        justify-content: center;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "top-container"
+            "right-container"
+            "left-container"
+            "bottom-container"
+            "table-container";
+
+        .top-container {
+            margin-top: 2rem;
+            justify-content: space-around;
+        }
+
+        .right-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .bottom-container {
+            blockquote {
+                text-align: left;
+            }
+        }
+        .table-container {
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+                align-items: center;
+            }
+
+            .table-vehicle {
+                display: block;
+                td {
+                    padding: 1rem;
+                    width: 100%;
+                }
+                thead tr {
+                    position: absolute;
+                    top: -9999px;
+                    left: -9999px;
+                }
+
+                tr {
+                    border: 2px solid #ccc;
+                }
+
+                td {
+                    /* Behave  like a "row" */
+                    border: none;
+                    border-bottom: 1px solid #eee;
+                    position: relative;
+                    padding-left: 50%;
+                    align-items: center;
+                    text-align: left;
+                }
+
+                td:before {
+                    /* Now like a table header */
+                    position: absolute;
+                    /* Top/left values mimic padding */
+                    top: 6px;
+                    left: 6px;
+                    width: 45%;
+                    padding-right: 10px;
+                    white-space: nowrap;
+                }
+
+                td:nth-of-type(1):before {
+                    content: "Vehicle Name";
+                }
+                td:nth-of-type(2):before {
+                    content: "Make";
+                }
+                td:nth-of-type(3):before {
+                    content: "Model";
+                }
+                td:nth-of-type(4):before {
+                    content: "Reg. No.";
+                }
+                td:nth-of-type(5):before {
+                    content: "Action";
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,617 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+$market-primary: mat-palette($mat-red, 600);
+$market-accent: mat-palette($mat-blue, A700);
+$market-warn: mat-palette($mat-red);
+
+$market-theme: mat-light-theme($market-primary, $market-accent, $market-warn);
+@include angular-material-theme($market-theme);
+
+//for dark theme
+$market-primary-dark: mat-palette($mat-blue, 600);
+$market-accent-dark: mat-palette($mat-red, A700);
+$market-warn-dark: mat-palette($mat-red);
+
+$market-theme-dark: mat-dark-theme($market-primary-dark, $market-accent-dark, $market-warn-dark);
+
+.dark-theme-mode {
+    @include angular-material-theme($market-theme-dark);
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    // font-family: "Open Sans", sans-serif;
+    font-family: "KareliaWeb Medium", sans-serif !important;
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    // font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: "KareliaWeb Medium", sans-serif !important;
+}
+
+a.mat-list-item .mat-list-item-content {
+    flex-direction: column-reverse !important;
+    left: -20px !important;
+    align-items: flex-start !important;
+}
+mat-sidenav.mat-drawer.mat-sidenav.sidenav, .mat-drawer-inner-container {
+    overflow: visible !important;
+  }
+  .mat-app-background {
+    background-color: #ffffff !important;
+}
+@media (min-width: 1400px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1140px !important;
+    }
+}
+.mat-list-base .mat-list-item .mat-list-text {
+    margin-top: 30px;
+  }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+
+
+
+
+
+.mat-step-icon .mat-icon{
+   color: #838383;
+}
+
+.mat-step-header .mat-step-icon{
+    color: #838383;
+    background-color: #dee2e6;
+}
+.mat-step-header .mat-step-icon-selected{
+    background-color: #5ac243 ;
+    color: #fff !important;
+}
+.mat-button.mat-accent{
+    color: #000;
+    font-weight: normal;
+}
+.mat-accordion .mat-expansion-panel{
+    border-radius: none;
+    box-shadow: none;
+    border-bottom: 1px solid #5ac243;
+}
+
+.mat-accordion .mat-expansion-panel:last-of-type {
+    border-bottom: 1px solid #5ac243;
+    margin: 0px 30px;
+    padding-right: 10px;
+    margin-left: 35px !important;
+}
+
+
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+    box-shadow: none;
+}
+.mat-expansion-panel-header{
+    border-radius: 0px;
+}
+.mat-accordion .mat-expansion-panel:first-of-type {
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom: 1px solid #5ac243;
+}
+.mat-form-field-appearance-legacy .mat-form-field-infix{
+    padding-top: 2.5rem;
+}
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label{
+    top: 2.5rem;
+    font-size: 18px;
+}
+
+
+.mat-form-field-required-marker{
+    color: red !important;
+}
+.mat-raised-button.mat-accent{
+    background-color: #5ac243;
+}
+/*
+.material-icons{
+    color: #5ac243;
+}*/
+mat-expansion-panel[_ngcontent-amw-c342] .main-container[_ngcontent-amw-c342] .middle-container[_ngcontent-amw-c342] .basic-details[_ngcontent-amw-c342] th[_ngcontent-amw-c342] {
+    background-color: #f1f1f1;
+}
+
+.active-list-item[_ngcontent-cac-c321]::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 210px;
+    height: 0;
+    width: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    padding: 0px;
+    border-top: 50px solid #5ac243;
+}
+.table-bordered{
+    border: 1px solid #ccc;
+    th {
+        border: none;
+        background: #f1f1f1;
+    }
+    tr {
+        border: none;
+    }
+    td {
+        border: none;
+    }
+}
+
+.table-borderless {
+    border: 1px solid #ccc;
+    th {
+        font-weight: 500;
+        border: none;
+        background: #f1f1f1;
+    }
+    tr {
+        border: none;
+    }
+    td {
+        border: none;
+    }
+}
+blockquote{
+    color: #d2cc7b;
+    border-left: none;
+    padding: 10px 0px;
+    
+}
+.mat-checkbox-disabled .mat-checkbox-label{
+    color: #000;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    vertical-align: middle;
+}
+
+.middle-container .mat-raised-button.mat-warn.mat-button-disabled, .mat-raised-button.mat-button-disabled.mat-button-disabled{
+    background-color: #5ac243;
+    color: #fff;
+}
+
+.mat-expansion-panel-header{
+    padding: 7px 0px !important;
+}
+.mat-expansion-panel-body{
+    padding: 0 0px 16px !important;
+}
+.mat-horizontal-content-container{
+    padding: 0 24px 24px 0px !important;
+}
+.mat-horizontal-stepper-header{
+    padding: 0 24px 0px 0px !important;
+}
+.middle-container {
+    justify-content: left !important;
+}
+
+.form-container {
+    margin:  0 !important;
+    .top-container {
+        padding: 1rem 1rem 1rem 0rem !important;
+        
+    }
+
+    .left-container {
+        padding: 0px;
+        width: 60% !important;
+    }
+
+   .right-container {
+        grid-area: right-container;
+        justify-content: left !important;
+       
+    }
+   
+    .middle-container {
+        grid-area: middle-container;
+        display: flex;
+        justify-content: center;
+        margin: 3rem 0;
+    }
+
+    .bottom-container {
+        grid-area: end-container;
+        display: flex;
+        justify-content: space-around;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            th {
+                font-weight: 500;
+                padding: 6px;
+                text-align: center;
+            }
+            td {
+                padding: 6px;
+                width: 12%;
+                text-align: center;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 760px) {
+        justify-content: center;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "top-container"
+            "left-container"
+            "right-container"
+            "middle-container"
+            "end-container";
+
+        .left-container .right-container {
+            mat-form-field {
+                max-width: 22rem;
+            }
+        }
+
+        .bottom-container {
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+                align-items: center;
+            }
+
+            .table-address {
+                display: block;
+                border: 1px solid #f1f1f1;
+                th{
+                    background: #f1f1f1;
+                    border: none;
+                }
+                td {
+                    padding: 1rem;
+                    width: 100%;
+                    border: none;
+                }
+                thead tr {
+                    position: absolute;
+                    top: -9999px;
+                    left: -9999px;
+                }
+
+                tr {
+                    //border: 2px solid #ccc;
+                    border: none;
+                }
+
+                td {
+                    /* Behave  like a "row" */
+                    border: none;
+                    border-bottom: 1px solid #eee;
+                    position: relative;
+                    padding-left: 50%;
+                    align-items: center;
+                    text-align: left;
+                }
+
+                td:before {
+                    /* Now like a table header */
+                    position: absolute;
+                    /* Top/left values mimic padding */
+                    top: 6px;
+                    left: 6px;
+                    width: 45%;
+                    padding-right: 10px;
+                    white-space: nowrap;
+                }
+
+                td:nth-of-type(1):before {
+                    content: "Type";
+                }
+                td:nth-of-type(2):before {
+                    content: "Address Line 1";
+                }
+                td:nth-of-type(3):before {
+                    content: "Address Line 2";
+                }
+                td:nth-of-type(4):before {
+                    content: "City";
+                }
+                td:nth-of-type(5):before {
+                    content: "State";
+                }
+                td:nth-of-type(6):before {
+                    content: "Country";
+                }
+                td:nth-of-type(7):before {
+                    content: "Postal Code";
+                }
+                td:nth-of-type(8):before {
+                    content: "Action";
+                }
+            }
+        }
+    }
+}
+    .subheading {
+        margin: 25px 0px 20px;
+        font-size: 25px;
+        font-weight: 900;
+    }
+
+    .subheading_heading{
+        font-weight: 200;
+        margin: 25px 0px 20px;
+        color: #3d3d3d;
+        font-size: 25px;
+        font-weight: normal;
+        text-transform: capitalize;
+    }
+    .subheading_head{
+        font-size: 20px;
+        color: #000;
+        line-height: 15px;
+        text-align: initial;
+        font-weight: 500;
+    }
+    .subheading_subtile{
+        font-size: 13px;
+        color: #3d3d3d;
+        line-height: 15px;
+        text-align: initial;
+        font-weight: 200;
+        padding: 10px 0px;
+    }
+
+    .form-container {
+        .middle-container {
+            .material-card {
+                margin: 1rem  2rem  1rem 0 !important;
+            }
+    }
+}
+.mat-card-header{
+    display: inline !important;
+}
+.mat-card-header .mat-card-title{
+    padding: 10px 0px;
+    border-bottom: 1px solid #ccc;
+    font-size: 15px;
+    height: 95px;
+    text-align: center;
+}
+.black_mat{
+    color: #5ac243 !important;
+}
+.pdf_icon{
+    font-size: 30px;
+    height: 50px !important;
+    width: 50px !important;
+    color: red !important;
+}
+
+      .mat-card-subtitle{
+    margin-bottom: 0px !important;
+    margin-top: 10px !important;
+}
+
+.mat-raised-button{
+    border-radius: 0px !important;
+}
+
+.mat-expansion-indicator::after{
+    color: #5ac243 !important;
+}
+
+.mat-horizontal-stepper-header .mat-step-icon{
+    margin: 0 auto !important;
+}
+.mat-horizontal-stepper-header{
+    display: block !important;
+    height: 60px !important;
+}
+.mat-stepper-horizontal-line{
+    border-top-width: 1px;
+    border-top-style: solid;
+    flex: auto;
+    height: 0;
+    margin: 0 -27px !important;
+    top: -18px;
+    min-width: 32px;
+    border-color: #5ac243;
+    position: relative;
+}
+.mat-step-header{
+    padding: 0px !important;
+    margin: 20px 0px;
+    text-align: center;
+}
+.mat-step-label{
+    white-space: break-spaces !important;
+    display: contents;
+    font-size: 13px;
+    line-height: 19px;
+    min-width: 80px;
+    max-width: 80px;
+}
+
+.subtile {
+    font-size: 12px;
+    color: #838383;
+    line-height: 15px;
+}
+
+.subtile1 {
+    font-size: 12px;
+    color: #838383;
+    line-height: 15px;
+    font-weight: 400;
+}
+
+.mat-title{
+    margin: 0px !important;
+}
+blockquote{
+    margin: 0px !important;
+    padding-bottom: 5px !important;
+    font-size: 13px;
+}
+.mat-checkbox-label{
+    font-size: 13px;
+}
+.mat-checkbox-inner-container{
+    height: 14px !important;
+    width: 14px !important;
+}
+.mat-checkbox-layout .mat-checkbox-label{
+    line-height: 14px !important;
+    font-size: 13px !important;
+}
+.mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent{
+    margin: 0px;
+    padding: 2px 1px;
+}
+.mat-form-field-appearance-legacy .mat-form-field-label{
+    margin: 0px;
+    padding: 2px 1px;
+}
+
+.mat-card-header .mat-card-title{
+    border-bottom: none;
+}
+.id_doc{
+    color: #3d3d3de0;
+}
+.browse_green{
+    color: #5ac243;
+    font-weight: bold;
+}
+
+.right-container1 .mat-card-title{
+    color: #3d3d3d87;
+}
+.right-container1{ 
+    .pdf-viewer-container {
+        height: 0rem !important;
+    }
+}
+.form-container{
+    .middle-container{
+        .material-card{
+            padding: 16px;
+            .pdf-viewer-container{
+                height: 0rem !important;
+                 
+            }
+        }
+    }
+}
+
+.mat-horizontal-stepper-header-container{
+    width: 85% !important;
+}
+
+.mat-step-header .mat-step-icon-state-edit{
+    background-color: #5ac243 !important;
+    color: #fff !important;
+}
+
+.mat-step-icon-state-edit .mat-icon{
+    color: #fff !important;
+}
+
+.mat-expansion-indicator::after {
+    border: none !important;
+    background: url(/assets/arrow.png);
+    background-size: 28px;
+    width: 24px;
+    height: 24px;
+    transform: rotate(0deg) !important;
+    padding: 10px;
+    background-repeat: no-repeat;
+    position: relative;
+    top: 10px;
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]){
+    background-color: #fff !important;
+    background: #fff !important;
+}
+
+.pdf_card .pdf_picture {
+    height: 50px !important;
+    padding: 2px;
+    width: 30%;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 991px)
+{
+    .landing-page-container{
+        grid-template-areas:
+        "top-container",
+        "right-container",
+        "left-container",
+        "middle-container",
+        "bottom-container";
+    }
+    .mat-accordion .mat-expansion-panel:last-of-type{
+        margin: 0px !important;
+    }
+    .header{
+        margin-left: 0rem !important;
+    }
+    .mat-button{
+        padding: 0px;
+    }
+    .mat-expansion-panel-header-description{
+        flex-grow: 0 !important;
+    }
+    .form-container{
+        display: block !important;
+    }
+    .container.kyc-container{
+        display: block;
+    }
+    .mat-horizontal-stepper-header{
+        display: contents;
+    }
+    .form-container .left-container{
+        display: block !important;
+        width: 100% !important;
+    }
+    .life-at-prodapt-section{
+        display: block !important;
+    }
+    .life-at-prodapt-section .card {
+        width: 100% !important;
+    }
+    .career-apply-now-card{
+        width: 100% !important;
+    }
+}
+

@@ -1,0 +1,48 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Acknowledgement by the employee
+        </mat-panel-title>
+        <mat-panel-description>
+            Provide Your Consent
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--Progress Bar  -->
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+    <!-- Expansion Panel Content -->
+    <ng-template matExpansionPanelContent>
+        <form [formGroup]="ackEmployeeFormGroup">
+            <div class="form-container">
+                <ng-template matStepLabel>Acknowledgement by the employee</ng-template>
+                <div class="top-container para-container">
+                    Received the duplicate copy of nomination in Form 'F' filed by me and duly certified by the
+                    employer.
+                </div>
+                <div class="left-container">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]="docpicker" [max]="today" placeholder="MM/dd/YYYY"
+                            formControlName="ackDate" [value]="doc">
+                        <mat-datepicker-toggle matSuffix [for]="docpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #docpicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="right-container">
+                    <div class="image-container">
+                        <ngx-signature-pad [config]="config" #signPad></ngx-signature-pad>
+                        <button mat-button (click)="clear()">Clear</button>
+                        <button mat-raised-button color="warn" class="pull-right" (click)="getImage()"
+                            [disabled]="isInValid()">Capture Sign</button>
+                    </div>
+                    <div class="mat-body-2" *ngIf="ackSignImageUrl">Signature of the employee : </div>
+                    <img class="fit-picture" *ngIf="ackSignImageUrl" [src]="ackSignImageUrl">
+                    <div class="mat-body-2" *ngIf="ackSignImageUrl">({{gratuity?.empName}}) </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+    <mat-action-row>
+        <button color="accent" *ngIf="gratuity?.id" mat-raised-button [disabled]="!ackEmployeeFormGroup.valid"
+            (click)="saveAckEmployeeForm()" mat-raised-button>Save Acknowledgement Details</button>
+    </mat-action-row>
+</mat-expansion-panel>
